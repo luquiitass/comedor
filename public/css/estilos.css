@@ -1,0 +1,135 @@
+body, html {
+    height: 100%;
+    background-repeat: no-repeat;
+    background: #EEEEEE !important;
+}
+
+.container{
+	min-width: 780px;
+	margin-bottom: 20px;
+}
+
+.content{
+	width: 90%;
+	margin: auto;
+	padding: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	background: #fff;
+	padding: 20px;
+	align-content: center;
+	align-items: center;
+}
+
+.un_estado{
+	width: 200px;
+	margin: 3px;
+	padding-bottom: 15px;
+	background: #EEEEEE !important;
+	float: left;
+	align-items: center;
+	text-align: center;
+}
+
+.center{
+	margin: auto!important;
+}
+
+.borde{
+	border: 1px solid #000;
+}
+
+.img_menu{
+	width: 250px;
+	line-height: 50px;
+	vertical-align: center;
+}
+
+.img_menu img{
+	float: left;
+	width: 50px;
+	padding: 3px;
+	margin: 0px 3px;
+}
+
+.img_menu p{
+	font-size:20px;
+	font-weight: bold;
+}
+
+li a samp{
+	font-weight: bold;
+	padding-bottom: 1px;
+	color: #000;
+	border-radius: 100px;
+	margin: 2px;
+}
+
+
+
+
+/*----------------Anuncios-----------------*/
+
+.unAnuncio{
+	padding: 15px;
+}
+
+.unAnuncio h3{
+	margin-left: 10px;
+}
+
+.unAnuncio p{
+	margin-left: 20px;
+}
+
+.hora_fecha{
+	padding-right: 30px;
+}
+
+
+/*----------Usuario-------------*/
+.foto_perfil{
+	width: 160px;
+	margin: auto;
+}
+	.foto_perfil img{
+		width: 100%;
+		margin-bottom: 10px;
+	}
+
+	.foto_perfil p{
+		font-size: 20px;
+		font-weight: bold;
+	}
+
+
+.lista_sin_estilo{
+	list-style: none;
+	display:inline;
+	font-size: 15px;
+}
+	.lista_sin_estilo li{
+		border-bottom: 1px solid #c0c4bf;
+		margin: 5px;
+	}
+
+	.lista_sin_estilo li span{
+		color: #899188;
+	}	
+
+.fileUpload {
+	    position: relative;
+	    overflow: hidden;
+	    margin: 10px;
+	}
+	.fileUpload input.upload {
+	    position: absolute;
+	    top: 0;
+	    right: 0;
+	    margin: 0;
+	    padding: 0;
+	    font-size: 20px;
+	    cursor: pointer;
+	    opacity: 0;
+	    filter: alpha(opacity=0);
+	}
