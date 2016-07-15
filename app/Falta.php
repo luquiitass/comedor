@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 /**
  * Class FaltaController
@@ -20,6 +21,11 @@ class Falta extends Model
     public function user()
     {
     	return $this->belongsTo('App\User');
+    }
+
+    public function getFecha()
+    {
+    	return date('d/M/Y',strtotime($this->fecha));
     }
 	
 }

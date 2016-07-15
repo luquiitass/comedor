@@ -10,7 +10,8 @@
         "laravelcollective/html": "^5.2",
         "barryvdh/laravel-debugbar": "^2.2",
         "doctrine/dbal": "2.5.1",
-        "Amranidev/scaffold-interface": "v1.4.*"
+        "Amranidev/scaffold-interface": "v1.4.*",
+        "khill/fontawesomephp" : "1.0.x"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

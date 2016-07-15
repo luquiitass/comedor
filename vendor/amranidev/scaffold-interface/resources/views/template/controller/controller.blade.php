@@ -1,6 +1,6 @@
 namespace {{config('amranidev.config.controllerNameSpace')}};
 
-use Request;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use {{config('amranidev.config.modelNameSpace')}}\{{$names->tableName()}};
 use Amranidev\Ajaxis\Ajaxis;
@@ -42,16 +42,7 @@ class {{$names->tableName()}}Controller extends Controller
         ${{str_plural($value)}} = {{ucfirst(str_singular($value))}}::all()->lists('{{$dataSystem->getOnData()[$key]}}','id');
         @endforeach
 
-        return view('@if(config('amranidev.config.loadViews')){{config('amranidev.config.loadViews')}}::@endif{{$names->TableNameSingle()}}.create'
-        @if($dataSystem->getForeignKeys() != null)
-        ,compact(
-        @foreach($dataSystem->getForeignKeys() as $key => $value)
-        '{{str_plural($value)}}'
-        @if($value != last($dataSystem->getForeignKeys())),
-        @endif
-        @endforeach)
-        @endif
-        );
+        return view('@if(config('amranidev.config.loadViews')){{config('amranidev.config.loadViews')}}::@endif{{$names->TableNameSingle()}}.create'@if($dataSystem->getForeignKeys() != null),compact(@foreach($dataSystem->getForeignKeys() as $key => $value)'{{str_plural($value)}}' @if($value != last($dataSystem->getForeignKeys())),@endif @endforeach)@endif);
     }
 
     /**
@@ -62,19 +53,17 @@ class {{$names->tableName()}}Controller extends Controller
      */
     public function store(Request $request)
     {
-        $input = Request::except('_token');
-
         ${{$names->tableNameSingle()}} = new {{$names->tableName()}}();
 
         @foreach($dataSystem->dataScaffold('v') as $value)
 
-        ${{$names->tableNameSingle()}}->{{$value}} = $input['{{$value}}'];
+        ${{$names->tableNameSingle()}}->{{$value}} = $request->{{$value}};
 
         @endforeach
 
         @foreach($dataSystem->getForeignKeys() as $key)
 
-        ${{$names->tableNameSingle()}}->{{lcfirst(str_singular($key))}}_id = $input['{{lcfirst(str_singular($key))}}_id'];
+        ${{$names->tableNameSingle()}}->{{lcfirst(str_singular($key))}}_id = $request->{{lcfirst(str_singular($key))}}_id;
 
         @endforeach
 
@@ -86,12 +75,13 @@ class {{$names->tableName()}}Controller extends Controller
     /**
      * Display the specified resource.
      *
+     * @param    \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id,Request $request)
     {
-        if(Request::ajax())
+        if($request->ajax())
         {
             return URL::to('{{$names->tableNameSingle()}}/'.$id);
         }
@@ -102,13 +92,13 @@ class {{$names->tableName()}}Controller extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
+     * @param    \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id,Request $request)
     {
-        if(Request::ajax())
+        if($request->ajax())
         {
             return URL::to('{{$names->tableNameSingle()}}/'. $id . '/edit');
         }
@@ -120,19 +110,7 @@ class {{$names->tableName()}}Controller extends Controller
         @endforeach
 
         ${{$names->tableNameSingle()}} = {{$names->tableName()}}::findOrfail($id);
-        return view('@if(config('amranidev.config.loadViews')){{config('amranidev.config.loadViews')}}::@endif{{$names->TableNameSingle()}}.edit',compact('{{$names->TableNameSingle()}}'
-        @if($dataSystem->getForeignKeys() != null)
-        ,
-        @foreach($dataSystem->getForeignKeys() as $key => $value)
-        '{{str_plural($value)}}'
-        @if($value != last($dataSystem->getForeignKeys())),
-        @endif
-        @endforeach
-        )
-        @else
-        )
-        @endif
-        );
+        return view('@if(config('amranidev.config.loadViews')){{config('amranidev.config.loadViews')}}::@endif{{$names->TableNameSingle()}}.edit',compact('{{$names->TableNameSingle()}}' @if($dataSystem->getForeignKeys() != null),@foreach($dataSystem->getForeignKeys() as $key => $value)'{{str_plural($value)}}'@if($value != last($dataSystem->getForeignKeys())),@endif @endforeach) @else )@endif);
     }
 
     /**
@@ -142,19 +120,17 @@ class {{$names->tableName()}}Controller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($id)
+    public function update($id,Request $request)
     {
-        $input = Request::except('_token');
-
         ${{$names->tableNameSingle()}} = {{$names->tableName()}}::findOrfail($id);
     	@foreach($dataSystem->dataScaffold('v') as $value)
 
-        ${{$names->tableNameSingle()}}->{{$value}} = $input['{{$value}}'];
+        ${{$names->tableNameSingle()}}->{{$value}} = $request->{{$value}};
         @endforeach
 
         @foreach($dataSystem->getForeignKeys() as $key)
 
-        ${{$names->tableNameSingle()}}->{{lcfirst(str_singular($key))}}_id = $input['{{lcfirst(str_singular($key))}}_id'];
+        ${{$names->tableNameSingle()}}->{{lcfirst(str_singular($key))}}_id = $request->{{lcfirst(str_singular($key))}}_id;
 
         @endforeach
 
@@ -167,14 +143,14 @@ class {{$names->tableName()}}Controller extends Controller
      * Delete confirmation message by Ajaxis
      *
      * @link https://github.com/amranidev/ajaxis
-     *
+     * @param    \Illuminate\Http\Request  $request
      * @return String
      */
-    public function DeleteMsg($id)
+    public function DeleteMsg($id,Request $request)
     {
         $msg = Ajaxis::{{$names->getParse()}}Deleting('Warning!!','Would you like to remove This?','/{{$names->TableNameSingle()}}/'. $id . '/delete/');
 
-        if(Request::ajax())
+        if($request->ajax())
         {
             return $msg;
         }

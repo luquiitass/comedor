@@ -164,6 +164,8 @@ return [
         Amranidev\ScaffoldInterface\ScaffoldInterfaceServiceProvider::class,
         Amranidev\Ajaxis\AjaxisServiceProvider::class,
 
+        Khill\Fontawesome\FontAwesomeServiceProvider::class,
+
     ],
 
     /*
@@ -214,6 +216,8 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
 
         'Debugbar' =>   Barryvdh\Debugbar\Facade::class,
+
+        'Fa' => Khill\Fontawesome\FontAwesomeServiceProvider::class,
 
     ],
 

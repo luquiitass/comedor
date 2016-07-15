@@ -11,6 +11,34 @@ $(function(){
 	$('#btn_registrarComensal').on("click",function(){
 		registrarComensal($('#form_registarComensal'));
 	});
+
+	$('#datata').DataTable();
+
+	$('.datepicker').datepicker({
+	    format: "dd-mm-yyyy",
+	    language: "es",
+	    autoclose: true
+	});
+
+	/*$('.mostrar').click(function(){
+		$(this).closest('tr').next().slideToggle();
+
+	});
+
+	$('.mostrar').hover(function() {
+		if ($(this).next().is(':hidden')) {
+			$(this).find('span').html('Ver faltas');
+		}else{
+    		$(this).find('span').html('Ocultar faltas');
+    	}
+	}, function() {
+    	$(this).find('span').html('');
+	});
+*/
+
+	
+
+	
 });
 
 function readURL(input,id_img){
@@ -198,3 +226,6 @@ function verUsuario(usuario){
 function mayPrimera(string){
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
+
+

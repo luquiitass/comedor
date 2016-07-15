@@ -5,16 +5,15 @@
 | Application Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
+| Here is where you can register all of the routes for an application_
+| It's a breeze_ Simply tell Laravel the URIs it should respond to
+| and give it the controller to call when that URI is requested_
 |
 */
 
 Route::get('/', function () {
 	if (\Auth::check()) {
-		$user= \Auth::user();
-		return view('users.home',compact('user'));
+		return redirect()->route('user_home');
 	}
     return redirect()->route('login');
 });
@@ -52,6 +51,7 @@ Route::group(['middleware' => ['web']],function(){
 /********************* estados ***********************************************/
 
 Route::resource('/estado','\App\Http\Controllers\EstadossemanalController');
+Route::get('ver_estados',['as' => 'user_estados', 'uses' => 'EstadossemanalController@index']);
 Route::post('estado/{id}/update','\App\Http\Controllers\EstadossemanalController@update');
 Route::get('estado/{id}/delete','\App\Http\Controllers\EstadossemanalController@destroy');
 Route::get('estado/{id}/deleteMsg','\App\Http\Controllers\EstadossemanalController@DeleteMsg');
@@ -60,17 +60,29 @@ Route::get('estado/{id}/deleteMsg','\App\Http\Controllers\EstadossemanalControll
 //estados Resources
 /********************* estados ***********************************************/
 
-Route::resource('/user','\App\Http\Controllers\UsersController');
+Route::resource('/user','UsersController');
+Route::get('ver_home',['as' => 'user_home', 'uses' => 'UsersController@home']);
 Route::post('user/modificarEstadoUsuario','UsersController@modificarEstadoUsuario');
+
+Route::get('usuarios',['as' => 'admin_users', 'uses' => 'UsersController@index']);
 //Route::post('user/{id}/update','\App\Http\Controllers\UsersController@update');
 //Route::get('user/{id}/delete', '\App\Http\Controllers\UsersController@destroy');
 //Route::get('user/{id}/deleteMsg','\App\Http\Controllers\UsersController@DeleteMsg');
 /********************* estados ***********************************************/
 
+//Rutas para el controlador admin
+Route::resource('/admin' , 'AdminController');
+//**************fin de rutas
 
 //falta Resources
 /********************* falta ***********************************************/
 Route::resource('falta','\App\Http\Controllers\FaltaController');
+Route::get('ver_faltas',['as' => 'user_faltas', 'uses' => 'FaltaController@index']);
+
+Route::get('faltas',['as' => 'admin_faltas', 'uses' => 'FaltaController@faltas']);
+
+
+
 Route::get('{id}/faltas','\App\Http\Controllers\FaltaController@faltas');
 Route::post('falta/{id}/update','\App\Http\Controllers\FaltaController@update');
 Route::get('falta/{id}/delete','\App\Http\Controllers\FaltaController@destroy');
@@ -80,8 +92,11 @@ Route::get('falta/{id}/deleteMsg','\App\Http\Controllers\FaltaController@DeleteM
 
 //anuncio Resources
 /********************* anuncio ***********************************************/
-Route::resource('anuncio','\App\Http\Controllers\AnuncioController');
-Route::get('{id}/anuncios','AnuncioController@anuncios');
+Route::resource('anuncio','AnuncioController');
+Route::get('ver_anuncios',['as' => 'user_anuncios', 'uses' => 'AnuncioController@index']);
+
+Route::get('anuncios',['as' => 'admin_anuncios', 'uses' => 'AnuncioController@anuncios']);
+
 Route::post('anuncio/{id}/update','\App\Http\Controllers\AnuncioController@update');
 Route::get('anuncio/{id}/delete','\App\Http\Controllers\AnuncioController@destroy');
 Route::get('anuncio/{id}/deleteMsg','\App\Http\Controllers\AnuncioController@DeleteMsg');
@@ -96,3 +111,6 @@ Route::get('estado_usuario/{id}/delete','\App\Http\Controllers\Estado_usuarioCon
 Route::get('estado_usuario/{id}/deleteMsg','\App\Http\Controllers\Estado_usuarioController@DeleteMsg');
 /********************* estado_usuario ***********************************************/
 
+//Resources de ControllerAdmin
+Route::resource('admin','AdminController');
+Route::get('admin',['as' => 'admin_admin', 'uses' => 'AdminController@index']);

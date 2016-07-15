@@ -30,5 +30,15 @@ class Estadossemanal extends Model
     	return ['Lunes' => $this->lunes,'Martes' => $this->martes,'Miercoles' => $this->miercoles,'Jueves' => $this->jueves,'Viernes' => $this->viernes];
     }
 
+    public static function cantAnotadosPorDia(){
+        return array(
+            'lunes' =>Estadossemanal::where('lunes','1')->count(),
+            'martes' => Estadossemanal::where('martes','1')->count(),
+            'miercoles' => Estadossemanal::where('miercoles','1')->count(),
+            'jueves' => Estadossemanal::where('jueves','1')->count(),
+            'viernes' => Estadossemanal::where('viernes','1')->count()
+        );
+    }
+
 	
 }

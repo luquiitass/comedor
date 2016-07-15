@@ -28,15 +28,26 @@ class FaltaController extends Controller
      */
     public function index()
     {
+        $user= \Auth::user();
+        $mesActual= date('M');
+
+        return view('falta.index',compact('mesActual','user'));
 
     }
 
-    public function faltas($id)
+
+
+    public function faltas()
     {
-        $user= User::findOrfail($id);
-        $faltas= User::find($id)->faltas;
-        
-        return view('falta.index',compact('faltas','user'));
+        $user= \Auth::user();
+
+        $users=  User::leftjoin('faltas','faltas.user_id','=','users.id')->select(\DB::raw('count(faltas.user_id) as cantFaltas,users.apellido,users.nombre,users.legajo,users.id'))->groupBy('id')->orderBy('id')->get();
+
+        //dd($users);
+        //$user->obtenerFaltasPorMes();
+        $mesActual= date('M');
+
+        return view('falta.admin_index',compact('users','user','mesActual'));
     }
 
     /**

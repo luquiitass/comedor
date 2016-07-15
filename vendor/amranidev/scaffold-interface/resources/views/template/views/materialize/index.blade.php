@@ -55,7 +55,7 @@
                     <tr>
                         @foreach($dataSystem->dataScaffold('v') as $value)
 
-                        <td>{{$names->open()}}$value->{{$value}}{{$names->close()}}</td>
+                        <td>{{$names->open()}}${{$names->tableName()}}->{{$value}}{{$names->close()}}</td>
                         @endforeach
 
                         @if($dataSystem->getRelationAttributes() != null)
@@ -64,7 +64,7 @@
 
                         @foreach($value as $key1 => $value1)
 
-                        <td>{{$names->open()}}$value->{{str_singular($key)}}->{{$value1}}{{$names->close()}}</td>
+                        <td>{{$names->open()}}${{$names->tableName()}}->{{str_singular($key)}}->{{$value1}}{{$names->close()}}</td>
                         @endforeach
 
                         @endforeach
@@ -73,9 +73,9 @@
 
                         <td>
                             <div class = 'row'>
-                                <a href = '#modal1' class = 'delete btn-floating modal-trigger red' data-link = "/{{$names->tableNameSingle()}}/{{$names->open()}}$value->id{{$names->close()}}/deleteMsg" ><i class = 'material-icons'>delete</i></a>
-                                <a href = '#' class = 'viewEdit btn-floating blue' data-link = '/{{$names->tableNameSingle()}}/{{$names->open()}}$value->id{{$names->close()}}/edit'><i class = 'material-icons'>edit</i></a>
-                                <a href = '#' class = 'viewShow btn-floating orange' data-link = '/{{$names->tableNameSingle()}}/{{$names->open()}}$value->id{{$names->close()}}'><i class = 'material-icons'>info</i></a>
+                                <a href = '#modal1' class = 'delete btn-floating modal-trigger red' data-link = "/{{$names->tableNameSingle()}}/{{$names->open()}}${{$names->tableName()}}->id{{$names->close()}}/deleteMsg" ><i class = 'material-icons'>delete</i></a>
+                                <a href = '#' class = 'viewEdit btn-floating blue' data-link = '/{{$names->tableNameSingle()}}/{{$names->open()}}${{$names->tableName()}}->id{{$names->close()}}/edit'><i class = 'material-icons'>edit</i></a>
+                                <a href = '#' class = 'viewShow btn-floating orange' data-link = '/{{$names->tableNameSingle()}}/{{$names->open()}}${{$names->tableName()}}->id{{$names->close()}}'><i class = 'material-icons'>info</i></a>
                             </div>
                         </td>
                     </tr>

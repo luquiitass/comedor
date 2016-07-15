@@ -22,7 +22,11 @@ class AuthController extends Controller
 
     	$data = $reques->only('email' , 'password');
     	if (\Auth::attempt($data)) {
-    		return redirect()->intended('/user/'.\Auth::user()->id);
+            if (\Auth::user()->isAdmin()) {
+                return redirect()->intended('admin');
+            }else{
+    		  return redirect()->intended('/user_home');
+            }
     	}
     	return back()->withInput()->withErrors(['email' => 'Usuario o contraseña incorrecta']);
     }

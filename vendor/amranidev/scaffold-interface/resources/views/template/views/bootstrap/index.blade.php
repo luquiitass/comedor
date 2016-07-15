@@ -61,7 +61,7 @@
                     <tr>
                         @foreach($dataSystem->dataScaffold('v') as $value)
 
-                        <td>{{$names->open()}}$value->{{$value}}{{$names->close()}}</td>
+                        <td>{{$names->open()}}${{$names->tableName()}}->{{$value}}{{$names->close()}}</td>
                         @endforeach
 
                         @if($dataSystem->getRelationAttributes() != null)
@@ -69,7 +69,7 @@
                         @foreach($dataSystem->getRelationAttributes() as $key=>$value)
 
                         @foreach($value as $key1 => $value1)
-                        <td>{{$names->open()}}$value->{{str_singular($key)}}->{{$value1}}{{$names->close()}}</td>
+                        <td>{{$names->open()}}${{$names->tableName()}}->{{str_singular($key)}}->{{$value1}}{{$names->close()}}</td>
 
                         @endforeach
 
@@ -78,9 +78,9 @@
                         @endif
 
                         <td>
-                                <a data-toggle="modal" data-target="#myModal" class = 'delete btn btn-danger btn-xs' data-link = "/{{$names->tableNameSingle()}}/{{$names->open()}}$value->id{{$names->close()}}/deleteMsg" ><i class = 'material-icons'>delete</i></a>
-                                <a href = '#' class = 'viewEdit btn btn-primary btn-xs' data-link = '/{{$names->tableNameSingle()}}/{{$names->open()}}$value->id{{$names->close()}}/edit'><i class = 'material-icons'>edit</i></a>
-                                <a href = '#' class = 'viewShow btn btn-warning btn-xs' data-link = '/{{$names->tableNameSingle()}}/{{$names->open()}}$value->id{{$names->close()}}'><i class = 'material-icons'>info</i></a>
+                                <a data-toggle="modal" data-target="#myModal" class = 'delete btn btn-danger btn-xs' data-link = "/{{$names->tableNameSingle()}}/{{$names->open()}}${{$names->tableName()}}->id{{$names->close()}}/deleteMsg" ><i class = 'material-icons'>delete</i></a>
+                                <a href = '#' class = 'viewEdit btn btn-primary btn-xs' data-link = '/{{$names->tableNameSingle()}}/{{$names->open()}}${{$names->tableName()}}->id{{$names->close()}}/edit'><i class = 'material-icons'>edit</i></a>
+                                <a href = '#' class = 'viewShow btn btn-warning btn-xs' data-link = '/{{$names->tableNameSingle()}}/{{$names->open()}}${{$names->tableName()}}->id{{$names->close()}}'><i class = 'material-icons'>info</i></a>
                         </td>
                     </tr>
                     {{$names->endforeachh()}}

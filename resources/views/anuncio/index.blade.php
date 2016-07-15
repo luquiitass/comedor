@@ -1,10 +1,10 @@
-@extends('layouts.master')
+@extends('layouts.master_user')
 
 @section('content')
-    <h2>Anuncios</h2>
-    <ul>
-    @foreach($anuncios as $anuncio)
-        <li>{{$anuncio->titulo}}</li>
-    @endforeach
-    </ul>
+    <div class="row">
+		<div class="col-md-9 col-md-offset-2">
+    	<h2>Anuncios activos</h2>
+			@each('anuncio.unAnuncio',$anuncios,'anuncio')
+		</div>
+	</div>
 @endsection

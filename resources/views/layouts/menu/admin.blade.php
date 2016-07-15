@@ -17,10 +17,10 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="navbar">
         <ul class="nav navbar-nav pull-left">
-          <li class=" {{(Request::url()=='')}} "><a href="/user/{{$user->id}}">Home</a></li>
-          <li class=" {{(Request::url()==(route('login')) ? 'active':'')}} "><a href="/estado/{{$user->estadosSemenal()->id}}">Usuarios</a></li>
-          <li class=" {{(Request::url()==(route('login')) ? 'active':'')}} "><a href="/{{$user->id}}/faltas">Faltas</a></li>
-          <li class=" {{(Request::url()==(route('login')) ? 'active':'')}} "><a href="/{{$user->id}}/anuncios">Anuncios</a></li>
+          <li class=" {{(Request::url()=='')}} "><a href="{{route('admin_admin')}}">Home</a></li>
+          <li class=" {{(Request::url()==(route('login')) ? 'active':'')}} "><a href="{{route('admin_users')}}">Usuarios</a></li>
+          <li class=" {{(Request::url()==(route('login')) ? 'active':'')}} "><a href="{{route('admin_faltas')}}">Faltas</a></li>
+          <li class=" {{(Request::url()==(route('login')) ? 'active':'')}} "><a href="{{route('admin_anuncios')}}">Anuncios</a></li>
         </ul>
 
         <ul class="nav navbar-nav pull-right" >
@@ -33,7 +33,10 @@
             <ul class="dropdown-menu">
               <li><a href="../Usuario/">Editar Perfil</a></li>
               <li role="separator" class="divider"></li>
-              <li> {{ link_to_route('logout','Logout') }}</li>
+              @if($user->isComensal())
+              <li> <a href="{{route('user_home')}}">Modo Comensal</a></li>
+              @endif
+              <li> {{ link_to_route('logout','Salir') }}</li>
             </ul>
           </li>
         </ul>

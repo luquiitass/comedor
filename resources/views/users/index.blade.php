@@ -1,4 +1,5 @@
-@extends('layouts.master')
+
+@extends('layouts.master_admin')
 
 @section('titulo')
 	Usuarios
@@ -28,7 +29,7 @@
 				<!--Panel lista todos los usuarios (Activos e Inactivos)  -->
 				<div id="tab_todos" class="tab-pane fade in active">
 					<h3>Todos los Comensales</h3>
-					<table class="table" width="100%">
+					<table id="datata" class="table" width="100%">
 						<tr>
 							<th>Apellido</th>
 							<th>Nombre</th>
@@ -178,3 +179,11 @@
 	
 
 @endsection
+<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js" ></script>
+<script src="https://code.jquery.com/jquery-3.1.0.js" integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+    $('#datata').DataTable();
+})
+</script>

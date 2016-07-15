@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use App\Estadossemanal;
+use App\Anuncio;
 
 class User extends Authenticatable
 {
@@ -14,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','nombre','apellido','telefono','legajo','dni','estadosSemenal','estado_id'
+        'name', 'email', 'password','nombre','apellido','telefono','legajo','dni','estadosSemenal','estado_id','tipo'
     ];
 
     /**
@@ -26,12 +27,27 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function isAdmin(){
+        if ($this->tipo == 'admin' || $this->tipo == 'ambos') {
+            return true;
+        }
+        return false;
+    }
+
+    public function isComensal()
+    {
+        if ($this->tipo == 'comensal' || $this->tipo == 'ambos') {
+            return true;
+        }
+        return false;
+    }
+
 
     public function mostrarMisDatos(){
         return ['Apellido' => $this->apellido, 'Nombre' => $this->nombre, 'Legajo' => $this->legajo, 'Telefono' => $this->telefono, 'DNI' => $this->dni, 'Email' => $this->email];
     }
 
-    public function estadosSemenal()
+    public function estadosSemanal()
     {
         return $this->hasOne(Estadossemanal::class)->first();
     }
@@ -43,7 +59,36 @@ class User extends Authenticatable
 
     public function estado()
     {
-        return $this->belongsTo(Estado_usuario::class)->first();
+        return $this->belongsTo(Estado_usuario::class);
+    }
+
+    public function anuncios()
+    {
+        return $this->hasMany(Anuncio::class);
+    }
+
+    public function obtenerFaltasPorMes(){
+        $faltas = $this->faltas()->get();
+        setlocale(LC_TIME,"es_ES");
+
+        $datos = $faltas->map(function($item,$key){
+            $fecha = $item['fecha'];
+            $mes = date('M',strtotime($fecha));
+            $item['mes'] = $mes;
+            return $item;
+        })->groupBy('mes');
+        return $datos;
+    }
+
+    public function obtenerFaltasMesActual()
+    {
+        $mesActual=date('M');
+        $faltas=$this->obtenerFaltasPorMes();
+        if ($faltas->has($mesActual)) {
+            return $faltas[$mesActual];
+        }
+        return collect();
+
     }
             
 }

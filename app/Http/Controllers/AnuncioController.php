@@ -30,18 +30,27 @@ class AnuncioController extends Controller
      */
     public function index()
     {
-        $anuncios = Anuncio::all();
-        return view('anuncio.index',compact('anuncios'));
-    }
-
-    public function anuncios($id)
-    {
+        $user= \Auth::user();
         $fechaActual = date("Y-m-d", time());
-        $anuncios = Anuncio::where('hasta','>',$fechaActual)->get();
-        $user = User::findOrfail($id);
-
+        $anuncios = Anuncio::join('Users','users.id','=','anuncios.user_id')->where('hasta','>',$fechaActual)->get();
         return view('anuncio.index',compact('anuncios','user'));
     }
+
+    public function anuncios()
+    {
+        
+        $user = \Auth::user();//recupera el usurio Logueado
+        
+        $fechaActual = date("Y-m-d", time());//obtiene la fecha actual
+        
+        $anuncios = Anuncio::join('Users','users.id','=','anuncios.user_id')->where('hasta','>',$fechaActual)->select('users.apellido','users.nombre','users.id as user_id','anuncios.titulo','anuncios.cuerpo','anuncios.created_at','anuncios.hasta')->get();///obtiene todos los anuncios que se encuentran visibles;
+        //dd($anuncios);
+        
+        $misAnuncios= $user->anuncios()->get();
+
+        return view('anuncio.admin_index',compact('anuncios','user','misAnuncios'));
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -63,22 +72,30 @@ class AnuncioController extends Controller
      */
     public function store(Request $request)
     {
+        $user= \Auth::user();
+
         $input = Request::except('_token');
 
-        $anuncio = new Anuncio();
+        //$anuncio = new Anuncio();
+        
+        //$anuncio->titulo = $input['titulo'];
 
         
-        $anuncio->titulo = $input['titulo'];
+        //$anuncio->cuerpo = $input['cuerpo'];
+
+        $date= $input['hasta'];
+
+        //$anuncio->hasta = date("Y-m-d", strtotime($date));
+
+        $input['hasta'] = date("Y-m-d", strtotime($date)); 
+
+        $input['user_id'] = $user->id;
+
+        //$anuncio->user()->associate($user);
+
+        Anuncio::create($input);
 
         
-        $anuncio->cuerpo = $input['cuerpo'];
-
-        
-        $anuncio->hasta = $input['hasta'];
-
-        
-        
-        $anuncio->save();
 
         return redirect('anuncio');
     }

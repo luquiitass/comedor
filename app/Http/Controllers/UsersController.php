@@ -112,9 +112,9 @@ class UsersController extends Controller
         //
     }
 
-    public function home($id)
+    public function home()
     {
-        $user= User::findOrfail($id);
+        $user= \Auth::user();
         return view('users.home',compact('user'));
     }
 

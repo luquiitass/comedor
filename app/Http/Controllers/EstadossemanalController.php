@@ -29,8 +29,13 @@ class EstadossemanalController extends Controller
      */
     public function index()
     {
-        $estadossemanals = Estadossemanal::all();
-        return view('estadossemanal.index',compact('estadossemanals'));
+        $user=\Auth::user();//obtiene el usuario logueado
+        $estados = $user->estadosSemanal();//obtiene los estados de este usuario 
+        
+        //dd($estados);
+        //dd($user);
+
+        return view('estadossemanal.show',compact('estados','user'));
     }
 
     /**
@@ -141,7 +146,7 @@ class EstadossemanalController extends Controller
         
         $estadossemanal->save();
 
-        return redirect('estado/'.$id);
+        return redirect('ver_estados');
     }
 
     /**

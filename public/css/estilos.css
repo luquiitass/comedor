@@ -133,3 +133,63 @@ li a samp{
 	    opacity: 0;
 	    filter: alpha(opacity=0);
 	}
+
+
+
+
+/*************Colores de panels**********************/
+.panel-claro {
+  border-color: #4291d7;
+}
+.panel-claro > .panel-heading {
+  color: #fff;
+  background-color: #4291d7;
+  border-color: #4291d7;
+}
+/****************fin de Coleres*********************/
+.tab-content{
+	background: #fff;
+	padding: 5px;
+}
+
+/**********************Estilos para un anuncio****************/
+.alert-message
+{
+    margin: 20px 0;
+    padding: 20px;
+    border-left: 3px solid #eee;
+}
+.alert-message h4
+{
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+.alert-message p
+{
+	font-style: italic;
+    margin-bottom: 0;
+}
+.alert-message span
+{
+    font-size: 10px;
+}
+.alert-message-success
+{
+    background-color: #F4FDF0;
+    border-color: #3C763D;
+}
+.alert-message-success h4
+{
+    color: #3C763D;
+}
+
+
+/**********************fin de Estilo de anuncio*********/
+
+.verde{
+	background: rgba(0, 148, 39, 0.77) !important;
+	color: #fff;
+}
+.verde ul{
+	color: #000;
+}
