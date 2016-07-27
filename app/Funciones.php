@@ -15,9 +15,12 @@ class Funciones
 	}
 
 	public static function int_mañanaEs()
-	{
+	{	if (date('w')+1 == 7) {
+			return 0;
+		}
 		return date('w')+1;
 	}
+	
 	public static function str_hoyES(){
 		$dias = Funciones::getDias();
 		return $dias[Funciones::int_hoyEs()];

@@ -6,19 +6,19 @@
 	@show
 
 <body class="container">
+	<div style=" position: absolute; top: 0px; right: 0px; left: 0px; z-index: 10;padding: 1px; ">
+		<div id="mensaje_superior" role="alert" style=" margin: auto; text-align: center; "></div>
+	</div>
 	
 	@if(isset($user))
 			@include('layouts.menu.user')
 	@endif
 
-	<div class="container">
+	<div id="content" class="container">
 		@yield('content')
 	</div>
 	
-
-	@section('scripts')
-	    @include('layouts.partes.scripts')
-	@show
+	@include('layouts.partes.scripts')
 
 </body>
 </html>

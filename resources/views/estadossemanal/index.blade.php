@@ -1,15 +1,11 @@
-@extends('layouts.master_user')
 
-@section('content')
     <h2>Estdos Semanal</h2>
-    
-
     <div>
         <table class="table">
             <tr>
                 @foreach($estados->estadosDias() as $key => $value)
                     <td style=" text-align: center; ">
-                        {{Form::open(array('url' =>"/estado/$estados->id/update"))}}
+                        {{Form::open(array('url' =>"/estado/$estados->id/update",'class'=>'formAjax'))}}
                         {{Form::hidden('id_estado',$estados->id)}}
                         {{Form::hidden('dia',$key)}}
                         <h4>{{$key}}</h4>
@@ -28,11 +24,3 @@
             </tr>
         </table>
     </div>
-
-@endsection
-
-@section('script')
-    <script type="text/javascript">
-        
-    </script>
-@endsection

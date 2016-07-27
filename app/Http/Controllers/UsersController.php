@@ -114,6 +114,11 @@ class UsersController extends Controller
 
     public function home()
     {
+        if (Request::ajax()) {
+            $ajx=Request::ajax();
+            $user= \Auth::user();
+            return view('users.home',compact('user','ajax'))->render();
+        }
         $user= \Auth::user();
         return view('users.home',compact('user'));
     }

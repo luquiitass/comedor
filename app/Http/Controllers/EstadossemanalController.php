@@ -142,11 +142,12 @@ class EstadossemanalController extends Controller
         // Obtenemos el dia a modificar y lo pasamos a minuscula xq en el imput comienza con mayuscula y en la BD se encuentra en minuscula;
 
         $estadossemanal[$diaModificar] = $input['estado']; 
-        //mofificamos el estado por el q se ha pasado por post;        
-        
+        //mofificamos el estado por el q se ha pasado por post; 
         $estadossemanal->save();
-
-        return redirect('ver_estados');
+        
+        $estados= $estadossemanal;       
+        
+        return view('estadossemanal.index',compact('estados'))->render();
     }
 
     /**

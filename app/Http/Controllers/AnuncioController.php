@@ -32,7 +32,7 @@ class AnuncioController extends Controller
     {
         $user= \Auth::user();
         $fechaActual = date("Y-m-d", time());
-        $anuncios = Anuncio::join('Users','users.id','=','anuncios.user_id')->where('hasta','>',$fechaActual)->get();
+        $anuncios = Anuncio::join('users','users.id','=','anuncios.user_id')->where('hasta','>',$fechaActual)->get();
         return view('anuncio.index',compact('anuncios','user'));
     }
 
@@ -43,7 +43,7 @@ class AnuncioController extends Controller
         
         $fechaActual = date("Y-m-d", time());//obtiene la fecha actual
         
-        $anuncios = Anuncio::join('Users','users.id','=','anuncios.user_id')->where('hasta','>',$fechaActual)->select('users.apellido','users.nombre','users.id as user_id','anuncios.titulo','anuncios.cuerpo','anuncios.created_at','anuncios.hasta')->get();///obtiene todos los anuncios que se encuentran visibles;
+        $anuncios = Anuncio::join('users','users.id','=','anuncios.user_id')->where('hasta','>',$fechaActual)->select('users.apellido','users.nombre','users.id as user_id','anuncios.titulo','anuncios.cuerpo','anuncios.created_at','anuncios.hasta')->get();///obtiene todos los anuncios que se encuentran visibles;
         //dd($anuncios);
         
         $misAnuncios= $user->anuncios()->get();
@@ -97,7 +97,7 @@ class AnuncioController extends Controller
 
         
 
-        return redirect('anuncio');
+        return redirect('admin_anuncios');
     }
 
     /**

@@ -227,5 +227,40 @@ function mayPrimera(string){
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+function mensaje_superior(mensaje,alert,hide){
+	var boton = '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
+	var clases = 'alert alert-'+alert+' alert-dismissible';
+	if (hide == 'true') {
+		$('#mensaje_superior').html(boton+mensaje).addClass(clases).show(200).delay(2500).hide(100);
+	}else{
+		$('#mensaje_superior').html(boton+mensaje).addClass(clases).show(200).delay(2500);
+	}
+}
 
 
+
+/*::::::::::::::::::::::::Funciones para modificar estado de un dia ::::::::::::*/
+$.fn.extend({
+        modEstado:function(){
+            $('.formAjax').submit(function(event){
+                event.preventDefault();
+                var a = $(this).serialize();
+                var id = $('#id_estado').attr('value');
+                $(this).find('.btn').val('Modificando...').addClass('btn-info');
+                $.ajax({
+                  type: "POST",
+                  url: "/estado/"+id+"/update",
+                  data: a,
+                  success: function(data){
+                    $('#content').html(data);
+                    $('#content').modEstado();
+                  },error:function(){
+                    $(this).find('.btn').val('Modificar').addClass('btn-primary');
+                    mensaje_superior('Error al cambiar de estado, intente nuevamente','danger','false');
+                  }
+                });
+                return false;
+        });
+        }
+    });
+/*:::::::::::::::::::Fin :::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
