@@ -3,4 +3,5 @@
 /public/storage
 Homestead.yaml
 Homestead.json
-.envvv
+.env
+/app/Providers/AppServiceProvider.php

@@ -9,7 +9,7 @@
         <span class="icon-bar"></span>
       </button>
       <div class="img_menu">
-        <img class="img" src="{{asset('/img/app_unam.png')}}" >
+        <img class="img" src="{{asset(public_path().'/img/app_unam.png')}}" >
         <p class="nombreApp" >Comedor Apostoles</p>
       </div>
     </div>
