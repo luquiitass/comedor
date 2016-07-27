@@ -2,15 +2,15 @@
 	<meta charset="UTF-8">
 	<title> @yield('titulo','Titulo no definido pap')</title>
 
-	<link rel="stylesheet" type="text/css" href="{{asset('/css/estilos.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset(public_path().'css/estilos.css')}}">
 	
-    <link href="{{asset('/css/bootstrap.css')}}" rel="stylesheet">
+    <link href="{{asset(public_path().'css/bootstrap.css')}}" rel="stylesheet">
 
 
-   <link href="{{asset('https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
 
-    <link rel="stylesheet" href="{{asset('/datePicker/css/bootstrap-datepicker3.css')}}">
-    <link rel="stylesheet" href="{{asset('/datePicker/css/bootstrap-datepicker.standalone.css')}}">
+    <link rel="stylesheet" href="{{asset(public_path().'datePicker/css/bootstrap-datepicker3.css')}}">
+    <link rel="stylesheet" href="{{asset(public_path().'datePicker/css/bootstrap-datepicker.standalone.css')}}">
 
     @section('styles')
 
