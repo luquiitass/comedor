@@ -9,10 +9,10 @@
                         <h4>{{$key}}</h4>
                         @if($value==0)
                             {{Form::hidden('estado','1')}}
-                            <img src="{{asset(piblic_path().'/img/no_comida.png')}}" alt="No Anotado">
+                            <img src="{{asset(public_path().'/img/no_comida.png')}}" alt="No Anotado">
                         @else
                             {{Form::hidden('estado','0')}}
-                            <img src="{{asset(piblic_path().'/img/si_comida.png')}}" alt="Si Anotado">
+                            <img src="{{asset(public_path().'/img/si_comida.png')}}" alt="Si Anotado">
                         @endif
                         {{Form::submit('Modificar',array('class'=> 'btn btn-primary center-block'))}}
                         {{Form::token()}}
