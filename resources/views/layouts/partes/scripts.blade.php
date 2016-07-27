@@ -1,4 +1,4 @@
-	<script src="{{asset('/js/jquery.js')}}"></script>
+	<script src="{{asset(public_path().'/js/jquery.js')}}"></script>
 
     <script src="{{asset(public_path().'/js/datatable.js')}}"></script>
 
