@@ -6,7 +6,7 @@
 		<div class="col-xs-12 col-sm-6 col-md-6 col-md-offset-1">
 			<div class="well row">
 				<div class="col-xs-4">
-					<img class="img-thumbnail center-block" src="{{asset('img/login2.png')}}" alt="Foto de perfil">
+					<img class="img-thumbnail center-block" src="{{asset(public_path().'img/login2.png')}}" alt="Foto de perfil">
 					<a class="btn btn-primary center-block text-center" href="#">Modificar Foto</a>
 				</div>
 
