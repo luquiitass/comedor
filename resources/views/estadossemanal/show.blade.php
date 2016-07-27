@@ -2,12 +2,11 @@
 
 @section('content')
     <h2>Estdos Semanal</h2>
-    <div>
-        <table class="table">
-            <tr>
+    <div class="row">
+        <div class="col-lg-1"></div>
                 @foreach($estados->estadosDias() as $key => $value)
-                    <td style=" text-align: center; ">
-                        {{Form::open(array('class'=>'formAjax'))}}
+                    <div class="col-lg-2 center-block " style=" text-align: center; float: left; ">
+                        {{Form::open(array('class'=>'formAjax '))}}
                         {{Form::hidden('id_estado',$estados->id)}}
                         {{Form::hidden('dia',$key)}}
                         <h4>{{$key}}</h4>
@@ -18,13 +17,12 @@
                             {{Form::hidden('estado','0')}}
                             <img src="{{asset('/img/si_comida.png')}}" alt="Si Anotado">
                         @endif
-                        {{Form::submit('Modificar',array('class'=> 'btn btn-primary'))}}
+                        {{Form::submit('Modificar',array('class'=> 'btn btn-primary center-block'))}}
                         {{Form::token()}}
                         {{Form::close()}}
-                    </td>
+                    </div>
                 @endforeach
-            </tr>
-        </table>
+        <div class="col-lg-1"></div>
     </div>
 
 @endsection

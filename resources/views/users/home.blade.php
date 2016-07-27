@@ -3,51 +3,52 @@
 @section('content')
 
 	<div class="row">
-		<div class="col-xs-12 col-sm-6 col-md-8">
-			<h2>Comensal</h2>
-			<div style=" float: left; margin-right: 20px; ">
-				<img class="img-thumbnail" src="{{asset('img/login2.png')}}" alt="">
+		<div class="col-xs-12 col-sm-6 col-md-6 col-md-offset-1">
+			<div class="well row">
+				<div class="col-xs-4">
+					<img class="img-thumbnail center-block" src="{{asset('img/login2.png')}}" alt="Foto de perfil">
+					<a class="btn btn-primary center-block text-center" href="#">Modificar Foto</a>
+				</div>
+
+				<div class="col-xs-8 todo_espacio">
+					<ul class="block listar_datos todo_espacio">
+						Comensal:
+						<li>Larrea Lucas</li>
+						Email:
+						<li>Liquiitas@gmail.com</li>
+						Legajo:
+						<li>Ls00548</li>
+						Teléfono:
+						<li>3754-460270</li>
+						Dni:
+						<li>36893090</li>
+					</ul>
+					<a class="btn list-group-item" href="#">Modificar Datos</a>
+					<hr>
+					<a class="btn list-group-item" href="#">Modificar Contraseña</a>
+				</div>
 			</div>
-			<div>
-				<ul>
-					Comensal
-					<li>Larrea Lucas</li>
-					Correo
-					<li>Liquiitas@gmail.com</li>
-					Telefono:
-					<li>3754-460270</li>
+		</div>
+
+		<div class="col-xs-12 col-sm-6 col-md-4 ">
+			<div class="well">
+				<ul class="listar_datos">
+					Anotado a:
+					<li>Lunes</li>
+					<li>Martes</li>
+					<li>Jueves</li>
+					<li><a class="btn list-group-item" href="#">Ver o modificar asistencia</a></li>
+				</ul>
+				<hr>
+				<ul class="listar_datos">
+					Faltas de este mes
+					<li> 1 - 21/10/2016</li>
+					<li> 2 - 25/10/2016</li>
+					<li> 3 - 29/10/2016</li>
+					<li><a class="btn list-group-item" href="#">Ver faltas</a></li>
 				</ul>
 			</div>
 		</div>
-
-		<div class="col-xs-12 col-sm-6 col-md-4">
-			<h5>Datos</h5>
-			<hr>
-			Anotado a:
-			<ul>
-				<li>Lunes</li>
-				<li>Martes</li>
-				<li>Jueves</li>
-			</ul>
-			<hr>
-			Faltas de este mes:
-			<ul>
-				<li> 1 - 21/10/2016</li>
-				<li> 2 - 25/10/2016</li>
-				<li> 3 -  29/10/2016</li>
-			</ul>
-		</div>
 	</div>
-
-		<h2>Hola {{$user->nombre}}  {{$user->apellido}}</h2>
-		
-
-		<h3>Datos del usuario</h3>
-		<div class="alert alert-success">
-			@foreach($user->mostrarMisDatos()  as $key => $value)
-				<li> {{$key}} : {{$value}}</li>
-			@endforeach
-		</div>
-
 
 @endsection
