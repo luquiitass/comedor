@@ -1,5 +1,4 @@
 @extends('layouts.master_user')
-
 @section('content')
     <h2>Estdos Semanal</h2>
     <div class="row">
