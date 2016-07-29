@@ -1,3 +1,5 @@
+{{Form::hidden('url',route('user.store'))}}
+					
 <div class="form-group">
 	{{Form::label('legajo')}}
 	{{Form::text('legajo' ,null , array('class' =>  'form-control limpiar'))}}
@@ -30,3 +32,6 @@
 	{{Form::label('Estado')}}
 	{{Form::select('estado',array('2'=>'activo','3' => 'inactivo','4' => 'pendiente'))}}
 </div>
+
+{{Form::token()}}
+{{Form::submit('Registrar',array('class' => 'btn btn-primary pull-left'))}}

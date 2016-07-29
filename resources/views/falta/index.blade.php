@@ -6,8 +6,8 @@
             <h2>Faltas</h2>
             <ul class="  list-group">
                 <?php $meses = $user->obtenerFaltasPorMes();?>
-                @if($meses->count() > 0)
-                    @foreach($meses as $nombreMes => $mes)
+                    
+                    @forelse($meses as $nombreMes => $mes)
                     <li class="faltas list-group-item  {{$nombreMes==$mesActual?'verde':''}}">
                         <p class="pull-right">
                             <span class="badge">{{$mes->count()}}</span> 
@@ -23,10 +23,9 @@
                         @endforeach
                         </ul>
                     </li>
-                    @endforeach
-                @else
-
-                @endif
+                    @empty
+                        <div class="alert alert-info">No posee faltas</div>
+                    @endforelse
             </ul>
         </div>
     </div>

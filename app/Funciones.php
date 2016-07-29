@@ -96,4 +96,8 @@ class Funciones
 		$arr =(is_array($arr)) ? $arr : array();
 		return array_merge($arr, array('funcion' => $funcion));
 	}
+	public static function getJSON_add_array($array=array(),$json)
+	{
+		return json_encode( array_merge($array,json_decode($json,true)));
+	}
 }

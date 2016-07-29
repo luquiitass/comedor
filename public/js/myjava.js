@@ -289,8 +289,8 @@ $.fn.extend({
 				success:function(data){
 					var json = $.parseJSON(data);
 					if (json.resultado == 'true') {
-						if (json.htm){
-							$(json.id_contenedor).html(json.html);
+						if (json.html){
+							$(json.id_elemento).html(json.html);
 						}
 						if (json.mensaje) {
 							mensaje_superior(json.mensaje,'success','true');
@@ -333,6 +333,8 @@ $.fn.extend({
 
 
 /*___________________________Fin____________________________________________________*/
-
+function reload(){
+	location.reload();
+}
 
 /*::::::::::::::::::::::::::::::::::Funciones para las vistas del usuario:::::::::::*/

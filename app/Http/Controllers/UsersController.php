@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Http\Requests\UserRegistRequest;
+use App\Http\Requests\UserUpdateRequest;
 use App\User;
 use Request;
 use App\Funciones;
@@ -71,8 +72,26 @@ class UsersController extends Controller
         
     }
 
-    public function userUpdate(){
+    public function userUpdate(UserUpdateRequest $request)
+    {
         $input =Request::except('_token');
+        $user = \Auth::user();
+        if (User::where('email','=',$input['email'])->where('id','!=',$user->id)->count() == 0) 
+        {
+            if (User::where('dni','=',$input['dni'])->where('id','!=',$user->id)->count() == 0)
+            {
+                $user->update($input);
+                $funcion = array('funcion' => 'reload');
+                return Funciones::getJSON_add_array($funcion,Funciones::getJSON('true','Modificado'));
+            }else
+            {
+               return Funciones::getJSON('false',"El DNI ingresado ya existe");
+            }
+        }else
+        {
+                return Funciones::getJSON('false',"El Email ingresado ya existe");
+        }
+        return "nada";
         
     }
     /**

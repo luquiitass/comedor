@@ -109,12 +109,7 @@
 					<br>
 					<div style="width: 80%;">
 					{{Form::open(array('class'=> 'form','method'=>'get'))}}
-						{{Form::hidden('url',route('user.store'))}}
-						
 						@include('forms.form_admin_user_create')
-
-						{{Form::token()}}
-						{{Form::submit('Registrar',array('class' => 'btn btn-primary pull-left'))}}
 					{{Form::close()}}
 				</div>
 				</div>
