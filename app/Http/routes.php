@@ -63,6 +63,10 @@ Route::get('estado/{id}/deleteMsg','\App\Http\Controllers\EstadossemanalControll
 Route::resource('/user','UsersController');
 Route::get('ver_home',['as' => 'user_home', 'uses' => 'UsersController@home']);
 Route::post('user/modificarEstadoUsuario','UsersController@modificarEstadoUsuario');
+Route::get('editar_datos',['as' => 'user_edit','uses' => 'UsersController@editarDatos']);
+
+Route::post('modificarPassword',['as' => 'modificarPassword' ,'uses' => 'UsersController@modificarPassword']);
+Route::post('userUpdate',['as' => 'userUpdate' ,'uses' => 'UsersController@userUpdate']);
 
 Route::get('usuarios',['as' => 'admin_users', 'uses' => 'UsersController@index']);
 //Route::post('user/{id}/update','\App\Http\Controllers\UsersController@update');

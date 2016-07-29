@@ -30,4 +30,70 @@ class Funciones
 	{
 		return date('w');
 	}
+
+	public static function getJSON(){
+		$param = func_get_args();
+		$num = func_num_args();
+		$retorno=array();
+
+		switch ($num) {
+			case 1:
+				$retorno=Funciones::getJSON_resultado($retorno,$param[0]);
+				break;
+			case 2:
+				$retorno=Funciones::getJSON_resultado($retorno,$param[0]);
+				$retorno=Funciones::getJSON_mensaje($retorno,$param[1]); 
+				break;
+			case 3:
+				$retorno=Funciones::getJSON_resultado($retorno,$param[0]);
+				$retorno=Funciones::getJSON_mensaje($retorno,$param[1]);
+				$retorno=Funciones::getJSON_idElemnto($retorno,$param[2]); 
+				break;
+			case 4:
+				$retorno=Funciones::getJSON_resultado($retorno,$param[0]);
+				$retorno=Funciones::getJSON_mensaje($retorno,$param[1]);
+				$retorno=Funciones::getJSON_idElemnto($retorno,$param[2]);
+				$retorno=Funciones::getJSON_html($retorno,$param[3]); 
+				break;
+			case 5:
+				$retorno=Funciones::getJSON_resultado($retorno,$param[0]);
+				$retorno=Funciones::getJSON_mensaje($retorno,$param[1]);
+				$retorno=Funciones::getJSON_idElemnto($retorno,$param[2]);
+				$retorno=Funciones::getJSON_html($retorno,$param[3]);
+				$retorno=Funciones::getJSON_refistros($retorno,$param[4]); 
+				break;
+			default:
+				$retorno[]="demaciados parametrs, se admiten 5";
+				break;
+		}
+		return json_encode($retorno,true);
+	}
+
+	public static function getJSON_resultado($arr,$resultado){
+		$arr =(is_array($arr)) ? $arr : array();
+		return array_merge($arr, array('resultado' => $resultado));
+	}
+
+
+	public static function getJSON_mensaje($arr,$mensaje){
+		$arr =(is_array($arr)) ? $arr : array();
+		return array_merge($arr, array('mensaje' => $mensaje));
+	}
+
+	public static function getJSON_idElemnto($arr,$id_elemento){
+		$arr =(is_array($arr)) ? $arr : array();
+		return array_merge($arr, array('id_elemento' => $id_elemento));
+	}
+	public static function getJSON_html($arr,$html){
+		$arr =(is_array($arr)) ? $arr : array();
+		return array_merge($arr, array('html' => $html));
+	}
+	public static function getJSON_refistros($arr,$registros){
+		$arr =(is_array($arr)) ? $arr : array();
+		return array_merge($arr, array('registros' => $registros));
+	}
+	public static function getJSON_funcion($arr,$funcion){
+		$arr =(is_array($arr)) ? $arr : array();
+		return array_merge($arr, array('funcion' => $funcion));
+	}
 }

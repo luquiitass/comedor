@@ -31,7 +31,7 @@
             <span class="caret"></span></a>
             </button>
             <ul class="dropdown-menu">
-              <li><a href="../Usuario/">Editar Perfil</a></li>
+              <li>{{link_to_route('user_edit','Modificar Datos')}}</li>
               <li role="separator" class="divider"></li>
               @if($user->isComensal())
               <li> <a href="{{route('user_home')}}">Modo Comensal</a></li>

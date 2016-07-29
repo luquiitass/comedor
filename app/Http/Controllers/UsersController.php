@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Http\Requests\UserRegistRequest;
 use App\User;
 use Request;
+use App\Funciones;
 
 class UsersController extends Controller
 {
@@ -42,6 +43,38 @@ class UsersController extends Controller
         return view('users.create');
     }
 
+    public function editarDatos()
+    {
+        $user= \Auth::user();
+        return view('users.edit',compact('user'));
+    }
+
+    public function modificarPassword(){
+        $user =\Auth::user();
+        $input = Request::except('_token');
+
+        if ($user->isPassword($input['cont_actual'])) { //Compara si la contraseña actual coincide con la de la BD
+            if ($input['cont_nueva'] === $input['cont_repet']) { //las contraseñas repetidas deben ser iguales
+                $user->password = $input['cont_nueva']; //se modifica la contraseña
+                $user->save();  
+
+                $arr = json_encode(array_merge(array('limpiar' => 'true'),json_decode(Funciones::getJSON("true","Contraseña modificada"),true)));
+
+                //agarega un objeto mas al jsoon devuelto por la funcion getJSON.
+                return $arr;
+            }else{
+                return Funciones::getJSON("false","Las contraseñas deben ser iguales");
+            }
+        }else{
+            return Funciones::getJSON("false","Las contraseña actual es incorrecta");
+        }
+        
+    }
+
+    public function userUpdate(){
+        $input =Request::except('_token');
+        
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -50,6 +83,7 @@ class UsersController extends Controller
      */
     public function store(UserRegistRequest $request)
     {
+        $input = Request::except('_token','url');
         $data= $request->only('email','legajo','nombre','apellido','dni','telefono');
         $data['estado_id']= '2';
         $data['password']= bcrypt('1');
@@ -57,7 +91,9 @@ class UsersController extends Controller
         if($user)
         {
             \Auth::login($user);
-            return redirect()->route('user/'.$user->id);
+            $resultado = array_merge(array('limpiar'=>'true'),json_decode(Funciones::getJSON('true','Usuario Registrado'),true));
+            return json_encode($resultado);
+            //return redirect()->route('user/'.$user->id);
         }
         return back()->withInput();
     }

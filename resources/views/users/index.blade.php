@@ -108,54 +108,14 @@
 					<h3>Registrar Comensal</h3>
 					<br>
 					<div style="width: 80%;">
-					<form id="form_registarComensal" onsubmit="return false">
-						<div class="row">
-							<div class="col-xs-6">
-							  <!--<div class="form-group">
-							    <label for="nombre_usuario">Nombre de usuario*</label>
-							    <input type="text" class="form-control" id="nombre_de_usuario" name="nombre_de_usuario" placeholder="Nombre de usuario">
-							  </div>-->
-							  <div class="form-group">
-							    <label for="nombre">Nombre*</label>
-							    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre">
-							  </div>
-							  <div class="form-group">
-							    <label for="apellido">Apellido*</label>
-							    <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Apellido">
-							  </div>
-							  <!--<div class="form-group">
-								    <label for="password">Contraseña*</label>
-								    <input type="password" class="form-control" id="password" name="password" placeholder="Contrase&ntilde;a">
-								  </div>
-								  <div class="form-group">
-								    <label for="confirm_password">Confirmar Contraseña</label>
-								    <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirmar Contraseña">
-								  </div>-->	
-							</div>
-							<div class="col-xs-6">
-								  <div class="form-group">
-								    <label for="dni">DNI*</label>
-								    <input type="text" class="form-control" id="dni" name="dni" placeholder="00.000.000">
-								  </div>
-								  <div class="form-group">
-								    <label for="telefono">Telefono</label>
-								    <input type="text" class="form-control" id="telefono" name="telefono" placeholder="(3754) 460270">
-								  </div>
-								  <div class="form-group">
-								    <label for="legajo">Legajo*</label>
-								    <input type="text" class="form-control" id="legajo" name="legajo" placeholder="LS00XXX">
-								  </div>
-								  <div class="form-group">
-							    <label for="email">Correo Electronico*</label>
-							    <input type="email" class="form-control" id="email" name="email" placeholder="Ejemplo@gmail.co">
-							  </div>
-								  							
-							</div>
-						</div>
-						  <button id="btn_registrarComensal" class="btn btn-primary pull-right"  class="btn btn-default">Registrar</button>
+					{{Form::open(array('class'=> 'form','method'=>'get'))}}
+						{{Form::hidden('url',route('user.store'))}}
+						
+						@include('forms.form_admin_user_create')
 
-						  <div id="mensaje"></div>
-					</form>
+						{{Form::token()}}
+						{{Form::submit('Registrar',array('class' => 'btn btn-primary pull-left'))}}
+					{{Form::close()}}
 				</div>
 				</div>
 
@@ -179,11 +139,12 @@
 	
 
 @endsection
-<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js" ></script>
-<script src="https://code.jquery.com/jquery-3.1.0.js" integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk=" crossorigin="anonymous"></script>
-<script type="text/javascript">
 
-$(document).ready(function(){
-    $('#datata').DataTable();
-})
-</script>
+
+@section('scripts')
+    <script type="text/javascript">
+        $(function(){
+            $('.form').formPostJson();
+        });
+    </script>
+@endsection

@@ -6,8 +6,7 @@
 	@show
 
 <body class="container">
-	<div style=" position: absolute; top: 0px; right: 0px; left: 0px; z-index: 10;padding: 1px; ">
-		<div id="mensaje_superior" role="alert" style=" margin: auto; text-align: center; "></div>
+	<div id="mensaje_superior">
 	</div>
 	
 	@if(isset($user))

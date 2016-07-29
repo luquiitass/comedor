@@ -8,7 +8,7 @@
                 <?php $meses = $user->obtenerFaltasPorMes();?>
                 @if($meses->count() > 0)
                     @foreach($meses as $nombreMes => $mes)
-                    <li class="faltas list-group-item {{$nombreMes==$mesActual?'verde':''}}">
+                    <li class="faltas list-group-item  {{$nombreMes==$mesActual?'verde':''}}">
                         <p class="pull-right">
                             <span class="badge">{{$mes->count()}}</span> 
                             Faltas

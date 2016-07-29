@@ -9,6 +9,17 @@ use App\Anuncio;
 
 class User extends Authenticatable
 {
+
+    public static function valid_reg(){
+        return [
+        'nombre' => 'required',
+        'apellido' => 'required',
+        'legajo' => 'required|unique:users',
+        'dni' => 'required|unique:users',
+        'telefono' => 'required',
+        'email' => 'required|email|unique:users',
+        ];
+    }
     /**
      * The attributes that are mass assignable.
      *
@@ -24,8 +35,12 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'remember_token',
     ];
+
+    public function isPassword($pass){
+        return \Hash::check($pass,$this->password);
+    }
 
     public function isAdmin(){
         if ($this->tipo == 'admin' || $this->tipo == 'ambos') {

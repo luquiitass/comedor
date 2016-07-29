@@ -6,6 +6,8 @@
 	@show
 
 <body class="container">
+	<div id="mensaje_superior">
+	</div>
 	
 	@if(isset($user))
 			@include('layouts.menu.admin')
@@ -15,10 +17,7 @@
 		@yield('content')
 	</div>
 	
-
-	@section('scripts')
-	    @include('layouts.partes.scripts')
-	@show
+	@include('layouts.partes.scripts')
 
 </body>
 </html>

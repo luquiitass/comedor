@@ -228,12 +228,18 @@ function mayPrimera(string){
 }
 
 function mensaje_superior(mensaje,alert,hide){
+
+	var div_ini = '<div class="alert alert-'+alert+' alert-dismissible toast" role="alert" style="text-align:left display:none;">';
+	var div_fin ='</div>';
 	var boton = '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
-	var clases = 'alert alert-'+alert+' alert-dismissible';
+
+	var msj = div_ini+boton+mensaje+div_fin;
+	$('#mensaje_superior').html(msj);
+	
 	if (hide == 'true') {
-		$('#mensaje_superior').html(boton+mensaje).addClass(clases).show(200).delay(2500).hide(100);
+		$('.toast').fadeIn(400).delay(3000).fadeOut(400);
 	}else{
-		$('#mensaje_superior').html(boton+mensaje).addClass(clases).show(200).delay(2500);
+		$('.toast').fadeIn(400).delay(3000);
 	}
 }
 
@@ -264,3 +270,69 @@ $.fn.extend({
         }
     });
 /*:::::::::::::::::::Fin :::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+
+/*:::::::::::::::::::::::::Metodos Post para modificar datos Que Devulve un Json*/
+
+$.fn.extend({
+	formPostJson:function(){
+		$(this).submit(function(event){
+			event.preventDefault();
+
+			var form = this;
+			var datos = $(form).serialize();
+			var url= $(form).find("input[name=url]").attr('value');
+
+			$.ajax({
+				type:"POST",
+				url:url,
+				data:datos,
+				success:function(data){
+					var json = $.parseJSON(data);
+					if (json.resultado == 'true') {
+						if (json.htm){
+							$(json.id_contenedor).html(json.html);
+						}
+						if (json.mensaje) {
+							mensaje_superior(json.mensaje,'success','true');
+						}
+
+					}else if(json.resultado == 'false'){
+						if (json.mensaje) {
+							mensaje_superior(json.mensaje,'danger','false');
+						}
+					}
+
+					if (json.funcion) {
+						window[json.funcion]();		
+					}
+					if (json.limpiar){
+						$(form).limpiar();
+					}
+
+				},
+				error:function(xhr){
+					if (xhr.status == 422 ){
+						var html='<ul>';
+						$.each(xhr.responseJSON,function(index,value){
+								html=html+"<li>"+value+"</li>";
+						});
+						html=html+"</ul>";
+						mensaje_superior(html,'danger','false');
+					}
+				}
+			});
+			return true;
+		});
+	},
+	limpiar:function(){
+		$(this).find('.limpiar').val('');
+		return false;
+	}
+});
+
+
+
+/*___________________________Fin____________________________________________________*/
+
+
+/*::::::::::::::::::::::::::::::::::Funciones para las vistas del usuario:::::::::::*/
