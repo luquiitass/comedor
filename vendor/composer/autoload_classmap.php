@@ -60,6 +60,7 @@ return array(
     'App\\Events\\Event' => $baseDir . '/app/Events/Event.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Falta' => $baseDir . '/app/Falta.php',
+    'App\\Funciones' => $baseDir . '/app/Funciones.php',
     'App\\Http\\Controllers\\AdminController' => $baseDir . '/app/Http/Controllers/AdminController.php',
     'App\\Http\\Controllers\\AnuncioController' => $baseDir . '/app/Http/Controllers/AnuncioController.php',
     'App\\Http\\Controllers\\AuthController' => $baseDir . '/app/Http/Controllers/AuthController.php',
