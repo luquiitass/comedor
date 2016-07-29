@@ -55,7 +55,7 @@ class UsersController extends Controller
 
         if ($user->isPassword($input['cont_actual'])) { //Compara si la contraseña actual coincide con la de la BD
             if ($input['cont_nueva'] === $input['cont_repet']) { //las contraseñas repetidas deben ser iguales
-                $user->password = $input['cont_nueva']; //se modifica la contraseña
+                $user->password = bcrypt($input['cont_nueva']); //se modifica la contraseña
                 $user->save();  
 
                 $arr = json_encode(array_merge(array('limpiar' => 'true'),json_decode(Funciones::getJSON("true","Contraseña modificada"),true)));
