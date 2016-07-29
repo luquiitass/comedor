@@ -25,7 +25,7 @@ class AuthController extends Controller
             if (\Auth::user()->isAdmin()) {
                 return redirect()->intended('admin');
             }else{
-    		  return redirect()->intended('/user_home');
+    		  return redirect()->intended('/ver_home');
             }
     	}
     	return back()->withInput()->withErrors(['email' => 'Usuario o contraseña incorrecta']);
