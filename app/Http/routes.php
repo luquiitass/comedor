@@ -67,6 +67,8 @@ Route::get('editar_datos',['as' => 'user_edit','uses' => 'UsersController@editar
 
 Route::post('modificarPassword',['as' => 'modificarPassword' ,'uses' => 'UsersController@modificarPassword']);
 Route::post('userUpdate',['as' => 'userUpdate' ,'uses' => 'UsersController@userUpdate']);
+Route::get('user/{id}/destroy',['as' => 'userDestroy','uses' => 'UsersController@destroy']);
+Route::get('user/{id}/deleteMsg','UsersController@DeleteMsg');
 
 Route::get('usuarios',['as' => 'admin_users', 'uses' => 'UsersController@index']);
 //Route::post('user/{id}/update','\App\Http\Controllers\UsersController@update');

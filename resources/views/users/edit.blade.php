@@ -1,6 +1,9 @@
-@extends('layouts.master_user')
+
+	@extends(str_contains(URL::previous(),'ver')?'layouts.master_user':'layouts.master_admin')
+
 
 @section('content')
+	
 	<div class="panel panel-primary">
 				<div class="panel-heading">
 					<h4 class="panel-title">Usuario</h4>
@@ -32,11 +35,9 @@
 									<h2>Información de perfil</h2>
 									<hr/>
 									<ul class="lista_sin_estilo">
-										<li><p><span>Nombre de usuario: </span>{{$user->legajo}}</p></li>
-										<li><p><span>Contraseña: </span>**********</p></li>
-										<li><p><span>Nombre: </span>{{$user->nombre}}</p></li>
-										<li><p><span>Apellido: </span> {{$user->apellido}}</p></li>
-										<li><p><span>Email: </span> {{$user->email}}</p></li>
+										@foreach($user->mostrarMisDatos() as $key => $value)
+											<li><p><span>{{$key}}: </span>{{$value}}</p></li>
+										@endforeach
 									</ul>
 								</div>
 

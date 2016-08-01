@@ -26,11 +26,11 @@
 </div>
 <div class="form-group">
 	{{Form::label('tipo')}}
-	{{Form::select('tipo',array('admin'=>'admin','comensal'=>'comensal','ambos'=>'ambos'))}}
+	{{Form::select('tipo',array('comensal'=>'comensal','admin'=>'admin','ambos'=>'ambos'))}}
 </div>
 <div class="form-group">
 	{{Form::label('Estado')}}
-	{{Form::select('estado',array('2'=>'activo','3' => 'inactivo','4' => 'pendiente'))}}
+	{{Form::select('estado_id',array('2'=>'activo','3' => 'inactivo','4' => 'pendiente'))}}
 </div>
 
 {{Form::token()}}

@@ -207,21 +207,6 @@ function colocarFaltas(){
 	
 }
 
-function verUsuario(usuario){
-	var us=usuario;
-
-	$.getJSON("/user/"+us['id'], function(data, status){
-		var html='<ul class="alert alert-success">';
-
-        $.each(data,function(index,value)
-		{
-			html=html+"<li>"+index+": "+value+"</li>";
-		});
-		html=html+"</ul>";
-		$('#modal-contenido').html(html);
-		$('#myModal').modal('show');
-	});
-}
 
 function mayPrimera(string){
   return string.charAt(0).toUpperCase() + string.slice(1);

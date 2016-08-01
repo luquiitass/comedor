@@ -132,7 +132,7 @@ class AjaxisGenerate
     {
         $modal = new BootstrapDeleteConfirmationMessage();
 
-        $modal = $this->modalDirector->build($title, 'Agree', $body, $link, $modal);
+        $modal = $this->modalDirector->build($title, 'Aceptar', $body, $link, $modal);
 
         return $modal->modalHead . $modal->modalBody . $modal->modalFooter;
     }
@@ -178,7 +178,7 @@ class AjaxisGenerate
     {
         $modal = new BootstrapDisplayBuilder();
 
-        $modal = $this->modalDirector->build('Dsiplay', 'ok', $input, null, $modal);
+        $modal = $this->modalDirector->build('Datos', 'ok', $input, null, $modal);
 
         return $modal->modalHead . $modal->modalBody . $modal->modalFooter;
     }

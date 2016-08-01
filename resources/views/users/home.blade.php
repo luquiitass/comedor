@@ -11,16 +11,9 @@
 
 				<div class="col-xs-8 todo_espacio">
 					<ul class="block lista_sin_estilo todo_espacio">
-						
-						<li><p><span>Comensal:</span> Larrea Lucas</p></li>
-						
-						<li><p><span>Email:</span> Liquiitas@gmail.com</p></li>
-						
-						<li><p><span>Legajo:</span> Ls00548</p></li>
-						
-						<li><p><span>Teléfono:</span> 3754-460270</p></li>
-						
-						<li><p><span>Dni:</span> 36893090</p></li>
+					@foreach($user->mostrarMisDatos() as $key => $value)
+						<li><p><span>{{$key}}:</span> {{$value}}</p></li>
+					@endforeach
 					</ul>
 					{{link_to_route('user_edit','Modificar Datos',null,array('class'=>'btn list-group-item'))}}
 					<hr>
@@ -32,9 +25,11 @@
 			<div class="well">
 				<ul class="listar_datos">
 					Anotado a:
-					<li>Lunes</li>
-					<li>Martes</li>
-					<li>Jueves</li>
+					@forelse($estadosSemanal as $key => $value)
+							<li>{{$key}}</li>
+					@empty()
+						<div class="alert alert-info">No esta anotado...</div>
+					@endforelse
 					<li>
 						{{link_to_route('user_estados','Ver Estados',null,array('class'=>'btn list-group-item'))}}
 					</li>

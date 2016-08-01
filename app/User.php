@@ -62,6 +62,10 @@ class User extends Authenticatable
         return ['Apellido' => $this->apellido, 'Nombre' => $this->nombre, 'Legajo' => $this->legajo, 'Telefono' => $this->telefono, 'DNI' => $this->dni, 'Email' => $this->email];
     }
 
+    public function mostrarMisDatosAjaxis(){
+        return [array('key' => 'Apellido' ,'value' => $this->apellido), array('key' => 'Nombre' ,'value' => $this->nombre), array('key' => 'Legajo' ,'value' => $this->legajo), array('key' => 'Telefono' ,'value' => $this->telefono), array('key' => 'DNI' ,'value' => $this->dni), array('key' => 'Email' ,'value' => $this->email)];
+    }
+
     public function estadosSemanal()
     {
         return $this->hasOne(Estadossemanal::class)->first();

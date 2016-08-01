@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 
-use App\Http\Requests;
+use Request;
 use App\Http\Requests\UserRegistRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\User;
-use Request;
 use App\Funciones;
+
+use Amranidev\Ajaxis\Ajaxis;
+use URL;
+
 
 class UsersController extends Controller
 {
@@ -59,7 +62,7 @@ class UsersController extends Controller
                 $user->password = bcrypt($input['cont_nueva']); //se modifica la contraseña
                 $user->save();  
 
-                $arr = json_encode(array_merge(array('limpiar' => 'true'),json_decode(Funciones::getJSON("true","Contraseña modificada"),true)));
+                $arr = json_encode(array_merge(array('limpiar' => 'true'),json_decode(Funciones::getJSON("true","Contraseña modificada","reload"),true)));
 
                 //agarega un objeto mas al jsoon devuelto por la funcion getJSON.
                 return $arr;
@@ -103,14 +106,15 @@ class UsersController extends Controller
     public function store(UserRegistRequest $request)
     {
         $input = Request::except('_token','url');
-        $data= $request->only('email','legajo','nombre','apellido','dni','telefono');
-        $data['estado_id']= '2';
+        $data= $request->only('email','legajo','nombre','apellido','dni','telefono','tipo','estado_id');
         $data['password']= bcrypt('1');
-        $user= User::create($data);
+        $user= new User();//create($data);
+        $user->create($data);
+
         if($user)
         {
-            \Auth::login($user);
-            $resultado = array_merge(array('limpiar'=>'true'),json_decode(Funciones::getJSON('true','Usuario Registrado'),true));
+            //\Auth::login($user);
+            $resultado = array_merge(array('limpiar'=>'true'),json_decode(Funciones::getJSON('true','Usuario Registrado','reload'),true));
             return json_encode($resultado);
             //return redirect()->route('user/'.$user->id);
         }
@@ -127,7 +131,8 @@ class UsersController extends Controller
     {
         if (Request::ajax()) {
             $user = User::findOrfail($id);
-            return json_encode($user->mostrarMisDatos());
+            return Ajaxis::BtDisplay($user->mostrarMisDatosAjaxis());
+            //return json_encode($user->mostrarMisDatos());
         }
         $user= User::findOrfail($id);
         return view('users.home',compact('user'));
@@ -143,7 +148,6 @@ class UsersController extends Controller
     {
         //
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -162,9 +166,21 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function DeleteMsg($id)
+    {
+        $msg = Ajaxis::BtDeleting('Eliminar Comensal','¿Seguro que quieres eliminar este comensal?','/user/'. $id . '/destroy/');
+
+        if(Request::ajax())
+        {
+            return $msg;
+        }
+    }
+
     public function destroy($id)
     {
-        //
+        $us = User::findOrfail($id);
+        $us->delete();
+        return URL::to('usuarios');
     }
 
     public function home()
@@ -175,7 +191,12 @@ class UsersController extends Controller
             return view('users.home',compact('user','ajax'))->render();
         }
         $user= \Auth::user();
-        return view('users.home',compact('user'));
+        
+        $estadosSemanal = $user->estadosSemanal()->diasAnotado();
+
+        $faltas = $user->obtenerFaltasMesActual();
+        
+        return view('users.home',compact('user','estadosSemanal','faltas'));
     }
 
     public function estadosSemanal($id){

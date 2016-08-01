@@ -47,20 +47,28 @@ class Funciones
 			case 3:
 				$retorno=Funciones::getJSON_resultado($retorno,$param[0]);
 				$retorno=Funciones::getJSON_mensaje($retorno,$param[1]);
-				$retorno=Funciones::getJSON_idElemnto($retorno,$param[2]); 
+				$retorno=Funciones::getJSON_funcion($retorno,$param[2]);
 				break;
 			case 4:
 				$retorno=Funciones::getJSON_resultado($retorno,$param[0]);
 				$retorno=Funciones::getJSON_mensaje($retorno,$param[1]);
-				$retorno=Funciones::getJSON_idElemnto($retorno,$param[2]);
-				$retorno=Funciones::getJSON_html($retorno,$param[3]); 
+				$retorno=Funciones::getJSON_funcion($retorno,$param[2]);
+				$retorno=Funciones::getJSON_idElemnto($retorno,$param[3]); 
 				break;
 			case 5:
 				$retorno=Funciones::getJSON_resultado($retorno,$param[0]);
 				$retorno=Funciones::getJSON_mensaje($retorno,$param[1]);
-				$retorno=Funciones::getJSON_idElemnto($retorno,$param[2]);
-				$retorno=Funciones::getJSON_html($retorno,$param[3]);
-				$retorno=Funciones::getJSON_refistros($retorno,$param[4]); 
+				$retorno=Funciones::getJSON_funcion($retorno,$param[2]);
+				$retorno=Funciones::getJSON_idElemnto($retorno,$param[3]);
+				$retorno=Funciones::getJSON_html($retorno,$param[4]); 
+				break;
+			case 6:
+				$retorno=Funciones::getJSON_resultado($retorno,$param[0]);
+				$retorno=Funciones::getJSON_mensaje($retorno,$param[1]);
+				$retorno=Funciones::getJSON_funcion($retorno,$param[2]);
+				$retorno=Funciones::getJSON_idElemnto($retorno,$param[3]);
+				$retorno=Funciones::getJSON_html($retorno,$param[4]);
+				$retorno=Funciones::getJSON_refistros($retorno,$param[5]); 
 				break;
 			default:
 				$retorno[]="demaciados parametrs, se admiten 5";

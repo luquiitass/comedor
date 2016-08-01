@@ -40,5 +40,17 @@ class Estadossemanal extends Model
         );
     }
 
+    public function diasAnotado()
+    {   
+        $retorno= array();
+        foreach ($this->toArray() as $key => $value) {
+            if(($key != 'id') && ($key != 'user_id') && ($value == 1))
+            {
+                $retorno[$key]=$value;
+            }
+        }
+        return $retorno;
+    }
+
 	
 }
