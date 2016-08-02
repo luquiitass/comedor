@@ -20,6 +20,14 @@ class Anuncio extends Model
 
     protected $table = 'anuncios';
 
+    public function editarDatosAjaxis(){
+        return array(
+            ['type' => 'text', 'value' => $this->titulo, 'name' => 'titulo', 'key' => 'Titulo :'],
+            ['type' => 'textArea', 'value' => $this->cuerpo, 'name' => 'cuerpo', 'key' => 'Cuerpo :'],
+            ['type' => 'date', 'value' => $this->getFechaHasta(), 'name' => 'hasta', 'key' => 'Visible hasta :'],
+        );
+    }
+
 	public function user()
     {
     	return $this->belongsTo('App\User');

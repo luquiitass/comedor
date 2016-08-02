@@ -41,7 +41,7 @@
 									{{Form::label('mostar hasta')}}
 									{{Form::text('hasta',null,array('class' =>'form-control datepicker'))}}
 								</div>
-								{{Form::submit('Giardar',array('class' => 'btn btn-primary'))}}
+								{{Form::submit('Guardar',array('class' => 'btn btn-primary'))}}
 								{{Form::token()}}
 							{{Form::close()}}
 						</div>
@@ -61,8 +61,9 @@
 									@include('anuncio.unAnuncio')
 								</td>
 								<td align="center">
-									<button type="button" class="btn btn-info" onclick="editarAnuncio()">Editar</button>
-									<button type="button" class="btn btn-danger" onclick="eliminarAnuncio()">Eliminar</button>
+									<a data-toggle="modal" data-target="#myModal" class = 'btn btn-danger btn-xs delete' data-link = "/anuncio/{{$anuncio->id}}/deleteMsg" ><i class = 'material-icons'>Eliminar</i></a>
+
+									<button data-toggle="modal" data-target="#myModal" class = 'edit btn btn-success btn-xs'  data-link = '/anuncio/{{$anuncio->id}}/edit'><i class = 'material-icons'>Editar</i></button>
 								</td>
 							</tr>
 							@endforeach

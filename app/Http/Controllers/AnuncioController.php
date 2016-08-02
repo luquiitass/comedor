@@ -97,7 +97,7 @@ class AnuncioController extends Controller
 
         
 
-        return redirect('admin_anuncios');
+        return redirect()->route('admin_anuncios');
     }
 
     /**
@@ -124,17 +124,16 @@ class AnuncioController extends Controller
      * @return  \Illuminate\Http\Response
      */
     public function edit($id)
-    {
+    {   
+        $anuncio = Anuncio::findOrfail($id);
+
         if(Request::ajax())
         {
-            return URL::to('anuncio/'. $id . '/edit');
+            $url = '/anuncio/'. $id . '/update';
+            return Ajaxis::BtEditFormModal($anuncio->editarDatosAjaxis(),$url);
         }
 
-        
-        $anuncio = Anuncio::findOrfail($id);
-        return view('anuncio.edit',compact('anuncio'
-                )
-                );
+        return view('anuncio.edit',compact('anuncio'));
     }
 
     /**
@@ -154,12 +153,11 @@ class AnuncioController extends Controller
         
         $anuncio->cuerpo = $input['cuerpo'];
         
-        $anuncio->hasta = $input['hasta'];
-        
+        $anuncio->hasta = date("Y-m-d", strtotime($input['hasta'])); 
         
         $anuncio->save();
 
-        return redirect('anuncio');
+        return json_encode(array('mensaje'=> 'Modificado','location' => URL::to('anuncios')));
     }
 
     /**
@@ -171,7 +169,7 @@ class AnuncioController extends Controller
      */
     public function DeleteMsg($id)
     {
-        $msg = Ajaxis::BtDeleting('Warning!!','Would you like to remove This?','/anuncio/'. $id . '/delete/');
+        $msg = Ajaxis::BtDeleting('Eliminar','¿Seguro que desea eliminar este anuncio?','/anuncio/'. $id . '/delete/');
 
         if(Request::ajax())
         {
@@ -189,6 +187,6 @@ class AnuncioController extends Controller
     {
      	$anuncio = Anuncio::findOrfail($id);
      	$anuncio->delete();
-        return URL::to('anuncio');
+        return URL::to('anuncios');
     }
 }

@@ -162,7 +162,7 @@ class AjaxisGenerate
      */
     public function BtEditFormModal($input, $link)
     {
-        $modal = $this->modalDirector->build('Edit', 'update', $input, $link, $this->BtModal);
+        $modal = $this->modalDirector->build('Editar', 'Modificar', $input, $link, $this->BtModal);
 
         return $modal->modalHead . $modal->modalBody . $modal->modalFooter;
     }

@@ -9,6 +9,11 @@ class Funciones
 		return array("domingo","lunes","martes","miercoles","jueves","viernes","sabado");
 	}
 
+	public static function fechaActual_FS(){
+		$time=time();
+    	return date("Y-m-d", $time);
+	}
+
 	public static function str_mañanaEs(){
 		$dias = Funciones::getDias();
 		return $dias[Funciones::int_mañanaEs()];

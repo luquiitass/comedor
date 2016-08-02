@@ -14,10 +14,12 @@ $(function(){
 
 	$('#datata').DataTable();
 
-	$('.datepicker').datepicker({
+	$(document).on("focus",".datepicker",function(){
+		$(this).datepicker({
 	    format: "dd-mm-yyyy",
 	    language: "es",
 	    autoclose: true
+	});
 	});
 
 	/*$('.mostrar').click(function(){
@@ -235,8 +237,8 @@ $.fn.extend({
         modEstado:function(){
             $('.formAjax').submit(function(event){
                 event.preventDefault();
-                var a = $(this).serialize();
-                var id = $('#id_estado').attr('value');
+                var a = $(this).serializeArray();
+                var id = a[0]['value'];
                 $(this).find('.btn').val('Modificando...').addClass('btn-info');
                 $.ajax({
                   type: "POST",
@@ -260,7 +262,7 @@ $.fn.extend({
 
 $.fn.extend({
 	formPostJson:function(){
-		$(this).submit(function(event){
+		$(document).on('submit','.form',function(event){
 			event.preventDefault();
 
 			var form = this;
@@ -322,4 +324,12 @@ function reload(){
 	location.reload();
 }
 
+function isJson(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
 /*::::::::::::::::::::::::::::::::::Funciones para las vistas del usuario:::::::::::*/

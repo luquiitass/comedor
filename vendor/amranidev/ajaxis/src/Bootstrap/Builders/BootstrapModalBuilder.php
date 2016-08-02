@@ -53,6 +53,10 @@ class BootstrapModalBuilder implements ModalInterface
                 $this->Modal->modalBody .= view('Ajaxis::bootstrap.types.text',
                     compact('label', 'name', 'value', 'type'))->render();
                 break;
+            case 'textArea':
+                $this->Modal->modalBody .= view('Ajaxis::bootstrap.types.textArea',
+                    compact('label', 'name', 'value', 'type'))->render();
+                break;
 
             case 'date':
                 $this->Modal->modalBody .=
@@ -84,7 +88,7 @@ class BootstrapModalBuilder implements ModalInterface
                 view('Ajaxis::bootstrap.types.text', compact('label', 'name', 'value', 'type'))->render();
                 break;
             default:
-                throw new \Exception('Type not found' . $type);
+                throw new \Exception('Type not found ' . $type);
         }
     }
 

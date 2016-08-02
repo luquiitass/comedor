@@ -36,6 +36,15 @@ $(document).on('click', '.save', function() {
     POST($('#AjaxisForm').serializeArray(), $(this).data('link'));
 })
 
+$(document).on('hidden.bs.modal','#myModal', function () {
+    $('.AjaxisModal').html('');
+})
+
+$(document).on('click','.saveForm',function(){
+    var form= $(this).parent();
+    POST($(form).serializeArray(),$(this).data('link'));
+});
+
 function GET(dataLink) {
     $.ajax({
         async: true,
@@ -54,7 +63,28 @@ function POST(postData, dataLink) {
         url: baseURL + dataLink,
         data: postData,
         success: function(response) {
-            window.location = response;
+            if (isJson(response)) {
+                var json = $.parseJSON(response);
+                if (json.mensaje) {
+                    mensaje_superior(json.mensaje,'info','false');
+                    $('.AjaxisModal').toggle();
+                }
+                if (json.location) {
+                    window.location = json.location;
+                }
+            }else{
+                window.location = response;
+            }
+        },
+        error:function(xhr){
+            if (xhr.status == 422 ){
+                var html='<ul class="alert alert-danger">';
+                $.each(xhr.responseJSON,function(index,value){
+                        html=html+"<li>"+value+"</li>";
+                });
+                html=html+"</ul>";
+                $('.mensajeModal').html(html);
+            }
         }
-    })
+    });
 }

@@ -57,6 +57,45 @@ class User extends Authenticatable
         return false;
     }
 
+    public function isAnotado($dia){
+        $retorno;
+        switch ($dia) {
+            case 'lunes':
+                $retorno = $this->lunes;
+                break;
+            case 'martes':
+                $retorno = $this->martes;
+                break;
+            case 'miercoles':
+                $retorno = $this->miercoles;
+                break;
+            case 'jueves':
+                $retorno = $this->jueves;
+                break;
+            case 'viernes':
+                $retorno = $this->viernes;
+                break;            
+            default:
+                return false;
+                break;
+        }
+        return $retorno;
+    }
+
+    public function tiposDeUsuario(){
+        if ($this != null) {
+            switch ($this->tipo) {
+                case 'comensal':
+                    return array('comensal'=>'comensal','admin'=>'admin','ambos' => 'ambos');
+                case 'admin':
+                    return array('admin'=>'admin','comensal'=>'comensal','ambos' => 'ambos');
+                case 'ambos':
+                    return array('ambos' => 'ambos','comensal'=>'comensal','admin'=>'admin');
+            }   
+        }else{
+            return array('comensal'=>'comensal','admin'=>'admin','ambos' => 'ambos');
+        }
+    }
 
     public function mostrarMisDatos(){
         return ['Apellido' => $this->apellido, 'Nombre' => $this->nombre, 'Legajo' => $this->legajo, 'Telefono' => $this->telefono, 'DNI' => $this->dni, 'Email' => $this->email];
@@ -64,6 +103,15 @@ class User extends Authenticatable
 
     public function mostrarMisDatosAjaxis(){
         return [array('key' => 'Apellido' ,'value' => $this->apellido), array('key' => 'Nombre' ,'value' => $this->nombre), array('key' => 'Legajo' ,'value' => $this->legajo), array('key' => 'Telefono' ,'value' => $this->telefono), array('key' => 'DNI' ,'value' => $this->dni), array('key' => 'Email' ,'value' => $this->email)];
+    }
+
+    public function editarDatosAjaxis(){
+        return array(
+            ['type' => 'text', 'value' => $this->legajo, 'name' => 'legajo', 'key' => 'Legajo :'],
+            ['type' => 'text', 'value' => $this->nombre, 'name' => 'nombre', 'key' => 'Nombre :'],
+            ['type' => 'text', 'value' => $this->apellido, 'name' => 'apellido', 'key' => 'Apellido :'],
+            ['type' => 'select', 'value' => $this->tiposDeUsuario(), 'name' => 'tipo', 'key' => 'Tipo :']
+        );
     }
 
     public function estadosSemanal()

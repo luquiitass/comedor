@@ -10,9 +10,10 @@
 	
 	<div class="row">
 		<div class="col-xs-12 col-sm-3">
+		<div id="tabs">
 			<ul class="nav nav-pills nav-stacked" >
 				@foreach($estados as $estado)
-					<li class="{{($estado->nombre == 'activo')?'active':''}}"><a  data-toggle="tab"  href="#tab_{{$estado->nombre}}">{{ucwords($estado->nombre)}}s</a></li>
+					<li class="{{($estado->nombre == 'activoa')?'active':''}}"><a  data-toggle="tab"  href="#tab_{{$estado->nombre}}">{{ucwords($estado->nombre)}}s</a></li>
 				@endforeach
 				<li><a href="#tab_todos" data-toggle="tab">Todos</a></li>
 				{{--<li><a  data-toggle="tab"  href="#tab_activos"  >Activos</a></li> 
@@ -20,6 +21,7 @@
 				<li><a  data-toggle="tab"  href="#tab_solicitudes"  >Solicitudes de incripcion </a></li> --}}
 				<li><a  data-toggle="tab" href="#tab_registrar_comensal"  >Registrar Comensal</a></li>
 			</ul>
+		</div>
 		</div>
 
 
@@ -29,7 +31,7 @@
 				<!--Panel lista todos los usuarios (Activos e Inactivos)  -->
 				<div id="tab_todos" class="tab-pane">
 					<h3>Todos los Comensales</h3>
-					<table id="datata" class="table" width="100%">
+					<table id="datata" class="table table-hover table-striped" width="100%">
 						<tr>
 							<th>Apellido</th>
 							<th>Nombre</th>
@@ -58,7 +60,7 @@
 				<!-- Panel para Listar a los usuarios Activos  con la posibilidad de verlos y desactivarlos-->
 				@foreach($estados as $estado)
 				
-					<div  class="tab-pane {{($estado->nombre == 'activo')?'fade in active':''}}" id="tab_{{$estado->nombre}}">
+					<div  class="tab-pane {{($estado->nombre == 'activoa')?'fade in active':''}}" id="tab_{{$estado->nombre}}">
 					<h3>Comensales {{$estado->nombre}}s</h3>
 					<table class="table" width="100%">
 						<tr>
@@ -74,7 +76,11 @@
 									<td> {{ $us->nombre }}</td>
 									<td> {{ $us->legajo }}</td>
 									<td align="center">
-										<a data-toggle="modal" data-target="#myModal" class = 'btn btn-info display' data-link = "/user/{{$us->id}}" ><i class = 'material-icons'>Ver</i></a>
+										<a data-toggle="modal" data-target="#myModal" class = 'btn btn-info display btn-xs' data-link = "/user/{{$us->id}}" ><i class = 'material-icons'>Ver</i></a>
+
+										<a data-toggle="modal" data-target="#myModal" class = 'btn btn-danger btn-xs delete' data-link = "/user/{{$us->id}}/deleteMsg" ><i class = 'material-icons'>Eliminar</i></a>
+
+										<button data-toggle="modal" data-target="#myModal" class = 'edit btn btn-success btn-xs'  data-link = '/user/{{$us->id}}/edit'><i class = 'material-icons'>Editar</i></button>
 
 										<div class="btn-group">
 										  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Operaciones <span class="caret"></span>
@@ -93,8 +99,6 @@
 												</li>
 												<li role="separator" class="divider"></li>
 											@endforeach
-
-												 <a data-toggle="modal" data-target="#myModal" class = 'btn btn-danger form-control delete' data-link = "/user/{{$us->id}}/deleteMsg" ><i class = 'material-icons'>Eliminar</i></a>
 										  </ul>
 										  </div>
 										
@@ -114,7 +118,8 @@
 					<h3>Registrar Comensal</h3>
 					<br>
 					<div style="width: 80%;">
-					{{Form::open(array('class'=> 'form','method'=>'get'))}}
+					@include('mensajes.error')
+					{{Form::open(array('url'=> 'user/store'))}}
 						@include('forms.form_admin_user_create')
 					{{Form::close()}}
 				</div>
@@ -124,34 +129,17 @@
 		</div>
 	</div>
 
-
-	<div id="mModal" class="modal fade modal-primary" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-	  <div class="modal-dialog modal-sm">
-	    <div class="modal-content">
-	    	<div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        <h4 class="modal-title" id="gridSystemModalLabel">Datos personales</h4>
-		      </div>
-	      <div id="modal-contenido" style=" padding: 20px; ">
-	      </div>
-	    </div>
-	  </div>
-	</div>
-
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class = 'AjaxisModal'>
-        </div>
-    </div>
-	
-
 @endsection
 
 
 @section('scripts')
     <script type="text/javascript">
-        $(function(){
-            
-            $('.form').formPostJson();
-        });
+    @if($errors->count()>0)
+    	$('a[href="#tab_registrar_comensal"]').parent('li').addClass('active');
+		$('#tab_registrar_comensal').addClass('fade in active');
+	@else
+		$('a[href="#tab_activo"]').parent('li').addClass('active');
+		$('#tab_activo').addClass('fade in active');
+	@endif
     </script>
 @endsection

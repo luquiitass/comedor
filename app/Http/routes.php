@@ -24,7 +24,7 @@ Route::post('/handleLogin',['as' => 'handleLogin' , 'uses' => 'AuthController@ha
 Route::get('/logout',['as' => 'logout' , 'uses' => 'AuthController@logout']);
 
 
-Route::resource('user','UsersController', ['only' => ['create' , 'store',]] );
+Route::resource('user','UsersController', ['only' => ['create' , 'store']] );
 
 
 
@@ -55,6 +55,7 @@ Route::get('ver_estados',['as' => 'user_estados', 'uses' => 'EstadossemanalContr
 Route::post('estado/{id}/update','\App\Http\Controllers\EstadossemanalController@update');
 Route::get('estado/{id}/delete','\App\Http\Controllers\EstadossemanalController@destroy');
 Route::get('estado/{id}/deleteMsg','\App\Http\Controllers\EstadossemanalController@DeleteMsg');
+Route::get('anotados', ['as'=> 'admin_anotados','uses'=> 'EstadossemanalController@anotados']);
 /********************* estados ***********************************************/
 
 //estados Resources
@@ -67,6 +68,9 @@ Route::get('editar_datos',['as' => 'user_edit','uses' => 'UsersController@editar
 
 Route::post('modificarPassword',['as' => 'modificarPassword' ,'uses' => 'UsersController@modificarPassword']);
 Route::post('userUpdate',['as' => 'userUpdate' ,'uses' => 'UsersController@userUpdate']);
+Route::post('user/store','UsersController@store');
+Route::get('user/{id}/edit','UsersController@edit');
+Route::post('user/{id}/update','UsersController@update');
 Route::get('user/{id}/destroy',['as' => 'userDestroy','uses' => 'UsersController@destroy']);
 Route::get('user/{id}/deleteMsg','UsersController@DeleteMsg');
 
@@ -103,7 +107,7 @@ Route::get('ver_anuncios',['as' => 'user_anuncios', 'uses' => 'AnuncioController
 
 Route::get('anuncios',['as' => 'admin_anuncios', 'uses' => 'AnuncioController@anuncios']);
 
-Route::post('anuncio/{id}/update','\App\Http\Controllers\AnuncioController@update');
+Route::post('anuncio/{id}/update','AnuncioController@update');
 Route::get('anuncio/{id}/delete','\App\Http\Controllers\AnuncioController@destroy');
 Route::get('anuncio/{id}/deleteMsg','\App\Http\Controllers\AnuncioController@DeleteMsg');
 /********************* anuncio ***********************************************/

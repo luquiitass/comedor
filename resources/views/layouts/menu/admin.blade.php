@@ -17,10 +17,11 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="navbar">
         <ul class="nav navbar-nav pull-left">
-          <li class=" {{(Request::url()=='')}} "><a href="{{route('admin_admin')}}">Home</a></li>
-          <li class=" {{(Request::url()==(route('login')) ? 'active':'')}} "><a href="{{route('admin_users')}}">Usuarios</a></li>
-          <li class=" {{(Request::url()==(route('login')) ? 'active':'')}} "><a href="{{route('admin_faltas')}}">Faltas</a></li>
-          <li class=" {{(Request::url()==(route('login')) ? 'active':'')}} "><a href="{{route('admin_anuncios')}}">Anuncios</a></li>
+          <li class=" {{(Request::url()==route('admin_admin'))?'active':''}} "><a href="{{route('admin_admin')}}">Home</a></li>
+          <li class=" {{(Request::url()==(route('admin_users')) ? 'active':'')}} "><a href="{{route('admin_users')}}">Usuarios</a></li>
+          <li class=" {{(Request::url()==(route('admin_faltas')) ? 'active':'')}} "><a href="{{route('admin_faltas')}}">Faltas</a></li>
+          <li class=" {{(Request::url()==(route('admin_anuncios')) ? 'active':'')}} "><a href="{{route('admin_anuncios')}}">Anuncios</a></li>
+          <li class=" {{(Request::url()==(route('admin_anotados')) ? 'active':'')}} "><a href="{{route('admin_anotados')}}">Anotados</a></li>
         </ul>
 
         <ul class="nav navbar-nav pull-right" >

@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Request;
 use App\Http\Requests\UserRegistRequest;
 use App\Http\Requests\UserUpdateRequest;
+use App\Http\Requests\AdminUpdateUser;
 use App\User;
 use App\Funciones;
 
@@ -67,7 +68,7 @@ class UsersController extends Controller
                 //agarega un objeto mas al jsoon devuelto por la funcion getJSON.
                 return $arr;
             }else{
-                return Funciones::getJSON("false","Las contraseñas deben ser iguales");
+                return Funciones::getJSON("false","Las contraseñas nuevas deben ser iguales");
             }
         }else{
             return Funciones::getJSON("false","Las contraseña actual es incorrecta");
@@ -77,7 +78,7 @@ class UsersController extends Controller
 
     public function userUpdate(UserUpdateRequest $request)
     {
-        $input =Request::except('_token');
+        $input =Request::only('email','telefono','dni');
         $user = \Auth::user();
         if (User::where('email','=',$input['email'])->where('id','!=',$user->id)->count() == 0) 
         {
@@ -114,9 +115,9 @@ class UsersController extends Controller
         if($user)
         {
             //\Auth::login($user);
-            $resultado = array_merge(array('limpiar'=>'true'),json_decode(Funciones::getJSON('true','Usuario Registrado','reload'),true));
-            return json_encode($resultado);
-            //return redirect()->route('user/'.$user->id);
+            //$resultado = array_merge(array('limpiar'=>'true'),json_decode(Funciones::getJSON('true','Usuario Registrado','reload'),true));
+            //return json_encode($resultado);
+            return redirect()->route('admin_users');
         }
         return back()->withInput();
     }
@@ -146,7 +147,12 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrfail($id);
+        $url= '/user/'.$user->id.'/update';
+        if (Request::ajax()) {
+            return Ajaxis::BtEditFormModal($user->editarDatosAjaxis(),$url);
+        }
+
     }
     /**
      * Update the specified resource in storage.
@@ -155,9 +161,17 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AdminUpdateUser $request, $id)
     {
-        //
+        $user= USER::findOrfail($id);
+        $data = Request::only('legajo','nombre','apellido','tipo');
+        if (Request::ajax()) {
+            if ($user->update($data)) {
+                return json_encode(['mensaje'=>'Modificado','location'=>URL::to('usuarios')]);
+            }else{
+                return json_encode(['mensaje'=>'Error al modificar']);
+            }
+        }
     }
 
     /**
