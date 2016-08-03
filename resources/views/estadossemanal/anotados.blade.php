@@ -127,8 +127,6 @@
 				return false;
 		}
 
-		@if
-
 	</script>
 
 @endsection

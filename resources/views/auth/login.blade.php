@@ -3,7 +3,7 @@
 @section('content')
 <div class="card card-container">
 	<div class="Absolute-Center is-Responsive">
-		<img id="profile-img" class="profile-img-card" src="../img/app_unam.png" />
+		<img id="profile-img" class="profile-img-card" src="{{asset(public_path().'img/app_unam.png')}}" />
 		<p id="profile-name" class="profile-name-card">Comedor Apóstoles</p>
 
 				
