@@ -44,17 +44,20 @@ class EstadossemanalController extends Controller
     public function anotados(){
         $fechaActual= Funciones::fechaActual_FS();
         $user = \Auth::user();
-        $users = User::
+        $query = User::
             join('estado_usuarios','estado_usuarios.id','=','users.estado_id')
             ->where('estado_usuarios.nombre','=','activo')
             ->join('estados_semanal','users.id','=','estados_semanal.user_id');
 
-        $faltas=$users->join('faltas','faltas.user_id','=','users.id')->where('fecha','=',$fechaActual)->select('faltas.id as falta_id','faltas.fecha','faltas.user_id as user_id','users.apellido','users.nombre','users.legajo')->get();
+        $users=$query->select('users.apellido','users.nombre','users.legajo','users.id as user_id','estados_semanal.lunes','estados_semanal.martes','estados_semanal.miercoles','estados_semanal.jueves','estados_semanal.viernes')->get();
+
+        $faltas=$query->join('faltas','faltas.user_id','=','users.id')->where('fecha','=',$fechaActual)->select('faltas.id as falta_id','faltas.fecha','faltas.user_id as user_id','users.apellido','users.nombre','users.legajo')->get();
+
+        //Estado_usuario::where('nombre','=','activo')->first()->users()->all();
+        $dias = array('lunes','martes','miercoles','jueves','viernes');
 
         //dd($faltas);
-
-        $users=$users->select('users.apellido','users.nombre','users.legajo','users.id as user_id','estados_semanal.lunes','estados_semanal.martes','estados_semanal.miercoles','estados_semanal.jueves','estados_semanal.viernes')->get();//Estado_usuario::where('nombre','=','activo')->first()->users()->all();
-        $dias = array('lunes','martes','miercoles','jueves','viernes');
+        //dd($users);
 
         $diaActual = Funciones::str_hoyES();
 

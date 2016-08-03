@@ -6,8 +6,10 @@ use Request;
 use App\Http\Controllers\Controller;
 use App\Falta;
 use App\User;
+use App\Funciones;
 use Amranidev\Ajaxis\Ajaxis;
 use URL;
+use Illuminate\Support\Collection;
 
 /**
  * Class FaltaController
@@ -48,6 +50,57 @@ class FaltaController extends Controller
         $mesActual= date('M');
 
         return view('falta.admin_index',compact('users','user','mesActual'));
+    }
+
+    public function setFaltas(){
+        $request = Request::except('_token','on');
+        $users= collect($request);
+
+        //dd($users);
+
+        $fechaActual = Funciones::fechaActual_FS();
+
+        #######################Quitar Faltas######################
+
+        $users_delete_faltas = $users->filter(function($item,$key){
+            if ($item == "true") {
+                return $key;
+            }
+        });
+
+        //dd($users_delete_faltas);
+        $id_users_delet_faltas = $users_delete_faltas->map(function($item,$key){
+            return $key;
+        })->values();
+
+        //dd($id_users_delet_faltas);
+
+        Falta::where('fecha','=',$fechaActual)->whereIn('user_id', $id_users_delet_faltas)->delete();
+
+        ###########################Colocar faltas#############################3
+
+        $users_insert_faltas = $users->filter(function($item,$key){
+            if ($item == 'false') {
+                return $key;
+            }
+        });
+
+        $id_users_insert_faltas = $users_insert_faltas->map(function($item,$key){
+            return $key;
+        })->flatten();
+
+        $faltas = $id_users_insert_faltas->map(function($item){
+            return array('fecha' => Funciones::fechaActual_FS(),'user_id'=>$item);
+        })->toArray();
+
+        //dd($faltas);
+
+        foreach ($faltas as $falta) {
+            $unaFalta = Falta::firstOrNew($falta);
+            $unaFalta->save($falta);
+        }
+
+        return json_encode(array('mensaje'=>'Asistencias registradas','location' => URL::to('/anotados')));
     }
 
     /**

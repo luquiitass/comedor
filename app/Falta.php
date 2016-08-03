@@ -17,6 +17,10 @@ class Falta extends Model
 
     protected $table = 'faltas';
 
+    protected $fillable = [
+        'id', 'fecha','user_id'
+    ];
+
 
     public function user()
     {

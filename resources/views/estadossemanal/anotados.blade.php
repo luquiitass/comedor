@@ -11,8 +11,9 @@
 						<li class="{{($diaActual==$dia)?'active ':''}}" >
 							<a  data-toggle="tab"  href="#tab_{{$dia}}">{{ucwords($dia)}}
 								@if($diaActual==$dia)
-									<kbd class="pull-right">Dia Actual</kbd>
+									<kbd class="center">Dia Actual</kbd>
 								@endif
+								<span class="badge pull-right">{{$users->where($dia,'1')->count()}}</span>
 							</a>
 						</li>
 					@endforeach
@@ -27,7 +28,8 @@
 						<h3>Anuncios Visibles</h3>
 						<hr>
 					</div>
-
+					
+					<?php $faltas = $faltas->keyBy('user_id')->toArray();?>
 					@foreach($dias as $dia)
 						<div id="tab_{{$dia}}" class="tab-pane {{($diaActual==$dia)?'fade in active':''}}">
 							<h3>Anotados a  {{ucwords($dia)}}</h3>
@@ -37,37 +39,43 @@
 									<th>Apellido</th>
 									<th>Nombre</th>
 									<th>Legajo</th>
+									@if($sePuedePonerFaltas && $dia == $diaActual)
+									<th>Estado</th>
+									@endif
 									<th>Operaciones</th>
 								</tr>
+								{{Form::open(array('url'=>'/falta/setFaltas','class'=>'form','id'=> 'form_faltas'))}}
 								@foreach($users as $us)
 									@if($us->isAnotado($dia))
 										<tr>
 											<td>{{$us->apellido}}</td>
 											<td>{{$us->nombre}}</td>
 											<td>{{$us->legajo}}</td>
-											<td>
-												@if($sePuedePonerFaltas)
-													{{Form::open(array('class'=>'form'))}}
-														{{Form::hidden('user_id',$us->user_id)}}
-														<?php $falta = $faltas->where('user_id',$us->user_id)->first(); ?>
+											
+												@if($sePuedePonerFaltas && $dia == $diaActual)
+													
+													{{Form::hidden("users[$us->user_id]",$us->user_id)}}
+													<?php 
+														$falta = array_get($faltas,$us->user_id);
+														$ausente= array_has($faltas,$us->user_id);
+													?>
+													<td><p class="label label-{{$ausente?'danger':'success'}}">{{$ausente?'Ausente':'Precente'}}</p></td>																
+													<td>{{Form::checkbox("user_id",$us->user_id, !$ausente)}}</td
 
-													@if($falta->count()>0)
-														<label>Ausente</label>
-														{{Form::hidden('falta_id',$falta->falta_id)}}
-													@else
-														<label>Precente</label>
-														{{Form::hidden('user_id',$falta->user_id)}}
-													@endif
-														{{Form::token()}}
-														{{Form::submit('Cambiar',array('class'=>'btn btn-primary'))}}
-													{{Form::close()}}
 												@else
-													sin operaciones
+													<td>sin operaciones</td>
 												@endif
 											</td>
 										</tr>
 									@endif
 								@endforeach
+								<tr>
+									<td colspan="9">
+										{{Form::token()}}
+										{{Form::close()}}
+										<button class="btn btn-primary colocarFaltas pull-right" data-link="{{ csrf_token() }}" >Colocar Faltas</button>
+									</td>
+								</tr>				
 							</table>
 						</div>
 					@endforeach
@@ -75,5 +83,52 @@
 			</div>
 		</div>
 	</div>
+
+@endsection
+
+@section('scripts')
+	<script type="text/javascript">
+		$(function()
+		{
+			$(document).on('click','.colocarFaltas',function(){
+				colocarFaltas($(this).data('link'));
+			})
+			
+		});
+
+		function colocarFaltas(token){
+				var users=new Array();
+				users.push({'name':'_token','value':token});
+
+				$('input[type=checkbox]').each(function () {
+
+					users.push({'name':$(this).val(),'value':this.checked});  				
+				});
+
+				$.ajax({
+					type:'POST',
+					url:'/falta/setFaltas',
+					data:users,
+					success:function(response){
+						if (isJson(response)){
+							var json = $.parseJSON(response);
+							if (json.mensaje){
+								alert(json.mensaje);
+							}
+							if (json.location) 
+							{
+								window.location=json.location;
+							}
+						}
+					}
+				});
+
+				console.log(users);
+				return false;
+		}
+
+		@if
+
+	</script>
 
 @endsection

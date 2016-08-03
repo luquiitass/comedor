@@ -95,6 +95,7 @@ Route::get('faltas',['as' => 'admin_faltas', 'uses' => 'FaltaController@faltas']
 
 Route::get('{id}/faltas','\App\Http\Controllers\FaltaController@faltas');
 Route::post('falta/{id}/update','\App\Http\Controllers\FaltaController@update');
+Route::post('falta/setFaltas','FaltaController@setFaltas');
 Route::get('falta/{id}/delete','\App\Http\Controllers\FaltaController@destroy');
 Route::get('falta/{id}/deleteMsg','\App\Http\Controllers\FaltaController@DeleteMsg');
 /********************* falta ***********************************************/
