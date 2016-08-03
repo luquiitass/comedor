@@ -10,7 +10,7 @@
 				</div>
 				<div class="panel-body">
 					<div class="row">
-						<div class="col-xs-3">
+						<div class="col-xs-12 col-md-3">
 							<ul class="nav nav-pills nav-stacked">
 								<li class="">
 									<div class="foto_perfil">
@@ -28,7 +28,7 @@
 								-->
 							</ul>
 						</div>
-						<div class="col-xs-9">
+						<div class="col-xs-12 col-md-9">
 							<div class="tab-content">
 
 								<div class="tab-pane fade in active" id="pane_info">

@@ -73,7 +73,7 @@
 									<td colspan="9">
 										{{Form::token()}}
 										{{Form::close()}}
-										<button class="btn btn-primary colocarFaltas pull-right" data-link="{{ csrf_token() }}" >Colocar Faltas</button>
+										<button class="btn btn-primary colocarFaltas pull-right" data-link="{{ csrf_token() }}" >Modificar Asistencias</button>
 									</td>
 								</tr>				
 							</table>
