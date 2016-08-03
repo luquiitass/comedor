@@ -32,8 +32,8 @@
             </button>
             <ul class="dropdown-menu">
               <li>{{link_to_route('user_edit','Modificar Datos')}}</li>
+              @if($user->isAdmin())
               <li role="separator" class="divider"></li>
-              @if($user->isComensal())
               <li> <a href="/admin">Modo Administrador</a></li>
               @endif
               <li role="separator" class="divider"></li>

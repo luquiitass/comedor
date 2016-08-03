@@ -5,11 +5,11 @@
 	<div class="row">
 		<div class="col-xs-12 col-sm-6 col-md-6 col-md-offset-1">
 			<div class="well row">
-				<div class="col-xs-4">
+				<div class="col-xs-12 col-sm-4">
 					<img class="img-thumbnail center-block" src="{{asset(public_path().'img/login2.png')}}" alt="Foto de perfil">
 				</div>
 
-				<div class="col-xs-8 todo_espacio">
+				<div class="col-xs-12 col-sm-8 todo_espacio">
 					<ul class="block lista_sin_estilo todo_espacio">
 					@foreach($user->mostrarMisDatos() as $key => $value)
 						<li><p><span>{{$key}}:</span> {{$value}}</p></li>

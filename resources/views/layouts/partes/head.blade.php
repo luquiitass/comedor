@@ -1,6 +1,9 @@
 <head>
 	<meta charset="UTF-8">
+
 	<title> @yield('titulo','Titulo no definido pap')</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<link rel="stylesheet" type="text/css" href="{{asset(public_path().'css/estilos.css')}}">
 	

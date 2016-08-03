@@ -1,26 +1,36 @@
 @extends('layouts.master_user')
 
 @section('content')
+<div class="card card-container">
+	<div class="Absolute-Center is-Responsive">
+		<img id="profile-img" class="profile-img-card" src="../img/app_unam.png" />
+		<p id="profile-name" class="profile-name-card">Comedor Apóstoles</p>
 
-<h2>Login</h2>
+				
+				{{Form::open(array('route' => 'handleLogin','class'=>'form-signin'))}}
+					@include('mensajes.error')
+					<div class="form-group">
+						{{Form::text('email' ,null , array('class' =>  'form-control','placeholder'=> 'Email'))}}
+					</div>
 
-@include('mensajes.error')
+					<div class="form-group">
+						{{Form::text('password' ,null , array('class' =>  'form-control','placeholder'=> 'Contraseña'))}}
+					</div>
+					
 
-{{Form::open(array('route' => 'handleLogin'))}}
-	<div class="form-group">
-		{{Form::label('email')}}
-		{{Form::text('email' ,null , array('class' =>  'form-control'))}}
+					<div class="form-group">
+						{{Form::token()}}
+						{{Form::submit('Entrar' , array('class' =>  'btn btn-primary btn-block btn-signin'))}}
+					</div>
+				{{Form::close()}}
+				<hr>
+				<p class="solicitud_registro">¿No estas registrado?</p>
+				<p>
+					{{link_to_route('user_home','Click aqui',null,array('class'=>''))}}
+					 para completar la  solicitud de registro
+				</p>
+			</div>
+		</div>
 	</div>
-
-	<div class="form-group">
-		{{Form::label('password')}}
-		{{Form::text('password' ,null , array('class' =>  'form-control'))}}
-	</div>
-
-	<div class="form-group">
-		{{Form::token()}}
-		{{Form::submit('Entrar' , array('class' =>  'btn btn-success'))}}
-	</div>
-{{Form::close()}}
-
+</div>
 @endsection

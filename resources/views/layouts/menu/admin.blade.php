@@ -33,8 +33,8 @@
             </button>
             <ul class="dropdown-menu">
               <li>{{link_to_route('user_edit','Modificar Datos')}}</li>
-              <li role="separator" class="divider"></li>
               @if($user->isComensal())
+              <li role="separator" class="divider"></li>
               <li> <a href="{{route('user_home')}}">Modo Comensal</a></li>
               @endif
               <li> {{ link_to_route('logout','Salir') }}</li>
