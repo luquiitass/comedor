@@ -1,9 +1,12 @@
 @extends('layouts.master_user')
 
 @section('content')
-    <div class="row">
+    <h2 class="Heading--Fancy">
+        <span class="Heading--Fancy__subtitle"></span>
+        <span>Faltas</span>
+    </h2>
+    <div class="row well fondo">
         <div class="col-md-8 col-md-offset-2">
-            <h2>Faltas</h2>
             <ul class="  list-group">
                 <?php $meses = $user->obtenerFaltasPorMes();?>
                     

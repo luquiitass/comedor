@@ -1,9 +1,12 @@
 @extends('layouts.master_user')
 
 @section('content')
-    <div class="row">
+	<h2 class="Heading--Fancy">
+        <span class="Heading--Fancy__subtitle"></span>
+        <span>Anuncios</span>
+    </h2>
+    <div class="row well fondo">
 		<div class="col-md-9 col-md-offset-2">
-    	<h2>Anuncios activos</h2>
 	    	@if($anuncios->count() == 0)
 	    		<div class="alert alert-info">
 	    			Sin Anuncios

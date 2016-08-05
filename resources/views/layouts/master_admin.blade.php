@@ -5,23 +5,23 @@
 		@include('layouts.partes.head')
 	@show
 
-<body class="container">
-	<div id="mensaje_superior">
-	</div>
-	
-	@if(isset($user))
-			@include('layouts.menu.admin')
-	@endif
+	<body>
+		<div class="container">
+			<div id="mensaje_superior">
+			</div>
+			
+			@if(isset($user))
+					@include('layouts.menu.admin')
+			@endif
 
-	<div class="container">
-		@yield('content')
-	</div>
-	
+			@yield('content')
+
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		        <div class='AjaxisModal'></div>
+		    </div>
+		</div>
+	</body>
+
 	@include('layouts.partes.scripts')
 
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class = 'AjaxisModal'></div>
-    </div>
-
-</body>
 </html>

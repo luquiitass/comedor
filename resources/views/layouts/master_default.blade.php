@@ -9,7 +9,7 @@
 	<div id="mensaje_superior">
 	</div>
 	
-	<div id="content" class="container">
+	<div id="content">
 		@yield('content')
 	</div>
 	

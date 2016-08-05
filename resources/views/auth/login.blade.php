@@ -1,4 +1,15 @@
-@extends('layouts.master_user')
+@extends('layouts.master_default')
+
+@section('styles')
+	<style type="text/css">
+		body{
+			background: #EEEEEE !important;
+		}
+		.container{
+			width: 100%;
+		}
+	</style>
+@endsection
 
 @section('content')
 <div class="card card-container">

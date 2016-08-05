@@ -18,6 +18,10 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
+Route::get('/prueba',function(){
+	return view('prueba');
+	}
+);
 
 Route::get('/login',['as' => 'login' , 'uses' => 'AuthController@login']);
 Route::post('/handleLogin',['as' => 'handleLogin' , 'uses' => 'AuthController@handleLogin']);

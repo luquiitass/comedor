@@ -15,8 +15,6 @@
     <link rel="stylesheet" href="{{asset(public_path().'datePicker/css/bootstrap-datepicker3.css')}}">
     <link rel="stylesheet" href="{{asset(public_path().'datePicker/css/bootstrap-datepicker.standalone.css')}}">
 
-    @section('styles')
-
-    @show
+    @yield('styles')
     
 </head>

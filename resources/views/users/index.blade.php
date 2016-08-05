@@ -118,13 +118,12 @@
 					<h3>Registrar Comensal</h3>
 					<br>
 					<div style="width: 80%;">
-					@include('mensajes.error')
-					{{Form::open(array('url'=> 'user/store'))}}
-						@include('forms.form_admin_user_create')
-					{{Form::close()}}
+						@include('mensajes.error')
+						{{Form::open(array('url'=> 'user/store'))}}
+							@include('forms.form_admin_user_create')
+						{{Form::close()}}
+					</div>
 				</div>
-				</div>
-
 			</div>		
 		</div>
 	</div>

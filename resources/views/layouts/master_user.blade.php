@@ -5,19 +5,19 @@
 		@include('layouts.partes.head')
 	@show
 
-<body class="container">
-	<div id="mensaje_superior">
-	</div>
-	
-	@if(isset($user))
-			@include('layouts.menu.user')
-	@endif
+	<body>
+		<div class="container">
+			<div id="mensaje_superior">
+			</div>
+			
+			@if(isset($user))
+					@include('layouts.menu.user')
+			@endif
 
-	<div id="content" class="container">
-		@yield('content')
-	</div>
-	
+			@yield('content')
+		</div>
+	</body>
+
 	@include('layouts.partes.scripts')
 
-</body>
 </html>

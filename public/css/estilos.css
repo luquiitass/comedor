@@ -1,24 +1,31 @@
-body, html {
+html,body{
+    margin: 0 !important;
+    padding: 0 !important;
     height: 100%;
-    background-repeat: no-repeat;
-    background: #EEEEEE !important;
+    width: 100%;
+    background: #1BB1B2!important;
 }
-
 
 .container{
+    min-height: 100% !important;
+	background: #EEEEEE !important;
+    border-radius: 2px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+
 }
 
-.content{
+.well.fondo{
+	background: #FFF !important;
 	width: 90%;
-	margin: auto;
-	padding: 10px;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	background: #fff;
-	padding: 20px;
-	align-content: center;
-	align-items: center;
+    margin: auto;
+    margin-bottom: 30px;
 }
+
+.well.cont{
+	background: r#F8F8F8!important;
+    color: #000;
+}
+
 
 .un_estado{
 	width: 200px;
@@ -174,7 +181,6 @@ li a samp{
 }
 .alert-message-success
 {
-    background-color: #F4FDF0;
     border-color: #3C763D;
 }
 .alert-message-success h4
@@ -200,6 +206,9 @@ li a samp{
 	color: rgba(31, 92, 97, 0.72);
 }
 
+.listar_datos .titulo{
+    font-size: 1.3em;
+}
 
 
 .listar_datos li{
@@ -208,6 +217,10 @@ li a samp{
 	padding-bottom: 2px;
 	margin-bottom: 2px;
 	color: #000
+}
+
+.list-group-item.prymary{
+    background: #204d74 !important;
 }
 /*::::::::::::::::::::::::::.Fin ::::::::::::::::::::::::::::::::::::::::::::*/
 
@@ -220,8 +233,24 @@ li a samp{
 }
 
 .borde{
-	border: 1px solid #000;
+	border: 1px solid #000 !important;
 }
+.border-top{
+	border-top: 1px #e5e5e5 solid !important;
+}
+
+.border-lef {
+	border-left: 1px #e5e5e5 solid !important;
+
+}
+.border-right {
+    border-right: 1px #e5e5e5 solid !important;
+
+}
+.border-bottom {
+    border-bottom: 1px #e5e5e5 solid !important;
+}
+
 .todo_espacio{
 	width: 100%;
 }
@@ -240,9 +269,82 @@ li a samp{
     box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
 }
 
+.loader {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100px;
+    height: 100px;
+    z-index: 9999;
+}
+
 /*::::::::::::::::::::::::::::Fin:::::::::::::::::::::::::::::::::::::::::::::*/
 
+/*:::::::::::::::::::::::::::Estilos de subtitulos de precentacion::::::::::::::*/
 
+/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+.Heading--Fancy {
+    margin-top: 0;
+    color: #3c3e42;
+    font-weight: 700;
+    font-size: 25px;
+    top: -15px;
+    margin-top: 35px;
+
+    text-align: center;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.Heading--Fancy__subtitle {
+    text-transform: uppercase;
+    display: block;
+    font-size: .6em;
+    top: 4px;
+    color: #99c93d;
+}
+
+.Heading--Fancy span{
+	position: relative;
+}
+
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+.Heading--Fancy span::before {
+    right: 100%;
+    margin-right: 40px;
+}
+.Heading--Fancy span::after, .Heading--Fancy span::before {
+    content: "";
+    position: absolute;
+    border-top: 3px solid #ff5c2d;
+    width: 100px;
+    height: 3px;
+    top: 50%;
+    margin-top: -3px/2;
+}
+
+.Heading--Fancy span::after {
+    left: 100%;
+    margin-left: 40px;
+}
+.Heading--Fancy span::after, .Heading--Fancy span::before {
+    content: "";
+    position: absolute;
+    border-top: 3px solid #ff5c2d;
+    width: 100px;
+    height: 3px;
+    top: 50%;
+    margin-top: -3px/2;
+}
+
+*, *::after, *::before {
+    box-sizing: border-box;
+}
 
 
 
@@ -366,7 +468,7 @@ li a samp{
 
 
 /*:::::::::::::::::::::::::: Media::::::::::::::::::::::::::::::::::::::::::*/
-@media (max-width: 400px) {
+@media (max-width: 450px) {
 	.container{
 		padding: 0px !important;
 	}
@@ -383,3 +485,4 @@ li a samp{
 	}
 
 }
+

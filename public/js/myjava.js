@@ -239,7 +239,7 @@ $.fn.extend({
                 event.preventDefault();
                 var a = $(this).serializeArray();
                 var id = a[0]['value'];
-                $(this).find('.btn').val('Modificando...').addClass('btn-info');
+                $(this).find('.btn').val('Modificando...').addClass('btn-info disabled');
                 $.ajax({
                   type: "POST",
                   url: "/estado/"+id+"/update",
