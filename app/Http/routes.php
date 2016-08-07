@@ -129,3 +129,5 @@ Route::get('estado_usuario/{id}/deleteMsg','\App\Http\Controllers\Estado_usuario
 //Resources de ControllerAdmin
 Route::resource('admin','AdminController');
 Route::get('admin',['as' => 'admin_admin', 'uses' => 'AdminController@index']);
+
+Route::post('image/save','ImageController@save');

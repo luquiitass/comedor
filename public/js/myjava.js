@@ -61,6 +61,22 @@ function cancelarCargaDeFoto(fotoVieja,id_img){
 	$('#btns_cargar_cancelar').hide();
 }
 
+function subirImagen(legajo,id_img){
+		var fotix=$('#'+id_img).attr('src');
+		var legajo=legajo;
+
+		$.ajax({
+			type:'POST',
+			url:baseURL+'/iamge/save',
+			data:'imagen='+fotix+'&legajo='+legajo,
+			success: function(datos){
+				$('#fotoPerfil').attr("src",$('#fot').attr("src"));
+				$('#btn_buscatImagen').show();
+	       		$('#btns_cargar_cancelar').hide();
+			}
+		});
+}
+
 
 /*------------------Funciones de Usuario--------------------*/
 /*Iniciar sesion desde un formulario*/
@@ -82,21 +98,6 @@ function iniciarSesion(formulario){
 		});
 }
 
-function subirImagen(legajo,id_img){
-		var fotix=$('#'+id_img).attr('src');
-		var legajo=legajo;
-
-		$.ajax({
-			type:'POST',
-			url:'../php/subirImagen.php',
-			data:'imagen='+fotix+'&legajo='+legajo,
-			success: function(datos){
-				$('#fotoPerfil').attr("src",$('#fot').attr("src"));
-				$('#btn_buscatImagen').show();
-	       		$('#btns_cargar_cancelar').hide();
-			}
-		});
-}
 
 function modificarContra(formSerializable){
 	//var dato=$('#form_mod_cont').serialize();

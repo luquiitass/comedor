@@ -73,7 +73,9 @@
 									<td colspan="9">
 										{{Form::token()}}
 										{{Form::close()}}
+										@if($sePuedePonerFaltas && $dia == $diaActual)
 										<button class="btn btn-primary colocarFaltas pull-right" data-link="{{ csrf_token() }}" >Modificar Asistencias</button>
+										@endif
 									</td>
 								</tr>				
 							</table>

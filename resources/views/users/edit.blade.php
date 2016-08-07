@@ -88,12 +88,12 @@
 					<div id="btn_buscatImagen" class="fileUpload btn btn-primary pull-right">
 					    <span>seleccionar foto</span>
 					    <input type="text" hidden="true" value="lucas" name="usuario"  id="usuario">
-					    <input id="imp_file_foto" name="imagen" type="file" class="upload" onchange="readURL(this,'fot')" accept="image/*" >
+					    <input id="imp_file_foto" name="imagen" type="file" class="upload" onchange="readURL(this,{{$user->id}})" accept="image/*" >
 					</div>
 
 					<div id="btns_cargar_cancelar">
-						<button class="btn btn-danger" onclick="cancelarCargaDeFoto('','fot')">Cancelar</button>
-						<button class="btn btn-success pull-right" onclick="subirImagen('','fot')"> Modificar</button>
+						<button class="btn btn-danger" onclick="cancelarCargaDeFoto({{public_path().'storage/'.$user->id}},{{$user->id}})">Cancelar</button>
+						<button class="btn btn-success pull-right" onclick="subirImagen({{public_path().'storage/'.$user->id}},{{$user->id}})"> Modificar</button>
 					</div>	
 				</div>
 

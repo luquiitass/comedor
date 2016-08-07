@@ -109,6 +109,7 @@ class UsersController extends Controller
         $input = Request::except('_token','url');
         $data= $request->only('email','legajo','nombre','apellido','dni','telefono','tipo','estado_id');
         $data['password']= bcrypt('1');
+        $data['image']='storage/login2.png';
         $user= new User();//create($data);
         $user->create($data);
 
