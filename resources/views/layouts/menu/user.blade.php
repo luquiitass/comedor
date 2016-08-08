@@ -27,7 +27,8 @@
           <li class="dropdown">
             <button id="legajo" value="{{Auth::user()->legajo}}" type="button" class="dropdown-toggle btn btn-success" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
             <span><i class="glyphicon glyphicon-user"></i></span>
-             {{Auth::user()->legajo}}
+             {{Auth::user()->apellido}} 
+             {{Auth::user()->nombre}}
             <span class="caret"></span></a>
             </button>
             <ul class="dropdown-menu">

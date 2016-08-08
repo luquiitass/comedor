@@ -18,7 +18,7 @@
 		<p id="profile-name" class="profile-name-card">Comedor Apóstoles</p>
 
 				
-				{{Form::open(array('route' => 'handleLogin','class'=>'form-signin'))}}
+				{{Form::open(array('route' => 'handLogin','class'=>'form-signin'))}}
 					@include('mensajes.error')
 					<div class="form-group">
 						{{Form::text('email' ,null , array('class' =>  'form-control','placeholder'=> 'Email'))}}
@@ -37,7 +37,7 @@
 				<hr>
 				<p class="solicitud_registro">¿No estas registrado?</p>
 				<p>
-					{{link_to_route('user_home','Click aqui',null,array('class'=>''))}}
+					{{link_to_route('solicitud','Click aqui',null,array('class'=>''))}}
 					 para completar la  solicitud de registro
 				</p>
 			</div>

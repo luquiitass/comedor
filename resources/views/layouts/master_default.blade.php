@@ -5,13 +5,12 @@
 		@include('layouts.partes.head')
 	@show
 
-<body class="container">
-	<div id="mensaje_superior">
-	</div>
-	
-	<div id="content">
+<body>
+	<div class="container">
+		<div id="mensaje_superior">
 		@yield('content')
 	</div>
+	
 	
 	@include('layouts.partes.scripts')
 

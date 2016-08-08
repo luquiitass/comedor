@@ -26,7 +26,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','nombre','apellido','telefono','legajo','dni','estadosSemenal','estado_id','tipo','image'
+        'name', 'email', 'password','nombre','apellido','telefono','legajo','dni','estadosSemenal','estado_id','tipo','imagen'
     ];
 
     /**
@@ -37,6 +37,15 @@ class User extends Authenticatable
     protected $hidden = [
         'remember_token',
     ];
+
+    public function isActivo()
+    {
+        dd($this->estado->nombre);
+        
+        if ($this->estado->nombre == 'activo') {
+            # code...
+        }
+    }
 
     public function isPassword($pass){
         return \Hash::check($pass,$this->password);

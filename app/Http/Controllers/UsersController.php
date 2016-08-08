@@ -6,9 +6,11 @@ namespace App\Http\Controllers;
 use Request;
 use App\Http\Requests\UserRegistRequest;
 use App\Http\Requests\UserUpdateRequest;
+use App\Http\Requests\UserSolicitudRequest;
 use App\Http\Requests\AdminUpdateUser;
 use App\User;
 use App\Funciones;
+use App\Estado_usuario;
 
 use Amranidev\Ajaxis\Ajaxis;
 use URL;
@@ -20,7 +22,7 @@ class UsersController extends Controller
     public function __construct()
     {
         //dd('netro al constructor');
-        $this->middleware('auth',['except' => ['create','store']]);
+        $this->middleware('auth',['except' => ['solicitud','storeSolicitud']]);
     }
 
     /**
@@ -249,4 +251,38 @@ class UsersController extends Controller
 
         //dd($data);
     }
+
+    public function solicitud()
+    {
+        return view('users.create');
+    }
+
+    public function storeSolicitud(UserSolicitudRequest $request){
+        $data = Request::except('_token');
+
+        $estado=Estado_usuario::where('nombre','=','pendiente')->first()->id;
+
+        $data['password']= bcrypt('1');
+        $data['tipo']='comensal';
+        $data['estado_id']= $estado;
+
+
+        $data['image']='storage/login2.png';
+        $user= new User();//create($data);
+        $user->create($data);
+
+        if($user)
+        {
+            //\Auth::login($user);
+            //$resultado = array_merge(array('limpiar'=>'true'),json_decode(Funciones::getJSON('true','Usuario Registrado','reload'),true));
+            //return json_encode($resultado);
+            return redirect()->route('admin_users');
+        }
+        return back()->withInput();
+    }
+
+
+
+    /*************** Vistas **************/
+
 }

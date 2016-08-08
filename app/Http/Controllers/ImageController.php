@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Request;
 
 use App\Http\Requests;
 
 class ImageController extends Controller
 {
     //
-    public function save(){
-    	dd(Request::all());
+    public function save(Request $request){
+    	dd(Request::except('_token'));
     }
 }

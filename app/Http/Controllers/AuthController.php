@@ -14,18 +14,30 @@ use App\User;
 class AuthController extends Controller
 {
     public function login()
-    {
+    {   
+        if (\Auth::check()) {
+            redirect()->to('/');
+        }
     	return view('auth.login');
     }
 
-    public function handleLogin(UserLoginRequest $reques){
+    public function handLogin(UserLoginRequest $reques){
 
     	$data = $reques->only('email' , 'password');
     	if (\Auth::attempt($data)) {
-            if (\Auth::user()->isAdmin()) {
-                return redirect()->intended('admin');
-            }else{
-    		  return redirect()->intended('/ver_home');
+            $user=\Auth::user();
+            if ($user->estado->nombre == 'activo') {
+                return redirect()->to('/');
+            }
+            elseif($user->estado->nombre == 'pendiente')
+            {  
+                return redirect()->route('pendiente');//redirecciona a una pantalla que informa q esta esperando la autorizacion de el administrador
+
+            }
+            elseif ($user->estado->nombre == 'inactivo') 
+            {
+                return redirect()->route('inactivo');// informa qq esta inactivo por sobrepasar las faltas o lo que sea
+
             }
     	}
     	return back()->withInput()->withErrors(['email' => 'Usuario o contraseña incorrecta']);
@@ -37,5 +49,14 @@ class AuthController extends Controller
     	return redirect()->route('login');
     }
 
+    public function pendiente()
+    {
+        return view('auth.pendiente');
+    }
+
+    public function inactivo()
+    {
+        return view('auth.inactivo');
+    }
 
 }

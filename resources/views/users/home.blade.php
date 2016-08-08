@@ -11,7 +11,7 @@
 		<div class="col-xs-12 col-sm-6 col-md-6 col-md-offset-1 ">
 			<div class="row">
 				<div class="col-xs-12 col-sm-4">
-					<img class="img-thumbnail center-block" src="{{asset(public_path().'img/login2.png')}}" alt="Foto de perfil">
+					<img class="img-thumbnail center-block" src="{{asset(public_path().$user->imagen)}}" alt="Foto de perfil">
 					<hr class="border-bottom">
 				</div>
 				<div class="col-xs-12 col-sm-8 listar_datos todo_espacio">
@@ -43,9 +43,11 @@
 				<hr>
 				<ul class="listar_datos">
 					<div class="titulo">Faltas de este mes:</div>
-					<li> 1 - 21/10/2016</li>
-					<li> 2 - 25/10/2016</li>
-					<li> 3 - 29/10/2016</li>
+						@forelse($faltas as $key => $value)
+							<li>{{$value->getFecha()}}</li>
+						@empty()
+							<div class="alert alert-info">No posee faltas...</div>
+						@endforelse
 					<li>
 						{{link_to_route('user_faltas','Ver Faltas',null,array('class'=>'btn btn-primary pull-right'))}}
 					</li>

@@ -13,7 +13,11 @@
 
 Route::get('/', function () {
 	if (\Auth::check()) {
-		return redirect()->route('user_home');
+		if (\Auth::user()->isAdmin()) {
+			return redirect()->route('admin_admin');
+		}else{
+			return redirect()->route('user_home');
+		}
 	}
     return redirect()->route('login');
 });
@@ -23,32 +27,17 @@ Route::get('/prueba',function(){
 	}
 );
 
+
+/* *******************auth**********************************************/
 Route::get('/login',['as' => 'login' , 'uses' => 'AuthController@login']);
-Route::post('/handleLogin',['as' => 'handleLogin' , 'uses' => 'AuthController@handleLogin']);
+Route::post('/handLogin',['as' => 'handLogin' , 'uses' => 'AuthController@handLogin']);
 Route::get('/logout',['as' => 'logout' , 'uses' => 'AuthController@logout']);
+Route::get('/pendiente',['as'=>'pendiente', 'uses'=>'AuthController@pendiente']);
+Route::get('/inactivo',['as'=>'inactivo', 'uses'=>'AuthController@inactivo']);
 
 
-Route::resource('user','UsersController', ['only' => ['create' , 'store']] );
+/**************************************************************************/
 
-
-
-
-
-Route::group(['middleware' => ['web']],function(){
-	//Route::post('/handleLogin',['as' => 'handleLogin' , 'uses' => 'AuthController@handleLogin']);
-	//Route::get('/logout',['as' => 'logout' , 'uses' => 'AuthController@logout']);
-
-
-	//Route::get('/home/',['middlewaer' => 'auth' ,'as' => 'home' , 'uses' => 'UsersController@home']);
-
-	//Route::resource('users','UsersController', ['only' => ['create' , 'store','home']] );
-
-	//Route::resource('user','UsersController');
-
-	//Route::resource('user','UsersController', ['only' => ['index' , 'home','show']] );
-
-
-});
 
 
 //estados Resources
@@ -62,9 +51,11 @@ Route::get('estado/{id}/deleteMsg','\App\Http\Controllers\EstadossemanalControll
 Route::get('anotados', ['as'=> 'admin_anotados','uses'=> 'EstadossemanalController@anotados']);
 /********************* estados ***********************************************/
 
+
+
+
 //estados Resources
 /********************* estados ***********************************************/
-
 Route::resource('/user','UsersController');
 Route::get('ver_home',['as' => 'user_home', 'uses' => 'UsersController@home']);
 Route::post('user/modificarEstadoUsuario','UsersController@modificarEstadoUsuario');
@@ -78,15 +69,15 @@ Route::post('user/{id}/update','UsersController@update');
 Route::get('user/{id}/destroy',['as' => 'userDestroy','uses' => 'UsersController@destroy']);
 Route::get('user/{id}/deleteMsg','UsersController@DeleteMsg');
 
+Route::get('solicitud',['as'=>'solicitud','uses'=>'UsersController@solicitud']);
+Route::post('storeSolicitud',['as'=>'storeSolicitud','uses'=>'UsersController@storeSolicitud']);
+
 Route::get('usuarios',['as' => 'admin_users', 'uses' => 'UsersController@index']);
 //Route::post('user/{id}/update','\App\Http\Controllers\UsersController@update');
 //Route::get('user/{id}/delete', '\App\Http\Controllers\UsersController@destroy');
 //Route::get('user/{id}/deleteMsg','\App\Http\Controllers\UsersController@DeleteMsg');
 /********************* estados ***********************************************/
 
-//Rutas para el controlador admin
-Route::resource('/admin' , 'AdminController');
-//**************fin de rutas
 
 //falta Resources
 /********************* falta ***********************************************/
@@ -130,4 +121,9 @@ Route::get('estado_usuario/{id}/deleteMsg','\App\Http\Controllers\Estado_usuario
 Route::resource('admin','AdminController');
 Route::get('admin',['as' => 'admin_admin', 'uses' => 'AdminController@index']);
 
+
+
+//*******************  OTROS  ***********************************/
+
 Route::post('image/save','ImageController@save');
+

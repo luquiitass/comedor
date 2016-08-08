@@ -49,6 +49,7 @@ function readURL(input,id_img){
 		reader.onload = function (e) {
 			$('#'+id_img).attr('src', e.target.result);
 		}
+
 		reader.readAsDataURL(input.files[0]);
     	$('#btn_buscatImagen').hide();
     	$('#btns_cargar_cancelar').show();
@@ -61,20 +62,8 @@ function cancelarCargaDeFoto(fotoVieja,id_img){
 	$('#btns_cargar_cancelar').hide();
 }
 
-function subirImagen(legajo,id_img){
-		var fotix=$('#'+id_img).attr('src');
-		var legajo=legajo;
-
-		$.ajax({
-			type:'POST',
-			url:baseURL+'/iamge/save',
-			data:'imagen='+fotix+'&legajo='+legajo,
-			success: function(datos){
-				$('#fotoPerfil').attr("src",$('#fot').attr("src"));
-				$('#btn_buscatImagen').show();
-	       		$('#btns_cargar_cancelar').hide();
-			}
-		});
+function subirImagen(id_form){
+	POST($(id_form).serializeArray(),'/image/save');
 }
 
 

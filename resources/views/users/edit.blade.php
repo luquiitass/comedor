@@ -13,7 +13,7 @@
 			<ul class="nav nav-pills nav-stacked">
 				<li class="">
 					<div class="foto_perfil">
-						<img class="thumbnail" id="fotoPerfil" src="{{asset(public_path().'img/login2.png')}}" alt="foto perfil">
+						<img class="thumbnail" id="fotoPerfil" src="{{asset(public_path().$user->imagen)}}" alt="foto perfil">
 						<p class="text-center">{{$user->legajo}}</p>
 					</div>
 						
@@ -82,18 +82,20 @@
 					<h2>Cambiar foto de Perfil</h2>
 					<hr/>
 					<div class="foto_perfil">
-							<img class="thumbnail" id="fot" src="{{asset(public_path().'img/login2.png')}}" alt="foto perfil">
+							<img class="thumbnail" id="fot" src="{{asset(public_path().$user->imagen)}}" alt="foto perfil">
 					</div>
-					<p class="text-center">nombreImg.png</p>
 					<div id="btn_buscatImagen" class="fileUpload btn btn-primary pull-right">
 					    <span>seleccionar foto</span>
-					    <input type="text" hidden="true" value="lucas" name="usuario"  id="usuario">
-					    <input id="imp_file_foto" name="imagen" type="file" class="upload" onchange="readURL(this,{{$user->id}})" accept="image/*" >
+					    <form id="form_imagen" action="">
+					    	<input type="hidden" name="_token" value="{{ csrf_token() }}">
+						    <input type="text" hidden="true" value="{{$user->id}}" name="user_id"  id="user_id">
+						    <input id="imp_file_foto" name="imagen" type="file" class="upload" onchange="readURL(this,'fot')" accept="image/*" >
+					    </form>
 					</div>
 
 					<div id="btns_cargar_cancelar">
-						<button class="btn btn-danger" onclick="cancelarCargaDeFoto({{public_path().'storage/'.$user->id}},{{$user->id}})">Cancelar</button>
-						<button class="btn btn-success pull-right" onclick="subirImagen({{public_path().'storage/'.$user->id}},{{$user->id}})"> Modificar</button>
+						<button class="btn btn-danger" onclick="cancelarCargaDeFoto('{{public_path().$user->imagen}}','fot')">Cancelar</button>
+						<button class="btn btn-success pull-right" onclick="subirImagen('#form_imagen')"> Modificar</button>
 					</div>	
 				</div>
 
