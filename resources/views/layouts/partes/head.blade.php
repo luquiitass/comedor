@@ -9,6 +9,8 @@
 	
     <link href="{{asset(public_path().'css/bootstrap.css')}}" rel="stylesheet">
 
+    <link rel="icon" href="{{asset(public_path().'icono.ico')}}" type="image/x-icon">
+
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
 

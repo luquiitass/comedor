@@ -45,24 +45,6 @@ html,body{
 	border: 1px solid #000;
 }
 
-.img_menu{
-	width: 250px;
-	line-height: 50px;
-	vertical-align: center;
-}
-
-.img_menu img{
-	float: left;
-	width: 50px;
-	padding: 3px;
-	margin: 0px 3px;
-}
-
-.img_menu p{
-	font-size:20px;
-	font-weight: bold;
-}
-
 li a samp{
 	font-weight: bold;
 	padding-bottom: 1px;

@@ -8,10 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <div class="img_menu">
-        <img class="img" src="{{asset(public_path().'img/app_unam.png')}}" >
-        <p class="nombreApp" >Comedor Apostoles</p>
-      </div>
+      <p class="navbar-brand" style=" margin: 0; ">Comedor Apostoles</p>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -26,12 +23,12 @@
 
         <ul class="nav navbar-nav pull-right" >
           <li class="dropdown">
-            <button id="legajo" value="{{Auth::user()->legajo}}" type="button" class="dropdown-toggle btn btn-success" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-            <span><i class="glyphicon glyphicon-user"></i></span>
-             {{Auth::user()->apellido}} 
-             {{Auth::user()->nombre}}
-            <span class="caret"></span></a>
-            </button>
+             <a id="legajo" value="{{Auth::user()->legajo}}" type="button" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <span><i class="glyphicon glyphicon-user"></i></span>
+               {{Auth::user()->apellido}} 
+               {{Auth::user()->nombre}}
+              <span class="caret"></span>
+            </a>
             <ul class="dropdown-menu">
               <li>{{link_to_route('user_edit','Modificar Datos')}}</li>
               @if($user->isComensal())

@@ -26,7 +26,7 @@
 					</div>
 
 					<div class="form-group">
-						{{Form::text('password' ,null , array('class' =>  'form-control','placeholder'=> 'Contraseña'))}}
+						{{Form::password('password' , array('class' =>  'form-control','placeholder'=> 'Contraseña'))}}
 					</div>
 					
 
