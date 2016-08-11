@@ -27,8 +27,6 @@ return array(
     'Symfony\\Component\\Console\\' => array($vendorDir . '/symfony/console'),
     'SuperClosure\\' => array($vendorDir . '/jeremeamia/SuperClosure/src'),
     'Psy\\' => array($vendorDir . '/psy/psysh/src/Psy'),
-    'Proengsoft\\JsValidation\\Tests\\' => array($vendorDir . '/proengsoft/laravel-jsvalidation/tests'),
-    'Proengsoft\\JsValidation\\' => array($vendorDir . '/proengsoft/laravel-jsvalidation/src'),
     'PhpParser\\' => array($vendorDir . '/nikic/php-parser/lib/PhpParser'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
     'League\\Flysystem\\' => array($vendorDir . '/league/flysystem/src'),

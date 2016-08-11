@@ -166,7 +166,6 @@ return [
 
         Khill\Fontawesome\FontAwesomeServiceProvider::class,
 
-        Proengsoft\JsValidation\JsValidationServiceProvider::class
 
     ],
 
@@ -221,7 +220,6 @@ return [
 
         'Fa' => Khill\Fontawesome\FontAwesomeServiceProvider::class,
 
-        'JsValidator' => Proengsoft\JsValidation\Facades\JsValidatorFacade::class
 
     ],
 

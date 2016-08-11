@@ -13,9 +13,7 @@
         "Amranidev/scaffold-interface": "v1.4.*",
         "khill/fontawesomephp" : "1.0.x",
         "twbs/bootstrap": "^3.3",
-        "components/jquery": "^3.1",
-        "proengsoft/laravel-jsvalidation": "~1"
-
+        "components/jquery": "^3.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

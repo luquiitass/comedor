@@ -42,6 +42,7 @@
 				@include('mensajes.error_input',['name'=>'telefono'])
 			</div>
 			{{Form::token()}}
+			{{link_to_route('login','Cancelar',null,array('class'=>'btn btn-danger pull-left'))}}
 			{{Form::submit('Enviar Solicitud',array('class' => 'btn btn-primary pull-right'))}}
 		{{Form::close()}}		
 	</div>
