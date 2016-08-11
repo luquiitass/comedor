@@ -2,8 +2,6 @@
 
 namespace Amranidev\ScaffoldInterface\Generators;
 
-use URL;
-
 /**
  * Class NamesGenerate.
  *
@@ -125,7 +123,7 @@ class NamesGenerate
      */
     public function standardapi()
     {
-        return URL::to($this->tableNameSingle());
+        return $this->tableNameSingle();
     }
 
     /**

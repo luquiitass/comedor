@@ -17,7 +17,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="navbar">
         <ul class="nav navbar-nav pull-left">
-          <li class=" {{(Request::url()==route('admin_admin'))?'active':''}} "><a href="{{route('admin_admin')}}">Home</a></li>
+          <li class=" {{(Request::url()==route('admin_admin'))?'active':''}} "><a href="{{route('admin_admin')}}">Inicio</a></li>
           <li class=" {{(Request::url()==(route('admin_users')) ? 'active':'')}} "><a href="{{route('admin_users')}}">Usuarios</a></li>
           <li class=" {{(Request::url()==(route('admin_faltas')) ? 'active':'')}} "><a href="{{route('admin_faltas')}}">Faltas</a></li>
           <li class=" {{(Request::url()==(route('admin_anuncios')) ? 'active':'')}} "><a href="{{route('admin_anuncios')}}">Anuncios</a></li>
@@ -36,7 +36,7 @@
               <li>{{link_to_route('user_edit','Modificar Datos')}}</li>
               @if($user->isComensal())
               <li role="separator" class="divider"></li>
-              <li> <a href="{{route('user_home')}}">Modo Comensal</a></li>
+              <li> <a href="{{route('user_inicio')}}">Modo Comensal</a></li>
               @endif
               <li> {{ link_to_route('logout','Salir') }}</li>
             </ul>

@@ -1,17 +1,19 @@
 @extends('layouts.master_admin')
 
 @section('content')
-    <h2>Anotadso</h2>
+    <h2 class="Heading--Fancy">
+        <span class="Heading--Fancy__subtitle"></span>
+        <span>Anotados</span>
+    </h2>
  	<div class="">
 		<div class="row">
 			<div class="col-xs-12 col-sm-3">
 				<ul class="nav nav-pills nav-stacked" >
-					<li class="{{(($diaActual=='sabado')||($diaActual=='domingo'))?'active':''}}" ><a href="#tab_anotados_por_dia" data-toggle="tab">Anotados Por Dia</a></li>
 					@foreach($dias as $dia)
 						<li class="{{($diaActual==$dia)?'active ':''}}" >
 							<a  data-toggle="tab"  href="#tab_{{$dia}}">{{ucwords($dia)}}
 								@if($diaActual==$dia)
-									<kbd class="center">Dia Actual</kbd>
+									<kbd class="center">Día Actual</kbd>
 								@endif
 								<span class="badge pull-right">{{$users->where($dia,'1')->count()}}</span>
 							</a>
@@ -59,7 +61,7 @@
 														$falta = array_get($faltas,$us->user_id);
 														$ausente= array_has($faltas,$us->user_id);
 													?>
-													<td><p class="label label-{{$ausente?'danger':'success'}}">{{$ausente?'Ausente':'Precente'}}</p></td>																
+													<td><p class="label label-{{$ausente?'danger':'success'}}">{{$ausente?'Ausente':'Presente'}}</p></td>																
 													<td>{{Form::checkbox("user_id",$us->user_id, !$ausente)}}</td
 
 												@else

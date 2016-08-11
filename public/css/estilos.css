@@ -277,6 +277,17 @@ li a samp{
     height: 100px;
     z-index: 9999;
 }
+._a_titulo{
+    background: #000;
+}
+._a_titulo a{
+    color: #FFF;
+}
+._a_titulo a:hover{
+    background: #000!important;
+    color: #FFF;
+}
+
 
 /*::::::::::::::::::::::::::::Fin:::::::::::::::::::::::::::::::::::::::::::::*/
 

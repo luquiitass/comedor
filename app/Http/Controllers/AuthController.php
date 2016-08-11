@@ -16,7 +16,7 @@ class AuthController extends Controller
     public function login()
     {   
         if (\Auth::check()) {
-            redirect()->to('/');
+            return redirect()->to('/');
         }
     	return view('auth.login');
     }
@@ -51,12 +51,15 @@ class AuthController extends Controller
 
     public function pendiente()
     {
-        return view('auth.pendiente');
+        $user = \Auth::user();
+        \Auth::logout();
+        return view('auth.pendiente',compact('user'));
     }
 
     public function inactivo()
-    {
-        return view('auth.inactivo');
+    {   $user = \Auth::user();
+        \Auth::logout();
+        return view('auth.inactivo',compact('user'));
     }
 
 }

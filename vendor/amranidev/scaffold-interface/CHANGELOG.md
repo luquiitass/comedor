@@ -1,8 +1,19 @@
 # Release Notes
 
-## v1.4.27 (2016-6-22)
+#v1.4.32 (2016-07-12)
 
-###fixed
+### Enhanced
+- Use Laravel **url()** helper to generate urls into views.
+
+## v1.4.31 (2016-07-08)
+
+### Enhanced
+- Enhance controller php styles.
+- Enhance view html code style convention.
+
+## v1.4.27 (2016-06-22)
+
+### Fixed
 - Fix OneToMany select field bug [786e74](https://github.com/amranidev/scaffold-interface/commit/786e74de0a62d7cc88c80617f88bec02dd3e40cd).
 
 ## v1.4.25 (2016-06-18)

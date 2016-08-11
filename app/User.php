@@ -38,6 +38,16 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function getImage()
+    {
+        dd($this);
+        $img=public_path().$this->imagen;
+        if (File::exists($img)) {
+            return $img;
+        }
+        return public_path().'storage/login2.png';
+    }
+
     public function isActivo()
     {
         dd($this->estado->nombre);
@@ -66,7 +76,8 @@ class User extends Authenticatable
         return false;
     }
 
-    public function isAnotado($dia){
+    public function isAnotado($dia)
+    {
         $retorno;
         switch ($dia) {
             case 'lunes':
@@ -91,7 +102,8 @@ class User extends Authenticatable
         return $retorno;
     }
 
-    public function tiposDeUsuario(){
+    public function tiposDeUsuario()
+    {
         if ($this != null) {
             switch ($this->tipo) {
                 case 'comensal':
@@ -106,7 +118,8 @@ class User extends Authenticatable
         }
     }
 
-    public function mostrarMisDatos(){
+    public function mostrarMisDatos()
+    {
         return ['Apellido' => $this->apellido, 'Nombre' => $this->nombre, 'Legajo' => $this->legajo, 'Telefono' => $this->telefono, 'DNI' => $this->dni, 'Email' => $this->email];
     }
 
@@ -114,7 +127,8 @@ class User extends Authenticatable
         return [array('key' => 'Apellido' ,'value' => $this->apellido), array('key' => 'Nombre' ,'value' => $this->nombre), array('key' => 'Legajo' ,'value' => $this->legajo), array('key' => 'Telefono' ,'value' => $this->telefono), array('key' => 'DNI' ,'value' => $this->dni), array('key' => 'Email' ,'value' => $this->email)];
     }
 
-    public function editarDatosAjaxis(){
+    public function editarDatosAjaxis()
+    {
         return array(
             ['type' => 'text', 'value' => $this->legajo, 'name' => 'legajo', 'key' => 'Legajo :'],
             ['type' => 'text', 'value' => $this->nombre, 'name' => 'nombre', 'key' => 'Nombre :'],
@@ -143,7 +157,8 @@ class User extends Authenticatable
         return $this->hasMany(Anuncio::class);
     }
 
-    public function obtenerFaltasPorMes(){
+    public function obtenerFaltasPorMes()
+    {
         $faltas = $this->faltas()->get();
         setlocale(LC_TIME,"es_ES");
 

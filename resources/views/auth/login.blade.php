@@ -3,10 +3,11 @@
 @section('styles')
 	<style type="text/css">
 		body{
-			background: #EEEEEE !important;
+			background: #1BB1B2 !important;
 		}
 		.container{
 			width: 100%;
+			background: #1BB1B2 !important;
 		}
 	</style>
 @endsection

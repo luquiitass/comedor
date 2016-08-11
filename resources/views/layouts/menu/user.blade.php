@@ -17,7 +17,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="navbar">
         <ul class="nav navbar-nav pull-left">
-          <li class=" {{(Request::url()==route('user_home') ? 'active':'')}} "><a href="{{route('user_home')}}">Home</a></li>
+          <li class=" {{(Request::url()==route('user_inicio') ? 'active':'')}} "><a href="{{route('user_inicio')}}">Inicio</a></li>
           <li class=" {{(Request::url()==(route('user_estados')) ? 'active':'')}} "><a href="{{route('user_estados')}}">Estados</a></li>
           <li class=" {{(Request::url()==(route('user_faltas')) ? 'active':'')}} "><a href="{{route('user_faltas')}}">Faltas</a></li>
           <li class=" {{(Request::url()==(route('user_anuncios')) ? 'active':'')}} "><a href="{{route('user_anuncios')}}">Anuncios</a></li>

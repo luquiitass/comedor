@@ -1,7 +1,10 @@
 @extends('layouts.master_admin')
 
 @section('content')
-    <h2>Anuncios</h2>
+    <h2 class="Heading--Fancy">
+        <span class="Heading--Fancy__subtitle"></span>
+        <span>Anuncios</span>
+    </h2>
  	<div class="">
 		<div class="row">
 			<div class="col-xs-12 col-sm-3">

@@ -6,7 +6,10 @@
 @endsection
 
 @section('content')
-	<h2>Usuarios</h2>
+	<h2 class="Heading--Fancy">
+        <span class="Heading--Fancy__subtitle"></span>
+        <span>Usuarios</span>
+    </h2>
 	
 	<div class="row">
 		<div class="col-xs-12 col-sm-3">
@@ -31,7 +34,7 @@
 				<!--Panel lista todos los usuarios (Activos e Inactivos)  -->
 				<div id="tab_todos" class="tab-pane">
 					<h3>Todos los Comensales</h3>
-					<table id="datata" class="table table-hover table-striped" width="100%">
+					<table id="datata" class="table table-hover" width="100%">
 						<tr>
 							<th>Apellido</th>
 							<th>Nombre</th>
@@ -118,7 +121,6 @@
 					<h3>Registrar Comensal</h3>
 					<br>
 					<div style="width: 80%;">
-						@include('mensajes.error')
 						{{Form::open(array('url'=> 'user/store'))}}
 							@include('forms.form_admin_user_create')
 						{{Form::close()}}

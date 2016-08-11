@@ -16,7 +16,7 @@ Route::get('/', function () {
 		if (\Auth::user()->isAdmin()) {
 			return redirect()->route('admin_admin');
 		}else{
-			return redirect()->route('user_home');
+			return redirect()->route('user_inicio');
 		}
 	}
     return redirect()->route('login');
@@ -57,7 +57,7 @@ Route::get('anotados', ['as'=> 'admin_anotados','uses'=> 'EstadossemanalControll
 //estados Resources
 /********************* estados ***********************************************/
 Route::resource('/user','UsersController');
-Route::get('ver_home',['as' => 'user_home', 'uses' => 'UsersController@home']);
+Route::get('ver_inicio',['as' => 'user_inicio', 'uses' => 'UsersController@inicio']);
 Route::post('user/modificarEstadoUsuario','UsersController@modificarEstadoUsuario');
 Route::get('editar_datos',['as' => 'user_edit','uses' => 'UsersController@editarDatos']);
 

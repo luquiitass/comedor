@@ -14,15 +14,18 @@
 @endsection
 
 @section('content')
-	<h2>Cantidad de faltas por usuario</h2>
+	<h2 class="Heading--Fancy">
+        <span class="Heading--Fancy__subtitle"></span>
+        <span>Faltas por usuario</span>
+    </h2>
 	<ul class="nav nav-tabs">
-	  <li class="active"><a href="#tabs_faltas_mes" data-toggle="tab">Faltas del mes Actual</a></li>
-	  <li ><a href="#tabs_faltas_año" data-toggle="tab">Faltas del año</a></li>
+	  <li class="active"><a href="#tabs_faltas_mes" data-toggle="tab">Mes Actual</a></li>
+	  <li ><a href="#tabs_faltas_año" data-toggle="tab">Por año</a></li>
 	</ul>
 
 	<div class="tab-content">
 		<div id="tabs_faltas_mes" class="tab-pane fade in active">
-		<table id="faltas_año" class="table table-bordered table-hover">
+		<table id="faltas_año" class="table table-striped table-hover">
 			<tr>
 				<th>Apellido</th>
 				<th>Nombre</th>
@@ -31,26 +34,26 @@
 				<th>Operaciones</th>
 			</tr>
 			@foreach($users as $us)
-				<tr class="mostrar">
+				<tr class="mostrar faltas">
 					<td>{{$us->apellido}}</td>
 					<td>{{$us->nombre}}</td>
 					<td>{{$us->legajo}}</td>
 					<?php $faltas= $us->obtenerFaltasMesActual()?>
 					<td>{{$faltas->count()}}</td>
 					<td>
-						<ul class="faltas list-grop">
+						<ul class="list-grop">
 							<li class=" list-group-item">
-								Ver Faltas 
-								<ul class="list-group" hidden="true">
 								@if($faltas->count() > 0)
-									@foreach($faltas as $falta)
-										<li class="list-group-item">
-											{{$falta->getFecha()}}
-										</li>
-									@endforeach
+									Ver Faltas 
+									<ul class="list-group ul_hidden" hidden="true">
+										@foreach($faltas as $falta)
+											<li class="list-group-item">
+												{{$falta->getFecha()}}
+											</li>
+										@endforeach
 									</ul>
 								@else
-									<li class="alert alert-danger">Sin Faltas</li>
+									Sin Faltas
 								@endif
 
 							</li>
@@ -62,7 +65,7 @@
 			
 		</div>
 		<div id="tabs_faltas_año" class="tab-pane">
-			<table id="faltas_año" class="table table-bordered table-hover">
+			<table id="faltas_año" class="table table-hover">
 				<tr>
 					<th>Apellido</th>
 					<th>Nombre</th>
@@ -71,34 +74,34 @@
 					<th>Operaciones</th>
 				</tr>
 				@foreach($users as $us)
-					<tr class="mostrar">
+					<tr class="mostrar faltas">
 						<td>{{$us->apellido}}</td>
 						<td>{{$us->nombre}}</td>
 						<td>{{$us->legajo}}</td>
 						<td>{{$us->cantFaltas}}</td>
 						<td>
-							<ul class="faltas list-grop">
+							<ul class=" list-grop">
 								<li class=" list-group-item">
-									Ver Faltas por mes
 									<?php $meses= $us->obtenerFaltasPorMes()?>
-									<ul class="list-group" hidden="true">
 									@if($meses->count() > 0)
-										@foreach($meses as $nombreMes => $mes)
-											<li class="list-group-item">
-												<span class="badge">{{$mes->count()}}</span>
-												{{$nombreMes}}
-												<ul hidden="{{$nombreMes==$mesActual?'true':'falce'}}">
-												@foreach($mes as $falta)
-													<li>
-														{{$falta->getFecha()}}
-													</li>
-												@endforeach
-												</ul>
-											</li>
-										@endforeach
+										Ver Faltas por mes
+										<ul class="list-group ul_hidden" hidden="true">
+											@foreach($meses as $nombreMes => $mes)
+												<li class="list-group-item">
+													<span class="badge">{{$mes->count()}}</span>
+													{{$nombreMes}}
+													<ul>
+													@foreach($mes as $falta)
+														<li>
+															{{$falta->getFecha()}}
+														</li>
+													@endforeach
+													</ul>
+												</li>
+											@endforeach
 										</ul>
 									@else
-										<li class="alert alert-danger">Sin Faltas</li>
+										Sin Faltas
 									@endif
 
 								</li>
@@ -117,7 +120,7 @@
 	<script type="text/javascript">
 		$(function(){
 		$('.faltas').click(function() {
-		    $(this).find('ul').slideToggle();
+		    $(this).find('.ul_hidden').slideToggle();
 		});
 
 	});

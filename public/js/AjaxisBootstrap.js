@@ -42,7 +42,9 @@ $(document).on('hidden.bs.modal','#myModal', function () {
 
 $(document).on('show.bs.modal','#myModal', function () {
     var modal ='<div class="modal-dialog modal-sm" role="document"> <div class="modal-content"> <div class="loader"> <img src="{{asset(public_path()."img/loader.gif")}}" alt="Cargando" style="width:200px; height:200px; "> </div> </div> </div>';
-    $('.AjaxisModal').html(modal);
+    if ($('.AjaxisModal').html() == '') {
+        $('.AjaxisModal').html(modal);     
+    }
 })
 
 

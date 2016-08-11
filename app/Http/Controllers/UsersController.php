@@ -139,7 +139,7 @@ class UsersController extends Controller
             //return json_encode($user->mostrarMisDatos());
         }
         $user= User::findOrfail($id);
-        return view('users.home',compact('user'));
+        return view('users.inicio',compact('user'));
     }
 
     /**
@@ -200,12 +200,12 @@ class UsersController extends Controller
         return URL::to('usuarios');
     }
 
-    public function home()
+    public function inicio()
     {
         if (Request::ajax()) {
             $ajx=Request::ajax();
             $user= \Auth::user();
-            return view('users.home',compact('user','ajax'))->render();
+            return view('users.inicio',compact('user','ajax'))->render();
         }
         $user= \Auth::user();
         
@@ -213,7 +213,7 @@ class UsersController extends Controller
 
         $faltas = $user->obtenerFaltasMesActual();
         
-        return view('users.home',compact('user','estadosSemanal','faltas'));
+        return view('users.inicio',compact('user','estadosSemanal','faltas'));
     }
 
     public function estadosSemanal($id){
@@ -276,7 +276,7 @@ class UsersController extends Controller
             //\Auth::login($user);
             //$resultado = array_merge(array('limpiar'=>'true'),json_decode(Funciones::getJSON('true','Usuario Registrado','reload'),true));
             //return json_encode($resultado);
-            return redirect()->route('admin_users');
+            return redirect()->route('pendiente');
         }
         return back()->withInput();
     }
