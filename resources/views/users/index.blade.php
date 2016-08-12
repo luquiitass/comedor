@@ -11,7 +11,7 @@
         <span>Usuarios</span>
     </h2>
 	
-	<div class="row">
+	<div class="row well fondo_admin">
 		<div class="col-xs-12 col-sm-3">
 		<div id="tabs">
 			<ul class="nav nav-pills nav-stacked" >
@@ -102,6 +102,15 @@
 												</li>
 												<li role="separator" class="divider"></li>
 											@endforeach
+												<li>
+													{{Form::open(array('clas'=>''))}}
+														{{Form::hidden('estado',$unEst->id)}}
+														{{Form::hidden('id',$us->id)}}
+														{{Form::token()}}
+														{{Form::button('Restaurar contraseña',array('class'=> 'btn btn-primary form-control saveForm','data-link'=>'/user/resetPasword'))}}
+													{{Form::close()}}
+													
+												</li>
 										  </ul>
 										  </div>
 										

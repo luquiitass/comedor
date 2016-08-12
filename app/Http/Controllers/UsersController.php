@@ -4,16 +4,18 @@ namespace App\Http\Controllers;
 
 
 use Request;
-use App\Http\Requests\UserRegistRequest;
-use App\Http\Requests\UserUpdateRequest;
-use App\Http\Requests\UserSolicitudRequest;
-use App\Http\Requests\AdminUpdateUser;
 use App\User;
 use App\Funciones;
 use App\Estado_usuario;
 
 use Amranidev\Ajaxis\Ajaxis;
 use URL;
+
+use App\Http\Requests\UserRegistRequest;
+use App\Http\Requests\UserUpdateRequest;
+use App\Http\Requests\UserSolicitudRequest;
+use App\Http\Requests\AdminUpdateUser;
+use App\Http\Requests\UserUpdatePasswordRequest;
 
 
 class UsersController extends Controller
@@ -56,7 +58,9 @@ class UsersController extends Controller
         return view('users.edit',compact('user'));
     }
 
-    public function modificarPassword(){
+    public function modificarPassword(UserUpdatePasswordRequest $request)
+    {
+        $retorno=array();
         $user =\Auth::user();
         $input = Request::except('_token');
 
@@ -65,21 +69,36 @@ class UsersController extends Controller
                 $user->password = bcrypt($input['cont_nueva']); //se modifica la contraseña
                 $user->save();  
 
-                $arr = json_encode(array_merge(array('limpiar' => 'true'),json_decode(Funciones::getJSON("true","Contraseña modificada","reload"),true)));
+                $retorno = array('mensaje'=> 'Contraseña modificada','location'=>route('user_edit'));
 
                 //agarega un objeto mas al jsoon devuelto por la funcion getJSON.
-                return $arr;
             }else{
-                return Funciones::getJSON("false","Las contraseñas nuevas deben ser iguales");
+                $retorno=array('mensaje'=> 'Las contraseña  deben ser iguales','tipoMensaje'=>'danger');
             }
         }else{
-            return Funciones::getJSON("false","Las contraseña actual es incorrecta");
+            $retorno=array('mensaje'=> 'Las contraseña  actual es incorrecta','tipoMensaje'=>'danger');
         }
+        return json_encode($retorno);
         
+    }
+
+    public function resetPassword()
+    {
+        $retorno= array();
+        $data = Request::only('id');
+        $user = User::findOrfail($data['id']);
+
+        $user->password = bcrypt('1');
+
+        $user->save();
+
+        return json_encode(array('mensaje'=>'Contraseña restaurada, valor por defecto es "1"','tipoMensaje'=>'success'));
+
     }
 
     public function userUpdate(UserUpdateRequest $request)
     {
+        $retorno=array();
         $input =Request::only('email','telefono','dni');
         $user = \Auth::user();
         if (User::where('email','=',$input['email'])->where('id','!=',$user->id)->count() == 0) 
@@ -87,17 +106,16 @@ class UsersController extends Controller
             if (User::where('dni','=',$input['dni'])->where('id','!=',$user->id)->count() == 0)
             {
                 $user->update($input);
-                $funcion = array('funcion' => 'reload');
-                return Funciones::getJSON_add_array($funcion,Funciones::getJSON('true','Modificado'));
+                $retorno=array('mensaje'=>'Modificado','location'=>'/editar_datos');
             }else
             {
-               return Funciones::getJSON('false',"El DNI ingresado ya existe");
+                $retorno=array('tipoMensaje'=>'danger','mensaje'=>'El DNI ingresado ya existe');
             }
         }else
         {
-                return Funciones::getJSON('false',"El Email ingresado ya existe");
+                $retorno=array('tipoMensaje'=>'danger','mensaje'=>'El Email ingresado ya existe');
         }
-        return "nada";
+        return json_encode($retorno);
         
     }
     /**
@@ -111,7 +129,9 @@ class UsersController extends Controller
         $input = Request::except('_token','url');
         $data= $request->only('email','legajo','nombre','apellido','dni','telefono','tipo','estado_id');
         $data['password']= bcrypt('1');
-        $data['image']='storage/login2.png';
+        $data['estado_id']=Estado_usuarios::where('nombre','=','activo')->select('id')->first();
+        $data['imagen']='storage/login2.png';
+
         $user= new User();//create($data);
         $user->create($data);
 
@@ -267,7 +287,7 @@ class UsersController extends Controller
         $data['estado_id']= $estado;
 
 
-        $data['image']='storage/login2.png';
+        $data['imagen']='storage/login2.png';
         $user= new User();//create($data);
         $user->create($data);
 

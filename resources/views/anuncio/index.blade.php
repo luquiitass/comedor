@@ -5,7 +5,7 @@
         <span class="Heading--Fancy__subtitle"></span>
         <span>Anuncios</span>
     </h2>
-    <div class="row well fondo">
+    <div class="row">
 		<div class="col-md-9 col-md-offset-2">
 	    	@if($anuncios->count() == 0)
 	    		<div class="alert alert-info">

@@ -5,26 +5,26 @@
         <span class="Heading--Fancy__subtitle"></span>
         <span>Faltas</span>
     </h2>
-    <div class="row well fondo">
+    <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <ul class="  list-group">
+            <ul class="list-group ">
                 <?php $meses = $user->obtenerFaltasPorMes();?>
                     
                     @forelse($meses as $nombreMes => $mes)
-                    <li class="faltas list-group-item  {{$nombreMes==$mesActual?'verde':''}}">
+                    <li class="faltas list-group-item {{$nombreMes==$mesActual?'active':''}}">
                         <p class="pull-right">
                             <span class="badge">{{$mes->count()}}</span> 
                             Faltas
                         </p>
 
                         {{$nombreMes}}
-                        <ul class="list-group" hidden="true">
+                        <ol class="list-group">
                         @foreach($mes as  $falta)
                             <li class="list-group-item">
                                 {{$falta->getFecha()}}
                             </li>
                         @endforeach
-                        </ul>
+                        </ol>
                     </li>
                     @empty
                         <div class="alert alert-info">No posee faltas</div>

@@ -6,7 +6,7 @@
         <span>Anuncios</span>
     </h2>
  	<div class="">
-		<div class="row">
+		<div class="row well fondo_admin">
 			<div class="col-xs-12 col-sm-3">
 				<ul class="nav nav-pills nav-stacked" >
 					<li class="active" ><a href="#tab_todos" data-toggle="tab">Anuncios Visibles</a></li>
@@ -38,7 +38,7 @@
 								</div>
 								<div class="form-group">
 									{{Form::label('cuerpo')}}
-									{{Form::textarea('cuerpo')}}
+									{{Form::textarea('cuerpo',null,array('class'=>'form-control'))}}
 								</div>
 								<div class="form-group">
 									{{Form::label('mostar hasta')}}

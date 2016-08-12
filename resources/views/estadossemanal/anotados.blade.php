@@ -6,7 +6,7 @@
         <span>Anotados</span>
     </h2>
  	<div class="">
-		<div class="row">
+		<div class="row well fondo_admin">
 			<div class="col-xs-12 col-sm-3">
 				<ul class="nav nav-pills nav-stacked" >
 					@foreach($dias as $dia)

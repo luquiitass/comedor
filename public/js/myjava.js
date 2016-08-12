@@ -20,6 +20,11 @@ $(function(){
 	    language: "es",
 	    autoclose: true
 	});
+
+	$(document).on('click','.guardar',function(){
+		$(this).html('Guardando <i class="fa fa-spinner fa-spin"></i>').addClass('disabled');
+	});
+	
 	});
 
 	/*$('.mostrar').click(function(){
@@ -250,62 +255,62 @@ $.fn.extend({
 
 /*:::::::::::::::::::::::::Metodos Post para modificar datos Que Devulve un Json*/
 
-$.fn.extend({
-	formPostJson:function(){
-		$(document).on('submit','.form',function(event){
-			event.preventDefault();
+// $.fn.extend({
+// 	formPostJson:function(){
+// 		$(document).on('submit','.form',function(event){
+// 			event.preventDefault();
 
-			var form = this;
-			var datos = $(form).serialize();
-			var url= $(form).find("input[name=url]").attr('value');
+// 			var form = this;
+// 			var datos = $(form).serialize();
+// 			var url= $(form).find("input[name=url]").attr('value');
 
-			$.ajax({
-				type:"POST",
-				url:url,
-				data:datos,
-				success:function(data){
-					var json = $.parseJSON(data);
-					if (json.resultado == 'true') {
-						if (json.html){
-							$(json.id_elemento).html(json.html);
-						}
-						if (json.mensaje) {
-							mensaje_superior(json.mensaje,'success','true');
-						}
+// 			$.ajax({
+// 				type:"POST",
+// 				url:url,
+// 				data:datos,
+// 				success:function(data){
+// 					var json = $.parseJSON(data);
+// 					if (json.resultado == 'true') {
+// 						if (json.html){
+// 							$(json.id_elemento).html(json.html);
+// 						}
+// 						if (json.mensaje) {
+// 							mensaje_superior(json.mensaje,'success','true');
+// 						}
 
-					}else if(json.resultado == 'false'){
-						if (json.mensaje) {
-							mensaje_superior(json.mensaje,'danger','false');
-						}
-					}
+// 					}else if(json.resultado == 'false'){
+// 						if (json.mensaje) {
+// 							mensaje_superior(json.mensaje,'danger','false');
+// 						}
+// 					}
 
-					if (json.funcion) {
-						window[json.funcion]();		
-					}
-					if (json.limpiar){
-						$(form).limpiar();
-					}
+// 					if (json.funcion) {
+// 						window[json.funcion]();		
+// 					}
+// 					if (json.limpiar){
+// 						$(form).limpiar();
+// 					}
 
-				},
-				error:function(xhr){
-					if (xhr.status == 422 ){
-						var html='<ul>';
-						$.each(xhr.responseJSON,function(index,value){
-								html=html+"<li>"+value+"</li>";
-						});
-						html=html+"</ul>";
-						mensaje_superior(html,'danger','false');
-					}
-				}
-			});
-			return true;
-		});
-	},
-	limpiar:function(){
-		$(this).find('.limpiar').val('');
-		return false;
-	}
-});
+// 				},
+// 				error:function(xhr){
+// 					if (xhr.status == 422 ){
+// 						var html='<ul>';
+// 						$.each(xhr.responseJSON,function(index,value){
+// 								html=html+"<li>"+value+"</li>";
+// 						});
+// 						html=html+"</ul>";
+// 						mensaje_superior(html,'danger','false');
+// 					}
+// 				}
+// 			});
+// 			return true;
+// 		});
+// 	},
+// 	limpiar:function(){
+// 		$(this).find('.limpiar').val('');
+// 		return false;
+// 	}
+// });
 
 
 

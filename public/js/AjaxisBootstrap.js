@@ -74,7 +74,8 @@ function POST(postData, dataLink) {
             if (isJson(response)) {
                 var json = $.parseJSON(response);
                 if (json.mensaje) {
-                    mensaje_superior(json.mensaje,'info','false');
+                    var tipoMensaje= json.tipoMensaje || 'info';
+                    mensaje_superior(json.mensaje,tipoMensaje,'false');
                     $('.AjaxisModal').toggle();
                 }
                 if (json.location) {
@@ -91,7 +92,7 @@ function POST(postData, dataLink) {
                         html=html+"<li>"+value+"</li>";
                 });
                 html=html+"</ul>";
-                $('.mensajeModal').html(html);
+                mensaje_superior(html,'danger','false');
             }
         }
     });

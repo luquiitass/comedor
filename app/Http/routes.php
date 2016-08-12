@@ -61,8 +61,9 @@ Route::get('ver_inicio',['as' => 'user_inicio', 'uses' => 'UsersController@inici
 Route::post('user/modificarEstadoUsuario','UsersController@modificarEstadoUsuario');
 Route::get('editar_datos',['as' => 'user_edit','uses' => 'UsersController@editarDatos']);
 
-Route::post('modificarPassword',['as' => 'modificarPassword' ,'uses' => 'UsersController@modificarPassword']);
-Route::post('userUpdate',['as' => 'userUpdate' ,'uses' => 'UsersController@userUpdate']);
+Route::post('user/modificarPassword',['as' => 'modificarPassword' ,'uses' => 'UsersController@modificarPassword']);
+Route::post('/user/resetPasword',['as' => 'resetPassword' ,'uses' => 'UsersController@resetPassword']);
+Route::post('user/userUpdate',['as' => 'userUpdate' ,'uses' => 'UsersController@userUpdate']);
 Route::post('user/store','UsersController@store');
 Route::get('user/{id}/edit','UsersController@edit');
 Route::post('user/{id}/update','UsersController@update');

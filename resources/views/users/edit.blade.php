@@ -47,13 +47,13 @@
 					<h2>Editar Perfil</h2>
 					<hr/>
 					<div >
-						{{Form::open(array('class' => 'form','method'=>'get'))}}
+						{{Form::open(array('class' => 'form'))}}
 							{{Form::hidden('url',route('userUpdate'))}}
 							
 							@include('forms.form_user_edit',array('user',$user))
 
 							{{Form::token()}}
-							{{Form::submit('Modificar',array('class' => 'btn btn-primary pull-right'))}}	
+							{{Form::button('Modificar',array('class'=>'btn btn-primary pull-right saveForm guardar','data-link'=> '/user/userUpdate'))}}	
 						{{Form::close()}}
 
 					</div>	
@@ -67,13 +67,13 @@
 					<h2>Modificar contraseña</h2>
 					<hr/>
 					<div >
-						{{Form::open(array('class' => 'form','id'=>'form_mod_cont','method'=>'get'))}}
-							{{Form::hidden('url',route('modificarPassword'))}}
-							
+						{{Form::open(array('class' => 'form'))}}
+													
 							@include('forms.form_user_edit_password',array('nada' => 'nada'))
 
 							{{Form::token()}}
-							{{Form::submit('Guardar',array('class' => 'btn btn-primary pull-right'))}}	
+
+							{{Form::button('Guardar',array('class' => 'btn btn-primary pull-right saveForm ','data-link'=>'/user/modificarPassword'))}}	
 						{{Form::close()}}
 					</div>
 				</div>
@@ -117,7 +117,7 @@
     <script type="text/javascript">
         $(function(){
             $("#btns_cargar_cancelar").hide();
-            $('.form').formPostJson();
+            //$('.form').formPostJson();
         });
     </script>
 @endsection

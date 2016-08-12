@@ -7,9 +7,9 @@
         <span>Información de Comensal</span>
     </h2>
 
-	<div class="row well fondo">
+	<div class="row">
 		<div class="col-xs-12 col-sm-6 col-md-6 col-md-offset-1 ">
-			<div class="row">
+			<div class="row well fondo">
 				<div class="col-xs-12 col-sm-4">
 					<img class="img-thumbnail center-block" src="{{asset(public_path().$user->imagen)}}" alt="Foto de perfil">
 					<hr class="border-bottom">
@@ -28,7 +28,7 @@
 		</div>
 
 		<div class="col-xs-12 col-sm-6 col-md-4 ">
-			<div class="">
+			<div class="well fondo">
 				<ul class="listar_datos">
 					<div class="titulo">Anotado a:</div>
 					@forelse($estadosSemanal as $key => $value)
