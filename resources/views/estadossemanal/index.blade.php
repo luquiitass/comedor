@@ -18,7 +18,7 @@
                                 {{Form::hidden('estado','0')}}
                                 <img src="{{asset(public_path().'/img/si_comida.png')}}" alt="Si Anotado">
                             @endif
-                            {{Form::submit('Modificar',array('class'=> 'btn btn-primary center-block'))}}
+                            {{Form::button('Modificar', ['type' => 'submit', 'class' => 'btn btn-primary center-block'] )}}
                             {{Form::token()}}
                             {{Form::close()}}
                         </div>
