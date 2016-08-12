@@ -16,8 +16,17 @@
 
 			@yield('content')
 
-			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		        <div class='AjaxisModal'></div>
+			<div class="modal modal-static fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		        <div class='AjaxisModal'>
+			        <div class="modal-dialog " style=" width: 200px; ">
+	    				<div class="modal-content">
+	    					<div class="modal-body">
+	      						<p class="text-center"><i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i></p>
+	      						<h3 class="text-center">Cargando</h3>
+	      					</div>
+	   					</div>
+	  				</div>
+	  			</div>
 		    </div>
 		</div>
 	</body>

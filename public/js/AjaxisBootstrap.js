@@ -41,7 +41,7 @@ $(document).on('hidden.bs.modal','#myModal', function () {
 })
 
 $(document).on('show.bs.modal','#myModal', function () {
-    var modal ='<div class="modal-dialog modal-sm" role="document"> <div class="modal-content"> <div class="loader"> <img src="{{asset(public_path()."img/loader.gif")}}" alt="Cargando" style="width:200px; height:200px; "> </div> </div> </div>';
+    var modal ='<div class="modal-dialog " style=" width: 200px; "><div class="modal-content"> <div class="modal-body"> <p class="text-center"><i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i></p> <h3 class="text-center">Cargando</h3> </div></div></div>';
     if ($('.AjaxisModal').html() == '') {
         $('.AjaxisModal').html(modal);     
     }
