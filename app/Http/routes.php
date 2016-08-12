@@ -128,3 +128,8 @@ Route::get('admin',['as' => 'admin_admin', 'uses' => 'AdminController@index']);
 
 Route::post('image/save','ImageController@save');
 
+
+
+/*:::::::::::::::::::::::Rutas de Contolador DataTable::::::::::::::::::::::*/
+Route::get('datatables/getViewUsers',['as'=>'dt_getViewUsers','uses'=>'DataTablesController@getViewUsers' ]);
+Route::get('datatables/getUsers',['as'=>'dt_getUsers','uses'=>'DataTablesController@getUsers' ]);

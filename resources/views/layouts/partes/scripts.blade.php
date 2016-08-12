@@ -20,5 +20,7 @@
 
     <script>window.jQuery || document.write('<script src="{{asset(public_path().'js/jquery.js')}}"><\/script>')</script>
 
+    <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+
     @yield('scripts')
 

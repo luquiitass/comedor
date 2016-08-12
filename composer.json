@@ -13,7 +13,8 @@
         "Amranidev/scaffold-interface": "v1.4.*",
         "khill/fontawesomephp" : "1.0.x",
         "twbs/bootstrap": "^3.3",
-        "components/jquery": "^3.1"
+        "components/jquery": "^3.1",
+        "yajra/laravel-datatables-oracle": "^6.17"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

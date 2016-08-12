@@ -164,7 +164,7 @@ return [
         Amranidev\ScaffoldInterface\ScaffoldInterfaceServiceProvider::class,
         Amranidev\Ajaxis\AjaxisServiceProvider::class,
 
-        Khill\Fontawesome\FontAwesomeServiceProvider::class,
+        Yajra\Datatables\DatatablesServiceProvider::class,
 
 
     ],
@@ -218,8 +218,8 @@ return [
 
         'Debugbar' =>   Barryvdh\Debugbar\Facade::class,
 
-        'Fa' => Khill\Fontawesome\FontAwesomeServiceProvider::class,
 
+        'Datatables' => Yajra\Datatables\Facades\Datatables::class,
 
     ],
 
