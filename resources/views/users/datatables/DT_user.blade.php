@@ -17,6 +17,7 @@
 				<td class="col_table" data-name="nombre">nombre</td>
 				<td class="col_table" data-name="legajo">legajo</td>
 				<td class="col_table" data-name="email">Email</td>
+				<td class="col_table" data-name="operaciones">Operaciones</td>
 			</tr>
 		</thead>
 	</table>
@@ -55,9 +56,13 @@
 			var columnas= new Array();
 
 			$('.col_table').each(function(){
-				var unaColumna={ data: $(this).data('name'), name: $(this).text()};
-
-				columnas.push(unaColumna);
+				var name = $(this).data('name');
+				if (name == 'operaciones') {
+					columnas.push({data: 'action', name: 'action', orderable: false, searchable: false});
+				}else{
+					var unaColumna={ data: $(this).data('name'), name: $(this).text()};
+					columnas.push(unaColumna);
+				}
 			});
 
 			$('#'+table_id).DataTable({
@@ -70,6 +75,8 @@
 	    	});
 		});
 	}
+
+
 
 </script>
 

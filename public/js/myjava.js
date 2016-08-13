@@ -327,4 +327,33 @@ function isJson(str) {
     }
     return true;
 }
+
+function cargarTablas(){
+		var sum=0;
+		$('.datatable').each(function(){
+			sum=sum+1;
+			var table_id =$(this).attr('id');
+			var link = $(this).data('link');
+			var columnas= new Array();
+
+			$(this).find('.col_table').each(function(){
+				var name = $(this).data('name');
+				if (name == 'operaciones') {
+					columnas.push({data: 'action'/*, name: 'action',*/, orderable: false, searchable: $(this).data('searchable')});
+				}else{
+					var unaColumna={ data: $(this).data('name')/*, name: $(this).text(),*/,searchable: $(this).data('searchable')};
+					columnas.push(unaColumna);
+				}
+			});
+
+			$('#'+table_id).DataTable({
+				//paging: false,
+    			//searching: false,
+    			processing: true,
+	        	serverSide: true,
+		        ajax:link,
+		        columns: columnas//columnas
+	    	});
+		});
+	}
 /*::::::::::::::::::::::::::::::::::Funciones para las vistas del usuario:::::::::::*/

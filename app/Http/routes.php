@@ -132,4 +132,7 @@ Route::post('image/save','ImageController@save');
 
 /*:::::::::::::::::::::::Rutas de Contolador DataTable::::::::::::::::::::::*/
 Route::get('datatables/getViewUsers',['as'=>'dt_getViewUsers','uses'=>'DataTablesController@getViewUsers' ]);
-Route::get('datatables/getUsers',['as'=>'dt_getUsers','uses'=>'DataTablesController@getUsers' ]);
+Route::get('datatables/getUsers',['as'=>'dt_getUsers','uses'=>'DataTablesController@getAllUsers' ]);
+Route::get('datatables/getUsersActivos',['as'=>'dt_getUsers_activo','uses'=>'DataTablesController@getUsersActivos' ]);
+Route::get('datatables/getUsersInactivos',['as'=>'dt_getUsers_inactivo','uses'=>'DataTablesController@getUsersInactivos' ]);
+Route::get('datatables/getUsersPendientes',['as'=>'dt_getUsers_pendiente','uses'=>'DataTablesController@getUsersPendientes' ]);

@@ -17,7 +17,8 @@
     <link rel="stylesheet" href="{{asset(public_path().'datePicker/css/bootstrap-datepicker3.css')}}">
     <link rel="stylesheet" href="{{asset(public_path().'datePicker/css/bootstrap-datepicker.standalone.css')}}">
 
-    <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js">
+    <link rel="stylesheet" href="{{asset(public_path().'css/jquery.dataTables.min.css')}}">
+
 
     @yield('styles')
     
