@@ -70,6 +70,7 @@ return array(
     'App\\Http\\Controllers\\AuthController' => $baseDir . '/app/Http/Controllers/AuthController.php',
     'App\\Http\\Controllers\\Auth\\PasswordController' => $baseDir . '/app/Http/Controllers/Auth/PasswordController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
+    'App\\Http\\Controllers\\DataTablesController' => $baseDir . '/app/Http/Controllers/DataTablesController.php',
     'App\\Http\\Controllers\\Estado_usuarioController' => $baseDir . '/app/Http/Controllers/Estado_usuarioController.php',
     'App\\Http\\Controllers\\EstadossemanalController' => $baseDir . '/app/Http/Controllers/EstadossemanalController.php',
     'App\\Http\\Controllers\\FaltaController' => $baseDir . '/app/Http/Controllers/FaltaController.php',
