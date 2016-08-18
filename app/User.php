@@ -43,6 +43,7 @@ class User extends Authenticatable
         if ( file_exists(public_path().'storage/'.$this->id) ) {
             return public_path().'storage/'.$this->id;
         }
+        return public_path().'storage/login2.png'; 
     }
 
     public function isActivo()
