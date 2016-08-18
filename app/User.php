@@ -41,7 +41,7 @@ class User extends Authenticatable
     public function getImagen()
     {
         if ( file_exists(public_path().'storage/'.$this->id) ) {
-            return public_path().'storage/'.$this->id;
+            return public_path().'/storage/'.$this->imagen;
         }
         return public_path().'storage/login2.png'; 
     }
