@@ -1,5 +1,7 @@
 /node_modules
 Homestead.yaml
 Homestead.json
+env
+/.env
 .env
 /app/Providers/AppServiceProvider.php

@@ -11,7 +11,7 @@
 		<div class="col-xs-12 col-sm-6 col-md-6 col-md-offset-1 ">
 			<div class="row well fondo">
 				<div class="col-xs-12 col-sm-4">
-					<img class="img-thumbnail center-block" src="{{asset(public_path().$user->imagen)}}" alt="Foto de perfil">
+					<img class="img-thumbnail center-block" src="{{asset($user->getImagen())}}" alt="Foto de perfil">
 					<hr class="border-bottom">
 				</div>
 				<div class="col-xs-12 col-sm-8 listar_datos todo_espacio">
