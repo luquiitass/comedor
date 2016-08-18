@@ -32,7 +32,10 @@ class AnuncioController extends Controller
     {
         $user= \Auth::user();
         $fechaActual = date("Y-m-d", time());
-        $anuncios = Anuncio::join('users','users.id','=','anuncios.user_id')->where('hasta','>',$fechaActual)->get();
+        $anuncios = Anuncio::join('users','users.id','=','anuncios.user_id')
+                        ->where('hasta','>',$fechaActual)
+                        ->select('users.nombre','users.apellido','anuncios.titulo','anuncios.cuerpo','anuncios.hasta','anuncios.created_at')
+                        ->get();
         return view('anuncio.index',compact('anuncios','user'));
     }
 

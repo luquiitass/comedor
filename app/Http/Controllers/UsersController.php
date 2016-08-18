@@ -303,6 +303,12 @@ class UsersController extends Controller
 
 
 
-    /*************** Vistas **************/
+    /*************** Cel**************/
+
+    public function cel_getUsers(){
+        $users = User::select('id','nombre','apellido')->get();
+
+        return json_encode($users);
+    }
 
 }

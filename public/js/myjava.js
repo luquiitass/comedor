@@ -65,9 +65,12 @@ function cancelarCargaDeFoto(fotoVieja,id_img){
 	$('#'+id_img).attr('src',fotoVieja);
 	$('#btn_buscatImagen').show();
 	$('#btns_cargar_cancelar').hide();
+	return false;
 }
 
 function subirImagen(id_form){
+	var form_data = $(id_form).serialize();
+	form_data.push({name: 'image',value: $( '#imp_file_foto' ).files[0]});
 	POST($(id_form).serializeArray(),'/image/save');
 }
 
@@ -231,19 +234,31 @@ function mensaje_superior(mensaje,alert,hide){
 $.fn.extend({
         modEstado:function(){
             $('.formAjax').submit(function(event){
+            	var form = this;
                 event.preventDefault();
                 var a = $(this).serializeArray();
                 var id = a[0]['value'];
-                $(this).find('.btn').html('Modificando <i class="fa fa-spinner fa-spin"></i>').addClass('btn-info disabled');
+                $(form).find('.btn').html('Modificando <i class="fa fa-spinner fa-spin"></i>').addClass('btn-info disabled');
                 $.ajax({
                   type: "POST",
                   url: "/estado/"+id+"/update",
                   data: a,
                   success: function(data){
-                    $('#content').html(data);
-                    $('#content').modEstado();
-                  },error:function(){
-                    $(this).find('.btn').val('Modificar').addClass('btn-primary');
+                  	if (isJson(data)) 
+                  	{
+                  		var json = $.parseJSON(data);
+                  		if (json.mensaje) {
+                  			mensaje_superior(json.mensaje,'info','true');
+                  		}
+                  		if (json.resultado == 'true' && json.html){
+							$('#content').html(json.html);
+							$('#content').modEstado();
+                  		}
+
+                  	}
+                  	$(form).find('.btn').html('Modificar').removeClass('btn-info disabled').addClass('btn-primary');
+                  },error:function(xhr){
+                    $(form).find('.btn').html('Modificar').addClass('btn-primary');
                     mensaje_superior('Error al cambiar de estado, intente nuevamente','danger','false');
                   }
                 });

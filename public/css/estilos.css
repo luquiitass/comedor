@@ -177,6 +177,7 @@ li a samp{
 }
 .alert-message p
 {
+    margin-left: 10px;
 	font-style: italic;
     margin-bottom: 0;
 }

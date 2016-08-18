@@ -38,14 +38,11 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public function getImage()
+    public function getImagen()
     {
-        dd($this);
-        $img=public_path().$this->imagen;
-        if (File::exists($img)) {
-            return $img;
+        if ( file_exists(public_path().'storage/'.$this->id) ) {
+            return public_path().'storage/'.$this->id;
         }
-        return public_path().'storage/login2.png';
     }
 
     public function isActivo()

@@ -15,10 +15,15 @@ class Anuncio extends Model
     public $timestamps = true;
 
     protected $fillable = [
-        'titulo', 'cuerpo','hasta','user_id'
+        'titulo', 'cuerpo','hasta','user_id','created_at',
     ];
 
     protected $table = 'anuncios';
+
+    protected $dates =
+    [
+        'hasta'
+    ];
 
     public function editarDatosAjaxis(){
         return array(
@@ -35,11 +40,11 @@ class Anuncio extends Model
 
     public function getFechaCreado()
     {
-    	return date('j/m/Y H:i',strtotime($this->created_at));
+    	return $this->created_at->diffForHumans();
     }
 
     public function getFechaHasta()
     {
-    	return date('d/m/Y',strtotime($this->hasta));
+    	return $this->hasta->formatLocalized('%d/%m/%Y');  ;
     }
 }

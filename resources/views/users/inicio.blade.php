@@ -21,7 +21,7 @@
 						<li><p><span>{{$key}}:</span> {{$value}}</p></li>
 					@endforeach
 					</ul>
-					{{link_to_route('user_edit','Modificar Datos',null,array('class'=>'btn btn-primary pull-right '))}}
+					{{link_to_route('user_edit','Editar Perfil',null,array('class'=>'btn btn-primary pull-right '))}}
 					<hr>
 				</div>
 			</div>
@@ -36,10 +36,9 @@
 					@empty()
 						<div class="alert alert-info">No esta anotado...</div>
 					@endforelse
-					<li>
-						{{link_to_route('user_estados','Ver Estados',null,array('class'=>'btn btn-primary pull-right'))}}
-					</li>
+					{{link_to_route('user_estados','Ver Estados',null,array('class'=>'btn btn-primary pull-right'))}}
 				</ul>
+				<br>
 				<hr>
 				<ul class="listar_datos">
 					<div class="titulo">Faltas de este mes:</div>
@@ -48,10 +47,10 @@
 						@empty()
 							<div class="alert alert-info">No posee faltas...</div>
 						@endforelse
-					<li>
-						{{link_to_route('user_faltas','Ver Faltas',null,array('class'=>'btn btn-primary pull-right'))}}
-					</li>
+					{{link_to_route('user_faltas','Ver Faltas',null,array('class'=>'btn btn-primary pull-right'))}}
 				</ul>
+				<br>
+				<hr>
 			</div>
 		</div>
 	</div>

@@ -2,14 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use Request;
-
-use App\Http\Requests;
+use Illuminate\Http\Request;
 
 class ImageController extends Controller
 {
     //
     public function save(Request $request){
-    	dd(Request::except('_token'));
+
+    	$user = \Auth::user();
+
+    	$file = $request->file('imagen');
+
+    	//dd($file);
+
+    	$imageName = $user->id ;
+
+    	$file->move(public_path() . 'storage/', $imageName);
+
+
+    	return redirect()->back();
     }
 }

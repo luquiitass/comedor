@@ -4,7 +4,7 @@
 <ul class="dropdown-menu">
 	@foreach($estados as $unEst)
 	<li>
-	@if($unEst->nombre != $user->estado)
+	@if($unEst->nombre != $estado)
 		{{Form::open(array('url'=>'/user/modificarEstadoUsuario'))}}
 			{{Form::hidden('estado',$unEst->id)}}
 			{{Form::hidden('id',$user->id)}}

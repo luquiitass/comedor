@@ -136,3 +136,9 @@ Route::get('datatables/getUsers',['as'=>'dt_getUsers','uses'=>'DataTablesControl
 Route::get('datatables/getUsersActivos',['as'=>'dt_getUsers_activo','uses'=>'DataTablesController@getUsersActivos' ]);
 Route::get('datatables/getUsersInactivos',['as'=>'dt_getUsers_inactivo','uses'=>'DataTablesController@getUsersInactivos' ]);
 Route::get('datatables/getUsersPendientes',['as'=>'dt_getUsers_pendiente','uses'=>'DataTablesController@getUsersPendientes' ]);
+
+
+
+/* ***********************CEL ******************************* */
+
+Route::get('cel_getUsers','UsersController@cel_getUsers');

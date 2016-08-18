@@ -82,7 +82,7 @@ function POST(postData, dataLink) {
                     window.location = json.location;
                 }
             }else{
-                window.location = response;
+                //window.location = response;
             }
         },
         error:function(xhr){

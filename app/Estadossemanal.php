@@ -16,7 +16,6 @@ class Estadossemanal extends Model
 
     protected $table = 'estados_semanal';
 
-
     protected $primaryKey = 'id';
 
 

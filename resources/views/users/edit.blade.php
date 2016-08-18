@@ -13,8 +13,8 @@
 			<ul class="nav nav-pills nav-stacked">
 				<li class="">
 					<div class="foto_perfil">
-						<img class="thumbnail" id="fotoPerfil" src="{{asset(public_path().$user->imagen)}}" alt="foto perfil">
-						<p class="text-center">{{$user->legajo}}</p>
+						<img class="thumbnail" id="fotoPerfil" src="{{asset($user->getImagen())}}" alt="foto perfil">
+						<p class="text-center">{{$user->apellido}} {{$user->nombre}}</p>
 					</div>
 						
 				</li>
@@ -82,21 +82,26 @@
 					<h2>Cambiar foto de Perfil</h2>
 					<hr/>
 					<div class="foto_perfil">
-							<img class="thumbnail" id="fot" src="{{asset(public_path().$user->imagen)}}" alt="foto perfil">
+							<img class="thumbnail" id="fot" src="{{asset($user->getImagen())}}" alt="foto perfil">
 					</div>
-					<div id="btn_buscatImagen" class="fileUpload btn btn-primary pull-right">
-					    <span>seleccionar foto</span>
-					    <form id="form_imagen" action="">
+					
+					    <form id="form_imagen" method="post" action="/image/save" accept-charset="UTF-8" enctype="multipart/form-data">
 					    	<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						    <input type="text" hidden="true" value="{{$user->id}}" name="user_id"  id="user_id">
-						    <input id="imp_file_foto" name="imagen" type="file" class="upload" onchange="readURL(this,'fot')" accept="image/*" >
-					    </form>
-					</div>
+						    
+							<div id="btn_buscatImagen" class="fileUpload btn btn-primary pull-right">
+					    	<span>seleccionar foto</span>
+						    	<input id="imp_file_foto" name="imagen" type="file" class="upload" onchange="readURL(this,'fot')" accept="image/*" >
+							</div>
 
-					<div id="btns_cargar_cancelar">
-						<button class="btn btn-danger" onclick="cancelarCargaDeFoto('{{public_path().$user->imagen}}','fot')">Cancelar</button>
-						<button class="btn btn-success pull-right" onclick="subirImagen('#form_imagen')"> Modificar</button>
-					</div>	
+							<div id="btns_cargar_cancelar">
+								<a class="btn btn-danger" onclick="cancelarCargaDeFoto('{{public_path().$user->getImagen()}}','fot')">Cancelar</a>
+								<button type="submit" class="btn btn-success pull-right" "> Modificar</button>
+							</div>	
+						    
+					    </form>
+					
+
 				</div>
 
 				<div class="tab-pane" id="pane_eliminarCuenta">

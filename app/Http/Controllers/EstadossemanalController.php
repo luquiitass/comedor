@@ -11,6 +11,8 @@ use App\Funciones;
 use Amranidev\Ajaxis\Ajaxis;
 use URL;
 
+
+use Carbon\Carbon;
 /**
  * Class EstadossemanalController
  *
@@ -161,22 +163,29 @@ class EstadossemanalController extends Controller
      */
     public function update($id)
     {
+        $retorno = array();
+
         $input = Request::except('_token');
 
         $id_estado= $input['id_estado'];
 
-        $estadossemanal = Estadossemanal::findOrfail($id_estado);
-
         $diaModificar=strtolower($input['dia']);
         // Obtenemos el dia a modificar y lo pasamos a minuscula xq en el imput comienza con mayuscula y en la BD se encuentra en minuscula;
+        if ($this->sePuedeAnotar($diaModificar)) {
+            $estadossemanal = Estadossemanal::findOrfail($id_estado);
 
-        $estadossemanal[$diaModificar] = $input['estado']; 
-        //mofificamos el estado por el q se ha pasado por post; 
-        $estadossemanal->save();
-        
-        $estados= $estadossemanal;       
-        
-        return view('estadossemanal.index',compact('estados'))->render();
+            $estadossemanal[$diaModificar] = $input['estado']; 
+            //mofificamos el estado por el q se ha pasado por post; 
+            $estadossemanal->save();
+            
+            $estados= $estadossemanal;       
+            $view_estados = view('estadossemanal.index',compact('estados'))->render();
+
+            $retorno=array('html'=>$view_estados,'resultado'=>'true');
+        }else{
+            $retorno = array('resultado'=> 'false','mensaje'=>'Este estado ya no se puede modificar');
+        }
+        return json_encode($retorno);
     }
 
     /**
@@ -207,5 +216,34 @@ class EstadossemanalController extends Controller
      	$estadossemanal = Estadossemanal::findOrfail($id);
      	$estadossemanal->delete();
         return URL::to('estadossemanal');
+    }
+
+    private function sePuedeAnotar($dia)
+    {
+        $retorno = false;
+
+        $fecha = Carbon::now();
+
+        $hoy = trans_choice('mensajes.dia',$fecha->dayOfWeek);
+        if ($dia != $hoy) {
+
+            $mañana = $fecha->addDay();
+            $mañana = trans_choice('mensajes.dia',$mañana->dayOfWeek);
+
+            if ($dia == $mañana) {
+                $hora = $fecha->hour;
+                if ($hora < 19) {
+                    $retorno = true;
+                }
+            }else{
+                $retorno = true;
+            }
+        }else{
+            if ($fecha->hour > 14) {
+                $retorno = true;
+            }
+        }
+        return $retorno;
+        
     }
 }
