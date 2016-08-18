@@ -17,8 +17,10 @@ class ImageController extends Controller
 
     	$imageName = $user->id ;
 
-    	$file->move(public_path() . 'storage/', $imageName);
+    	//$file->move(public_path() . 'storage/', $imageName);
+    	//dd(\Storage::disk('local')->files());
 
+    	\Storage::disk('local')->put($user->id,  \File::get($file));
 
     	return redirect()->back();
     }
