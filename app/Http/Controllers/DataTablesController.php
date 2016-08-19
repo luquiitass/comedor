@@ -21,9 +21,7 @@ class DataTablesController extends Controller
 
         return Datatables::of($users)
             ->addColumn('action', function ($user) {
-                $estados = Estado_usuario::get();
-                $estado= 'inactivo';
-                return view('users.datatables.botones',compact('user'))->render() . view('users.datatables.boton_activo-inactivo-pendiente',compact('estados','user','estado'))->render();
+                return view('users.datatables.botones',compact('user'))->render();
             })
             ->make(true);
     }
@@ -34,9 +32,7 @@ class DataTablesController extends Controller
 
         return Datatables::of($users)
             ->addColumn('action', function ($user) {
-                $estados = Estado_usuario::get();
-                $estado= 'pendiente';
-                return view('users.datatables.botones',compact('user'))->render() . view('users.datatables.boton_activo-inactivo-pendiente',compact('estados','user','estado'))->render();
+                return view('users.datatables.botones',compact('user'))->render();
             })
             ->make(true);
     }
@@ -48,9 +44,7 @@ class DataTablesController extends Controller
 
         return Datatables::of($users)
             ->addColumn('action', function ($user) {
-                $estados = Estado_usuario::get();
-                $estado= 'activo';
-                return view('users.datatables.botones',compact('user'))->render() . view('users.datatables.boton_activo-inactivo-pendiente',compact('estados','user','estado'))->render();
+                return view('users.datatables.botones',compact('user'))->render();
             })
             ->make(true);
     }

@@ -1,5 +1,9 @@
 @extends('layouts.master_admin')
 
+@section('titulo','Admin')
+
+@section('menu_admin','active')
+
 @section('content')
 	
 		<div class="panel panel-primary" >

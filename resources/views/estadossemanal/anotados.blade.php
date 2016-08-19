@@ -1,5 +1,10 @@
 @extends('layouts.master_admin')
 
+@section('titulo','Anitados')
+
+@section('menu_anotados','active')
+
+
 @section('content')
     <h2 class="Heading--Fancy">
         <span class="Heading--Fancy__subtitle"></span>

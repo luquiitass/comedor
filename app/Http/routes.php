@@ -82,18 +82,18 @@ Route::get('usuarios',['as' => 'admin_users', 'uses' => 'UsersController@index']
 
 //falta Resources
 /********************* falta ***********************************************/
-Route::resource('falta','\App\Http\Controllers\FaltaController');
+
 Route::get('ver_faltas',['as' => 'user_faltas', 'uses' => 'FaltaController@index']);
 
 Route::get('faltas',['as' => 'admin_faltas', 'uses' => 'FaltaController@faltas']);
 
+Route::get('falta/{id}',['as'=> 'admin_faltasPorMes' ,'uses'=> 'FaltaController@faltaPorMes']);
 
-
-Route::get('{id}/faltas','\App\Http\Controllers\FaltaController@faltas');
-Route::post('falta/{id}/update','\App\Http\Controllers\FaltaController@update');
+//Route::get('{id}/faltas','\App\Http\Controllers\FaltaController@faltas');
+//Route::post('falta/{id}/update','\App\Http\Controllers\FaltaController@update');
 Route::post('falta/setFaltas','FaltaController@setFaltas');
-Route::get('falta/{id}/delete','\App\Http\Controllers\FaltaController@destroy');
-Route::get('falta/{id}/deleteMsg','\App\Http\Controllers\FaltaController@DeleteMsg');
+//Route::get('falta/{id}/delete','\App\Http\Controllers\FaltaController@destroy');
+//Route::get('falta/{id}/deleteMsg','\App\Http\Controllers\FaltaController@DeleteMsg');
 /********************* falta ***********************************************/
 
 
@@ -131,12 +131,20 @@ Route::post('image/save','ImageController@save');
 
 
 /*:::::::::::::::::::::::Rutas de Contolador DataTable::::::::::::::::::::::*/
-Route::get('datatables/getViewUsers',['as'=>'dt_getViewUsers','uses'=>'DataTablesController@getViewUsers' ]);
-Route::get('datatables/getUsers',['as'=>'dt_getUsers','uses'=>'DataTablesController@getAllUsers' ]);
-Route::get('datatables/getUsersActivos',['as'=>'dt_getUsers_activo','uses'=>'DataTablesController@getUsersActivos' ]);
-Route::get('datatables/getUsersInactivos',['as'=>'dt_getUsers_inactivo','uses'=>'DataTablesController@getUsersInactivos' ]);
-Route::get('datatables/getUsersPendientes',['as'=>'dt_getUsers_pendiente','uses'=>'DataTablesController@getUsersPendientes' ]);
 
+//Datatable User
+Route::get('datatables/getUsers',['as'=>'dt_getUsers','uses'=>'DT_UserController@getAllUsers' ]);
+
+Route::get('datatables/getUsersActivos',['as'=>'dt_getUsers_activo','uses'=>'DT_UserController@getUsersActivos' ]);
+
+Route::get('datatables/getUsersInactivos',['as'=>'dt_getUsers_inactivo','uses'=>'DT_UserController@getUsersInactivos' ]);
+
+Route::get('datatables/getUsersPendientes',['as'=>'dt_getUsers_pendiente','uses'=>'DT_UserController@getUsersPendientes' ]);
+
+
+//Datatabl Faltas
+
+Route::get('datatables/getFaltasPorMes',['as'=> 'dt_getFaltasPorMes', 'uses' => 'DT_FaltaController@getFaltasPorMes']);
 
 
 /* ***********************CEL ******************************* */

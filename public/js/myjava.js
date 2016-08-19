@@ -354,9 +354,9 @@ function cargarTablas(){
 			$(this).find('.col_table').each(function(){
 				var name = $(this).data('name');
 				if (name == 'operaciones') {
-					columnas.push({data: 'action'/*, name: 'action',*/, orderable: false, searchable: $(this).data('searchable')});
+					columnas.push({data: 'action'/*, name: 'action',*/, orderable: false, searchable: $(this).data('searchable') || false, orderable:$(this).data('searchable') || false });
 				}else{
-					var unaColumna={ data: $(this).data('name')/*, name: $(this).text(),*/,searchable: $(this).data('searchable')};
+					var unaColumna={ data: $(this).data('name')/*, name: $(this).text(),*/,searchable: $(this).data('searchable') ||false, orderable:$(this).data('searchable')|| false };
 					columnas.push(unaColumna);
 				}
 			});

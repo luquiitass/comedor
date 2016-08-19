@@ -187,7 +187,7 @@ class UsersController extends Controller
     public function update(AdminUpdateUser $request, $id)
     {
         $user= USER::findOrfail($id);
-        $data = Request::only('legajo','nombre','apellido','tipo');
+        $data = Request::only('legajo','nombre','apellido','tipo','estado_id');
         if (Request::ajax()) {
             if ($user->update($data)) {
                 return json_encode(['mensaje'=>'Modificado','location'=>URL::to('usuarios')]);

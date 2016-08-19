@@ -20,5 +20,20 @@ class Estado_usuario extends Model
     	return $this->hasMany(User::class,'estado_id','id');
     }
 
+    public function getEstadosAjaxis()
+    {	
+    	$retorno = array();
+    	
+    	$estados = Estado_usuario::where('nombre','!=',$this->nombre)->get();
+    	
+    	$retorno[$this->id]= $this->nombre;
+
+    	foreach ($estados as $value) {
+    		$retorno[$value->id] = $value->nombre ;
+    	}
+
+    	return $retorno;
+    }
+
 	
 }

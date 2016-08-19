@@ -14,7 +14,8 @@
         "khill/fontawesomephp" : "1.0.x",
         "twbs/bootstrap": "^3.3",
         "components/jquery": "^3.1",
-        "yajra/laravel-datatables-oracle": "^6.17"
+        "yajra/laravel-datatables-oracle": "^6.17",
+        "intervention/image": "^2.3"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

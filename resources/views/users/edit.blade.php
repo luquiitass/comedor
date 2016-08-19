@@ -1,6 +1,9 @@
 
-	@extends(str_contains(URL::previous(),'ver')?'layouts.master_user':'layouts.master_admin')
+@extends(str_contains(URL::previous(),'ver')?'layouts.master_user':'layouts.master_admin')
 
+@section('styles')
+	<link rel="stylesheet" type="text/css" href="{{asset(public_path() . 'css/lightbox.css')}}">
+@endsection
 
 @section('content')
 	<h2 class="Heading--Fancy">
@@ -13,7 +16,10 @@
 			<ul class="nav nav-pills nav-stacked">
 				<li class="">
 					<div class="foto_perfil">
+
+					<a href="{{asset($user->getImagen())}}" data-lightbox="roadtrip">
 						<img class="thumbnail" id="fotoPerfil" src="{{asset($user->getImagen())}}" alt="foto perfil">
+					</a>
 						<p class="text-center">{{$user->apellido}} {{$user->nombre}}</p>
 					</div>
 						
@@ -82,7 +88,10 @@
 					<h2>Cambiar foto de Perfil</h2>
 					<hr/>
 					<div class="foto_perfil">
+
+						<a href="{{asset($user->getImagen())}}" data-lightbox="roadtrip">
 							<img class="thumbnail" id="fot" src="{{asset($user->getImagen())}}" alt="foto perfil">
+						</a>
 					</div>
 					
 					    <form id="form_imagen" method="post" action="/image/save" accept-charset="UTF-8" enctype="multipart/form-data">
@@ -125,4 +134,5 @@
             //$('.form').formPostJson();
         });
     </script>
+    <script src="{{asset(public_path().'js/lightbox.js')}}" ></script>
 @endsection

@@ -14,11 +14,11 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="navbar">
         <ul class="nav navbar-nav pull-left">
-          <li class=" {{(Request::url()==route('admin_admin'))?'active':''}} "><a href="{{route('admin_admin')}}">Inicio</a></li>
-          <li class=" {{(Request::url()==(route('admin_users')) ? 'active':'')}} "><a href="{{route('admin_users')}}">Usuarios</a></li>
-          <li class=" {{(Request::url()==(route('admin_faltas')) ? 'active':'')}} "><a href="{{route('admin_faltas')}}">Faltas</a></li>
-          <li class=" {{(Request::url()==(route('admin_anuncios')) ? 'active':'')}} "><a href="{{route('admin_anuncios')}}">Anuncios</a></li>
-          <li class=" {{(Request::url()==(route('admin_anotados')) ? 'active':'')}} "><a href="{{route('admin_anotados')}}">Anotados</a></li>
+          <li class=" @yield('menu_admin','')"><a href="{{route('admin_admin')}}">Inicio</a></li>
+          <li class=" @yield('menu_usuarios','')"><a href="{{route('admin_users')}}">Usuarios</a></li>
+          <li class=" @yield('menu_faltas','')"><a href="{{route('admin_faltas')}}">Faltas</a></li>
+          <li class=" @yield('menu_anuncios','')"><a href="{{route('admin_anuncios')}}">Anuncios</a></li>
+          <li class=" @yield('menu_anotados','')"><a href="{{route('admin_anotados')}}">Anotados</a></li>
         </ul>
 
         <ul class="nav navbar-nav pull-right" >

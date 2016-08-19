@@ -13,6 +13,8 @@ class ImageController extends Controller
 
     	$file = $request->file('imagen');
 
+        $imagen = \Image::make($file);
+
     	//dd($file);
 
         $extension = $file->getClientOriginalExtension();
@@ -22,10 +24,15 @@ class ImageController extends Controller
         $nombreImagen = $user->id. '.' . $extension ;
 
 
+        $imagen->resize(240,240);
+
+        $imagen->save(public_path().'storage/'.$nombreImagen);
+
+
     	//$file->move(public_path() . 'storage/', $imageName);
     	//dd(\Storage::disk('local')->files());
 
-    	\Storage::disk('local')->put($nombreImagen,  \File::get($file));
+    	//\Storage::disk('local')->put($nombreImagen,  \File::get($file));
 
         $user->imagen = $nombreImagen;
 

@@ -1,5 +1,9 @@
 @extends('layouts.master_user')
 
+@section('titulo','Faltas')
+
+@section('menu_faltas','active')
+
 @section('content')
     <h2 class="Heading--Fancy">
         <span class="Heading--Fancy__subtitle"></span>
@@ -26,6 +30,7 @@
                         @endforeach
                         </ol>
                     </li>
+                    <hr>
                     @empty
                         <div class="alert alert-info">No posee faltas</div>
                     @endforelse

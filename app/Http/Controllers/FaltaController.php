@@ -43,11 +43,11 @@ class FaltaController extends Controller
     {
         $user= \Auth::user();
 
-        $users=  User::leftjoin('faltas','faltas.user_id','=','users.id')->select(\DB::raw('count(faltas.user_id) as cantFaltas,users.apellido,users.nombre,users.legajo,users.id'))->groupBy('id')->orderBy('id')->get();
+        //$users=  User::leftjoin('faltas','faltas.user_id','=','users.id')->select(\DB::raw('count(faltas.user_id) as cantFaltas,users.apellido,users.nombre,users.legajo,users.id'))->groupBy('id')->orderBy('id')->get();
 
         //dd($users);
         //$user->obtenerFaltasPorMes();
-        $mesActual= date('M');
+        //$mesActual= date('M');
 
         return view('falta.admin_index',compact('users','user','mesActual'));
     }
@@ -150,7 +150,9 @@ class FaltaController extends Controller
     {
         if(Request::ajax())
         {
-            return URL::to('falta/'.$id);
+            $faltas = Falta::where('user_id','=',$id)->select('fecha')->get();
+
+            return  Ajaxis::BtDisplay($faltas);
         }
 
         $falta = Falta::findOrfail($id);
@@ -228,5 +230,13 @@ class FaltaController extends Controller
      	$falta = Falta::findOrfail($id);
      	$falta->delete();
         return URL::to('falta');
+    }
+
+
+    public function faltaPorMes($id){
+        $user = \Auth::user();
+        $us = User::findOrfail($id);
+        //dd($user);
+        return view('falta.admin_faltas_por_mes',compact('user','us'));
     }
 }

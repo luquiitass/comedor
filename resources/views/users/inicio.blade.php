@@ -1,5 +1,9 @@
 @extends('layouts.master_user')
 
+@section('styles')
+	<link rel="stylesheet" type="text/css" href="{{asset(public_path() . 'css/lightbox.css')}}">
+@endsection
+
 @section('content')
 
 	<h2 class="Heading--Fancy">
@@ -11,7 +15,9 @@
 		<div class="col-xs-12 col-sm-6 col-md-6 col-md-offset-1 ">
 			<div class="row well fondo">
 				<div class="col-xs-12 col-sm-4">
-					<img class="img-thumbnail center-block" src="{{asset($user->getImagen())}}" alt="Foto de perfil">
+					<a href="{{asset($user->getImagen())}}" data-lightbox="roadtrip">
+						<img class="img-thumbnail center-block" src="{{asset($user->getImagen())}}" alt="Foto de perfil">
+					</a>
 					<hr class="border-bottom">
 				</div>
 				<div class="col-xs-12 col-sm-8 listar_datos todo_espacio">
@@ -55,4 +61,8 @@
 		</div>
 	</div>
 
+@endsection
+
+@section('scripts')
+	<script src="{{asset(public_path().'js/lightbox.js')}}" ></script>
 @endsection

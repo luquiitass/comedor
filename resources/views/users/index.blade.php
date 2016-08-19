@@ -1,9 +1,10 @@
 
 @extends('layouts.master_admin')
 
-@section('titulo')
-	Usuarios
-@endsection
+@section('titulo','Usuarios')
+
+@section('menu_usuarios','active')
+
 
 @section('content')
 	<h2 class="Heading--Fancy">
@@ -96,4 +97,5 @@
 	@endif
 	cargarTablas();
     </script>
+
 @endsection

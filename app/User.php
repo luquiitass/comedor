@@ -40,8 +40,8 @@ class User extends Authenticatable
 
     public function getImagen()
     {
-        if ( file_exists(public_path().'storage/'.$this->imagen) ) {
-            return public_path().'/storage/'.$this->imagen;
+        if ( \Storage::disk('local')->exists($this->imagen) ) {
+            return public_path().'storage/'.$this->imagen;
         }
         return public_path().'storage/login2.png'; 
     }
@@ -131,7 +131,8 @@ class User extends Authenticatable
             ['type' => 'text', 'value' => $this->legajo, 'name' => 'legajo', 'key' => 'Legajo :'],
             ['type' => 'text', 'value' => $this->nombre, 'name' => 'nombre', 'key' => 'Nombre :'],
             ['type' => 'text', 'value' => $this->apellido, 'name' => 'apellido', 'key' => 'Apellido :'],
-            ['type' => 'select', 'value' => $this->tiposDeUsuario(), 'name' => 'tipo', 'key' => 'Tipo :']
+            ['type' => 'select', 'value' => $this->tiposDeUsuario(), 'name' => 'tipo', 'key' => 'Tipo :'],
+            ['type' => 'select', 'value' => $this->estado->getEstadosAjaxis(), 'name' => 'estado_id', 'key' => 'Estado :']
         );
     }
 
