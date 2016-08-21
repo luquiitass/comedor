@@ -26,7 +26,6 @@ $(function(){
 	});
 	
 	});
-
 	/*$('.mostrar').click(function(){
 		$(this).closest('tr').next().slideToggle();
 
@@ -364,10 +363,13 @@ function cargarTablas(){
 			$('#'+table_id).DataTable({
 				//paging: false,
     			//searching: false,
+    			language:{ url: baseURL +'/css/datatable/dt_es.json'},
+    			responsive: true,
     			processing: true,
 	        	serverSide: true,
 		        ajax:link,
-		        columns: columnas//columnas
+		        columns: columnas
+		        //columnas
 	    	});
 		});
 	}

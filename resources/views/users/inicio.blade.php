@@ -1,5 +1,9 @@
 @extends('layouts.master_user')
 
+@section('titulo','Inicio')
+
+@section('menu_inicio','active')
+
 @section('styles')
 	<link rel="stylesheet" type="text/css" href="{{asset(public_path() . 'css/lightbox.css')}}">
 @endsection

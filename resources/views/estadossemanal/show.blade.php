@@ -1,4 +1,9 @@
 @extends('layouts.master_user')
+
+@section('titulo','Estados')
+
+@section('menu_estados','active')
+
 @section('content')
     <div id="content">
     <div class="">

@@ -10,6 +10,11 @@ use Datatables;
 
 class DT_FaltaController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     //
     public function getFaltasPorMes()
     {

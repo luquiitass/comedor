@@ -1,5 +1,9 @@
 @extends('layouts.master_user')
 
+@section('titulo','Anuncios')
+
+@section('menu_anuncios','active')
+
 @section('content')
 	<h2 class="Heading--Fancy">
         <span class="Heading--Fancy__subtitle"></span>

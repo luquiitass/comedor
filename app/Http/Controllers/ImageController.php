@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 class ImageController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function save(Request $request){
 
     	$user = \Auth::user();
@@ -24,7 +29,7 @@ class ImageController extends Controller
         $nombreImagen = $user->id. '.' . $extension ;
 
 
-        $imagen->resize(240,240);
+        //$imagen->resize(240,240);
 
         $imagen->save(public_path().'storage/'.$nombreImagen);
 

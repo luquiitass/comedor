@@ -15,10 +15,10 @@
       <div class="collapse navbar-collapse" id="navbar">
 
         <ul class="nav navbar-nav">
-          <li class=" {{(Request::url()==route('user_inicio') ? 'active':'')}} "><a href="{{route('user_inicio')}}">Inicio</a></li>
-          <li class=" {{(Request::url()==(route('user_estados')) ? 'active':'')}} "><a href="{{route('user_estados')}}">Estados</a></li>
-          <li class=" {{(Request::url()==(route('user_faltas')) ? 'active':'')}} "><a href="{{route('user_faltas')}}">Faltas</a></li>
-          <li class=" {{(Request::url()==(route('user_anuncios')) ? 'active':'')}} "><a href="{{route('user_anuncios')}}">Anuncios</a></li>
+          <li class="@yield('menu_inicio','')   "><a href="{{route('user_inicio')}}">Inicio</a></li>
+          <li class="@yield('menu_estados','')  "><a href="{{route('user_estados')}}">Estados</a></li>
+          <li class="@yield('menu_faltas','')   "><a href="{{route('user_faltas')}}">Faltas</a></li>
+          <li class="@yield('menu_anuncios','') "><a href="{{route('user_anuncios')}}">Anuncios</a></li>
         </ul>
 
         <ul class="nav navbar-nav pull-right">

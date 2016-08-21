@@ -11,6 +11,11 @@ use Datatables;
 
 class DT_UserController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     //
     public function getViewUsers(){
     	return view('users.datatables.DT_user');
