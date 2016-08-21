@@ -363,7 +363,7 @@ function cargarTablas(){
 			$('#'+table_id).DataTable({
 				//paging: false,
     			//searching: false,
-    			language:{ url: baseURL +'/css/datatable/dt_es.json'},
+    			language:{ url: public_path +'css/datatable/dt_es.json'},
     			responsive: true,
     			processing: true,
 	        	serverSide: true,

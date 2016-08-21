@@ -9,6 +9,7 @@
     <script src="{{asset(public_path().'js/myjava.js')}}"></script>
     <script src="{{asset(public_path().'js/bootstrap.js')}}"></script>
 
+    <script> var public_path = "{{public_path()}}"</script>
     <script> var baseURL = "{{URL::to('/')}}"</script>
     
 	<script src = "{{ asset(public_path().'js/AjaxisBootstrap.js')}}"></script>
