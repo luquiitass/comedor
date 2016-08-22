@@ -27,6 +27,9 @@ class DT_UserController extends Controller
             ->addColumn('action', function ($user) {
                 return view('users.datatables.botones',compact('user'))->render() ;
             })
+            ->editColumn('apellido', function($user){
+                    return "<a href ='/user/". $user->id ."'>".$user->apellido."</a>";
+            })
             ->make(true);
     }
      public function getUsersPendientes(){
@@ -35,6 +38,9 @@ class DT_UserController extends Controller
         return Datatables::of($users)
             ->addColumn('action', function ($user) {
                 return view('users.datatables.botones',compact('user'))->render();
+            })
+            ->editColumn('apellido', function($user){
+                    return "<a href ='/user/". $user->id ."'>".$user->apellido."</a>";
             })
             ->make(true);
     }
@@ -45,6 +51,9 @@ class DT_UserController extends Controller
         return Datatables::of($users)
             ->addColumn('action', function ($user) {
                 return view('users.datatables.botones',compact('user'))->render();
+            })
+            ->editColumn('apellido', function($user){
+                    return "<a href ='/user/". $user->id ."'>".$user->apellido."</a>";
             })
             ->make(true);
     }
@@ -57,6 +66,9 @@ class DT_UserController extends Controller
             })
             ->addColumn('estado', function ($user) {
                 return $user->estado->nombre;
+            })
+            ->editColumn('apellido', function($user){
+                    return "<a href ='/user/". $user->id ."'>".$user->apellido."</a>";
             })
             ->make(true);
     }

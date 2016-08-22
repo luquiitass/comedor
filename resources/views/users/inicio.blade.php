@@ -41,7 +41,7 @@
 			<div class="well fondo">
 				<ul class="listar_datos">
 					<div class="titulo">Anotado a:</div>
-					@forelse($estadosSemanal as $key => $value)
+					@forelse($user->estadosSemanal()->diasAnotado() as $key => $value)
 							<li>{{$key}}</li>
 					@empty()
 						<div class="alert alert-info">No esta anotado...</div>

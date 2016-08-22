@@ -21,7 +21,7 @@
                             Faltas
                         </p>
 
-                        {{$nombreMes}}
+                        @choice('mensajes.mes',$nombreMes)
                         <ol class="list-group">
                         @foreach($mes as  $falta)
                             <li class="list-group-item">

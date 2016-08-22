@@ -11,7 +11,7 @@
 	</ol>
 
 	<h2 class="Heading--Fancy">
-        <span class="Heading--Fancy__subtitle">Faltas de</span>
+        <span class="Heading--Fancy__subtitle"></span>
         <span>{{$us->apellido}} {{$us->nombre}}</span>
     </h2>
 
@@ -47,16 +47,17 @@
 			@if($meses->count() > 0)
 				<ul class="" >
 					@foreach($meses as $nombreMes => $mes)
-						<h3>{{$nombreMes}}</h3>
+						<h3>@choice('mensajes.mes',$nombreMes)</h3>
 						<li class="">
 							<ol>
 							@foreach($mes as $falta)
 								<li>
-									{{$falta->getFecha()}}
+									 {{ $falta->getFecha()}}
 								</li>
 							@endforeach
 							</ol>
 						</li>
+						<hr>
 					@endforeach
 				</ul>
 			@else

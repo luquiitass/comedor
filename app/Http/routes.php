@@ -62,14 +62,14 @@ Route::post('user/modificarEstadoUsuario','UsersController@modificarEstadoUsuari
 Route::get('editar_datos',['as' => 'user_edit','uses' => 'UsersController@editarDatos']);
 
 Route::post('user/modificarPassword',['as' => 'modificarPassword' ,'uses' => 'UsersController@modificarPassword']);
-Route::post('/user/resetPasword',['as' => 'resetPassword' ,'uses' => 'UsersController@resetPassword']);
+Route::get('/user/{id}/resetPasword',['as' => 'resetPassword' ,'uses' => 'UsersController@resetPassword']);
 Route::post('user/userUpdate',['as' => 'userUpdate' ,'uses' => 'UsersController@userUpdate']);
 Route::post('user/store','UsersController@store');
 Route::get('user/{id}/edit','UsersController@edit');
 Route::post('user/{id}/update','UsersController@update');
 Route::get('user/{id}/destroy',['as' => 'userDestroy','uses' => 'UsersController@destroy']);
 Route::get('user/{id}/deleteMsg','UsersController@DeleteMsg');
-
+Route::get('user/{id}/passwordResetMsg','UsersController@passwordResetMsg');
 Route::get('solicitud',['as'=>'solicitud','uses'=>'UsersController@solicitud']);
 Route::post('storeSolicitud',['as'=>'storeSolicitud','uses'=>'UsersController@storeSolicitud']);
 

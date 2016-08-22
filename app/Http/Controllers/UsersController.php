@@ -82,11 +82,9 @@ class UsersController extends Controller
         
     }
 
-    public function resetPassword()
+    public function resetPassword($id)
     {
-        $retorno= array();
-        $data = Request::only('id');
-        $user = User::findOrfail($data['id']);
+        $user = User::findOrfail($id);
 
         $user->password = bcrypt('1');
 
@@ -158,8 +156,9 @@ class UsersController extends Controller
             return Ajaxis::BtDisplay($user->mostrarMisDatosAjaxis());
             //return json_encode($user->mostrarMisDatos());
         }
-        $user= User::findOrfail($id);
-        return view('users.inicio',compact('user'));
+        $user = \Auth::user();
+        $us= User::findOrfail($id);
+        return view('users.show',compact('us','user'));
     }
 
     /**
@@ -206,6 +205,16 @@ class UsersController extends Controller
     public function DeleteMsg($id)
     {
         $msg = Ajaxis::BtDeleting('Eliminar Comensal','¿Seguro que quieres eliminar este comensal?','/user/'. $id . '/destroy/');
+
+        if(Request::ajax())
+        {
+            return $msg;
+        }
+    }
+
+    public function passwordResetMsg($id)
+    {
+        $msg = Ajaxis::BtDeleting('Restaurar Contraseña','¿Seguro que quieres restaurar la contraseña de este comensal?','/user/'. $id . '/resetPasword/');
 
         if(Request::ajax())
         {

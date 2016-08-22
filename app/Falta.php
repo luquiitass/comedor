@@ -21,6 +21,10 @@ class Falta extends Model
         'id', 'fecha','user_id'
     ];
 
+    protected $dates = 
+    [
+        'fecha'
+    ];
 
     public function user()
     {
@@ -29,7 +33,11 @@ class Falta extends Model
 
     public function getFecha()
     {
-    	return date('d/M/Y',strtotime($this->fecha));
+        $dia = $this->fecha->dayOfWeek;
+
+        $mes = $this->fecha->month;
+
+    	return  trans_choice('mensajes.dia',$dia).' '. $this->fecha->day. ' de ' . trans_choice('mensajes.mes',$mes) . ' , ' . $this->fecha->year;
     }
 	
 }

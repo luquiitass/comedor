@@ -163,7 +163,7 @@ class User extends Authenticatable
 
         $datos = $faltas->map(function($item,$key){
             $fecha = $item['fecha'];
-            $mes = date('M',strtotime($fecha));
+            $mes = date('n',strtotime($fecha));
             $item['mes'] = $mes;
             return $item;
         })->groupBy('mes');
@@ -172,7 +172,7 @@ class User extends Authenticatable
 
     public function obtenerFaltasMesActual()
     {
-        $mesActual=date('M');
+        $mesActual=date('n');
         $faltas=$this->obtenerFaltasPorMes();
         if ($faltas->has($mesActual)) {
             return $faltas[$mesActual];

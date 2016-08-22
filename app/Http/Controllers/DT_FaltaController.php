@@ -25,7 +25,7 @@ class DT_FaltaController extends Controller
                 return view('users.datatables.botones',compact('user'))->render() ;
             	})
             	->addColumn('action', function ($user) {
-            		$ver = "<a href ='/falta/". $user->id ."' class = 'btn btn-primary btn-xs'>Ver</a>";
+            		$ver = "<a href ='/falta/". $user->id ."' class = 'btn btn-info btn-xs'>Ver Faltas</a>";
                 return $ver;
             	})
                 ->addColumn('cant_total', function ($user) {
@@ -34,7 +34,12 @@ class DT_FaltaController extends Controller
                 ->addColumn('cant por mes', function ($user) {
                     return $user->obtenerFaltasMesActual()->count();
                 })
+                ->editColumn('apellido', function($user){
+                    return "<a href ='/user/". $user->id ."'>".$user->apellido."</a>";
+                })
     			->make(true);
 
     }
 }
+
+

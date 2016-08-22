@@ -31,7 +31,7 @@ class FaltaController extends Controller
     public function index()
     {
         $user= \Auth::user();
-        $mesActual= date('M');
+        $mesActual= date('n');
 
         return view('falta.index',compact('mesActual','user'));
 
