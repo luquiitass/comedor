@@ -6,6 +6,7 @@
 
 @section('content')
 	
+	<div class="container">
 		<div class="panel panel-primary" >
 			<div class="panel-heading">
 				<h1 class="panel-title">Anotados por día</h2>
@@ -47,6 +48,7 @@
 				@endif
 			</div>
 		</div-panel>
+	</div>
 
 @endsection
 

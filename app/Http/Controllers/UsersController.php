@@ -84,13 +84,13 @@ class UsersController extends Controller
 
     public function resetPassword($id)
     {
-        $user = User::findOrfail($id);
+        $us = User::findOrfail($id);
 
-        $user->password = bcrypt('1');
+        $us->password = bcrypt('1');
 
-        $user->save();
+        $us->save();
 
-        return json_encode(array('mensaje'=>'Contraseña restaurada, valor por defecto es "1"','tipoMensaje'=>'success'));
+        return json_encode(array('mensaje'=>'Contraseña restaurada','tipoMensaje'=>'success'));
 
     }
 

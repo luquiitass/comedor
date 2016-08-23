@@ -1,10 +1,33 @@
+html, body {
+     height: 100%;
+     margin: 0pt;
+     background: #EEEEEE!important
+}
+.Frame {
+     display: table;
+     height: 100%;
+     width: 100%;
+}
+.Row {
+     display: table-row;
+     height: 1px;
+}
+.Row.Expand {
+     height: auto !important;
+}
+
+
+/*
 html,body{
     margin: 0 !important;
     padding: 0 !important;
     height: 100%;
     width: 100%;
-    background: #00796b!important;
+    background: #EEEEEE!important;
 }
+body{
+    min-height: 100% !important;
+}*/
 
 table{
     border: 1px solid #DDDDDD;
@@ -14,12 +37,20 @@ table tr:first-child{
     background: #F7F7F7;
 }
 
+footer {
+    background: #000;
+    color: #fff;
+    padding-top: 20px;
+    padding-bottom: 5px;
+}
+
 .container{
-    min-height: 100% !important;
+    margin: auto;
+    /*min-height: 100% !important;
     background: #F5F8FA;
     border-radius: 2px;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-
+*/
 
 }
 
@@ -39,7 +70,7 @@ table tr:first-child{
 }
 
 .sombra, .well.sosmbra{
-    box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18),0 4px 15px 0 rgba(0,0,0,0.15);
+    box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18),0 4px 15px 0 rgba(0,0,0,0.15) !important;
 }
 
 .well.cont{

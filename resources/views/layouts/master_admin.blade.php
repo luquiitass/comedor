@@ -5,17 +5,17 @@
 		@include('layouts.partes.head')
 	@show
 
-	<body>
-		<div class="container">
-			<div id="mensaje_superior">
-			</div>
-			
-			@if(isset($user))
-					@include('layouts.menu.admin')
-			@endif
+	<body class="Frame">
 
+
+		<header class="Row">
+			<div id="mensaje_superior"></div>
+			@include('layouts.menu.admin')
+		</header>
+
+		<section class="Row Expand">
 			@yield('content')
-
+			
 			<div class="modal modal-static fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		        <div class='AjaxisModal'>
 			        <div class="modal-dialog " style=" width: 200px; ">
@@ -28,9 +28,15 @@
 	  				</div>
 	  			</div>
 		    </div>
-		</div>
+
+		</section>
+		
+
+		<footer class="Row">
+			@include('layouts.partes.footer')
+			@include('layouts.partes.scripts')
+		</footer>
+		
+
 	</body>
-
-	@include('layouts.partes.scripts')
-
 </html>

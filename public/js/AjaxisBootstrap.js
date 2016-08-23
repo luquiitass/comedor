@@ -28,7 +28,19 @@ $(document).on('click', '.destroy', function() {
         type: 'get',
         url: baseURL + $(this).data('link'),
         success: function(response) {
-            window.location = response;
+            if (isJson(response)) {
+                var json = $.parseJSON(response);
+                if (json.mensaje) {
+                    var tipoMensaje= json.tipoMensaje || 'info';
+                    mensaje_superior(json.mensaje,tipoMensaje,'false');
+                    $('#myModal').modal('hide');
+                }
+                if (json.location) {
+                    window.location = json.location;
+                }
+            }else{
+                window.location = response;
+            }
         }
     })
 })

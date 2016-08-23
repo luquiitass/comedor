@@ -1,5 +1,5 @@
-<nav class="navbar navbar-default">
-
+<nav class="navbar navbar-inverse">
+  <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <p class="navbar-brand" style=" margin: 0; ">Comedor Apostoles</p>
+      <p class="navbar-brand" style=" margin: 0;color: #fff; ">Comedor Apostoles</p>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -42,4 +42,5 @@
           </li>
         </ul>
       </div><!-- /.navbar-collapse -->
+  </div>
 </nav>
