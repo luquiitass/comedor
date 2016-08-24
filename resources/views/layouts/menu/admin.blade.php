@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <p class="navbar-brand" style=" margin: 0;color: #fff; ">Comedor Apostoles</p>
+      <p class="navbar-brand" style="color: #fff; ">Comedor Apostoles</p>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -23,7 +23,7 @@
 
         <ul class="nav navbar-nav pull-right" >
           <li class="dropdown">
-             <a id="legajo" value="{{Auth::user()->legajo}}" type="button" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+             <a id="legajo" value="{{Auth::user()->legajo}}" type="button" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: #fff">
               <span><i class="glyphicon glyphicon-user"></i></span>
                {{Auth::user()->apellido}} 
                {{Auth::user()->nombre}}

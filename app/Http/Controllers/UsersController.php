@@ -127,10 +127,14 @@ class UsersController extends Controller
         $input = Request::except('_token','url');
         $data= $request->only('email','legajo','nombre','apellido','dni','telefono','tipo','estado_id');
         $data['password']= bcrypt('1');
-        $data['estado_id']=Estado_usuarios::where('nombre','=','activo')->select('id')->first();
         $data['imagen']='storage/login2.png';
 
+        $estado=Estado_usuario::where('nombre','=','activo')->select('id')->first();
+
         $user= new User();//create($data);
+
+        $user->estado()->associate($estado);
+
         $user->create($data);
 
         if($user)

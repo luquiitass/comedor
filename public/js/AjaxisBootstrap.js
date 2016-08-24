@@ -10,6 +10,11 @@
  *|
  */
 
+$(document).on('click','.carg',function(){
+    $(this).btnProceso();
+})
+
+
 $(document).on('click', '.delete', function() {
     GET($(this).data('link'));
 })

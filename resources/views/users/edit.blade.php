@@ -25,7 +25,7 @@
 						
 				</li>
 				<li class="active"><a href="#pane_info" data-toggle="tab" >Información de perfil</a></li>
-				<li><a href="#pane_edit" data-toggle="tab" >Editar Perfil</a></li>
+				<li><a href="#pane_edit" data-toggle="tab" >Modificar Datos</a></li>
 				<li><a href="#pane_editarContraseña" data-toggle="tab" >Modificar contraseña</a></li>
 				<li><a href="#pane_editarFoto" data-toggle="tab" >Modificar foto de Perfil</a></li>
 				<!--
@@ -105,7 +105,7 @@
 
 							<div id="btns_cargar_cancelar">
 								<a class="btn btn-danger" onclick="cancelarCargaDeFoto('{{public_path().$user->getImagen()}}','fot')">Cancelar</a>
-								<button type="submit" class="btn btn-success pull-right" "> Modificar</button>
+								<button type="submit" class="btn btn-success pull-right carg"> Modificar</button>
 							</div>	
 						    
 					    </form>

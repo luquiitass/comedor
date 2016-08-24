@@ -21,10 +21,6 @@ $(function(){
 	    autoclose: true
 	});
 
-	$(document).on('click','.guardar',function(){
-		$(this).html('Guardando <i class="fa fa-spinner fa-spin"></i>').addClass('disabled');
-	});
-	
 	});
 	/*$('.mostrar').click(function(){
 		$(this).closest('tr').next().slideToggle();
@@ -227,7 +223,23 @@ function mensaje_superior(mensaje,alert,hide){
 	}
 }
 
+$.fn.extend({
+	btnProceso:function(text){
+		if (!text) {
+			$(this).html('<i class="fa fa-spinner fa-spin"></i>').addClass('disabled');
+		}else{
+			$(this).html(text).removeClass('disabled');
+		}
+	}
+});
 
+function btnProceso(text){
+	if (!text) {
+		$(this).html('<i class="fa fa-spinner fa-spin fa-4x"></i>').addClass('disabled');
+	}else{
+		$(this).val(text).removeClass('disabled');
+	}
+}
 
 /*::::::::::::::::::::::::Funciones para modificar estado de un dia ::::::::::::*/
 $.fn.extend({

@@ -8,13 +8,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <p class="navbar-brand" style=" margin: 0;color: #fff; ">Comedor Apostoles</p>
+      <p class="navbar-brand" style="color: #fff; ">Comedor Apostoles</p>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="navbar">
-
-        <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav pull-left">
           <li class="@yield('menu_inicio','')   "><a href="{{route('user_inicio')}}">Inicio</a></li>
           <li class="@yield('menu_estados','')  "><a href="{{route('user_estados')}}">Estados</a></li>
           <li class="@yield('menu_faltas','')   "><a href="{{route('user_faltas')}}">Faltas</a></li>
@@ -23,7 +22,7 @@
 
         <ul class="nav navbar-nav pull-right">
           <li class="dropdown">
-            <a id="legajo" value="{{Auth::user()->legajo}}" type="button" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <a id="legajo" value="{{Auth::user()->legajo}}" type="button" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"  style="color: #fff">
             <span><i class="glyphicon glyphicon-user"></i></span>
              {{Auth::user()->apellido}} 
              {{Auth::user()->nombre}}

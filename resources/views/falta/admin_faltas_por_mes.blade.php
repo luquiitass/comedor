@@ -2,15 +2,10 @@
 
 @section('titulo','Faltas')
 
-@section('menu_faltas','active')
-
 @section('content')
-	<div class="container">
-		<ol class="breadcrumb">
-		  <li><a href="{{route('admin_faltas')}}">Faltas</a></li>
-		  <li class="active">{{$us->apellido}} {{$us->nombre}}</li>
-		</ol>
 
+	<div class="container">	
+		@include('botones.atras')
 		<h2 class="Heading--Fancy">
 	        <span class="Heading--Fancy__subtitle"></span>
 	        <span>{{$us->apellido}} {{$us->nombre}}</span>

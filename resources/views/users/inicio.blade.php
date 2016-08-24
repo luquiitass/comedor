@@ -18,13 +18,13 @@
 	<div class="row">
 		<div class="col-xs-12 col-sm-6 col-md-6 col-md-offset-1 ">
 			<div class="row well fondo">
-				<div class="col-xs-12 col-sm-12">
+				<div class="col-xs-12 col-sm-4">
 					<a href="{{asset($user->getImagen())}}" data-lightbox="roadtrip">
-						<img class="img-thumbnail center-block" src="{{asset($user->getImagen())}}" alt="Foto de perfil"  style=" max-width: 220px !important; ">
+						<img class="img-thumbnail center-block" src="{{asset($user->getImagen())}}" alt="Foto de perfil"  style=" max-width: 170px !important; ">
 					</a>
 					<hr class="border-bottom">
 				</div>
-				<div class="col-xs-12 col-sm-12 listar_datos todo_espacio">
+				<div class="col-xs-12 col-sm-8 listar_datos todo_espacio">
 					<ul class="block lista_sin_estilo  todo_espacio">
 					<div class="titulo">Datos personales:</div>
 					@foreach($user->mostrarMisDatos() as $key => $value)

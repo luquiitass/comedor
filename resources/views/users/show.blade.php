@@ -2,14 +2,14 @@
 
 @section('titulo','Usuario-'.$us->apellido.' '.$us->nombre)
 
-@section('menu_faltas','active')
 
 @section('content')
-	<h2 class="Heading--Fancy">
-        <span class="Heading--Fancy__subtitle"></span>
-        <span>Información de Comensal</span>
-    </h2>
 	<div class="container">
+		@include('botones.atras')
+		<h2 class="Heading--Fancy">
+	        <span class="Heading--Fancy__subtitle"></span>
+	        <span>Información de Comensal</span>
+	    </h2>
 		<div class="row">
 			<div class="col-xs-12 col-sm-6 col-md-6 col-md-offset-1 ">
 				<div class="row well fondo">
@@ -41,21 +41,66 @@
 							<div class="alert alert-info">No esta anotado...</div>
 						@endforelse
 					</ul>
-					<br>
-					<hr>
-					<ul class="listar_datos">
-						<div class="titulo">Faltas de este mes:</div>
-							@forelse($us->obtenerFaltasMesActual() as $key => $value)
-								<li>{{$value->getFecha()}}</li>
-							@empty()
-								<div class="alert alert-info">No posee faltas...</div>
-							@endforelse
-					</ul>
-					<br>
-					<hr>
 				</div>
 			</div>
 		</div>
+
+		<h2 class="Heading--Fancy">
+	        <span class="Heading--Fancy__subtitle"></span>
+	        <span>Faltas</span>
+	    </h2>
+
+		<div class="row well fondo_admin">
+	    	<div class="col-xs-12 col-md-6">
+	    		<h3>Faltas de este Mes</h3>
+	    		<hr>
+					<?php $faltas= $us->obtenerFaltasMesActual()?>
+					<ul class="">
+						<li class="lista_sin_estilo">
+							@if($faltas->count() > 0)
+								<ol class="">
+									@foreach($faltas as $falta)
+										<li class="">
+											{{$falta->getFecha()}}
+										</li>
+									@endforeach
+								</ol>
+							@else
+							<div class="alert alert-success">
+								No posee este mes
+							</div>
+							@endif
+
+						</li>
+					</ul>
+	    	</div>
+	    	<div class="col-xs-12 col-md-6">
+	    		<h3>Faltas de todo el Año</h3>
+	    		<hr>
+		    	<?php $meses= $us->obtenerFaltasPorMes()?>
+				@if($meses->count() > 0)
+					<ul class="" >
+						@foreach($meses as $nombreMes => $mes)
+							<h3>@choice('mensajes.mes',$nombreMes)</h3>
+							<li class="">
+								<ol>
+								@foreach($mes as $falta)
+									<li>
+										 {{ $falta->getFecha()}}
+									</li>
+								@endforeach
+								</ol>
+							</li>
+							<hr>
+						@endforeach
+					</ul>
+				@else
+				<div class="alert alert-success">
+					No posee faltas en todo el año
+				</div>
+				@endif
+	    	</div>
+	    </div>
 	</div>
 
 	<div class="container">
@@ -68,7 +113,7 @@
 		<div class="row">
 			 <div class="col-md-4 ">
 			 	<h3>Resturar Contraseña</h3>
-				<a data-toggle="modal" data-target="#myModal" class = 'btn btn-primary delete btn-block' data-link = "/user/{{$user->id}}/passwordResetMsg" >Restaurar Contraseña</i></a>
+				<a data-toggle="modal" data-target="#myModal" class = 'btn btn-primary delete btn-block' data-link = "/user/{{$us->id}}/passwordResetMsg" >Restaurar Contraseña</i></a>
 				<p>Al restaurarla este comensal quedara con la contraseña por defecto que es "1" </p>
 			 </div>
 
@@ -82,7 +127,7 @@
 
 			 <div class="col-md-4">
 			 	<h3>Eliminar Comensal</h3>
-			 	<a data-toggle="modal" data-target="#myModal" class = 'btn btn-danger delete btn-block' data-link = "/user/{{$user->id}}/deleteMsg" >Eliminar</i></a>
+			 	<a data-toggle="modal" data-target="#myModal" class = 'btn btn-danger delete btn-block' data-link = "/user/{{$us->id}}/deleteMsg" >Eliminar</i></a>
 			 	<p>Recuerde que al eliminar este comensal, tambien estara borrando todos sus datos(faltas,estados, anuncios,etc)...</p>
 			 </div>
 		</div>

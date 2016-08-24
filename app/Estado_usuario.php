@@ -16,6 +16,8 @@ class Estado_usuario extends Model
 
     protected $table = 'estado_usuarios';
 
+    protected $fillable = ['id','nombre','descripcion'];
+
     public function users(){
     	return $this->hasMany(User::class,'estado_id','id');
     }
