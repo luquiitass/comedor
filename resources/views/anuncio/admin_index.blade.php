@@ -35,7 +35,7 @@
 						<!-- Panel para Listar a los usuarios Activos  con la posibilidad de verlos y desactivarlos-->
 						<div  class="tab-pane" id="tab_nuevo_anuncio">
 							<h3>Nuevo Anuncio</h3>
-							<div style="width: 50%; margin: 10px;">
+							<div class="col-xs-12 col-md-6">
 								{{Form::open(array('url' => '/anuncio'))}}
 									<div class="form-group">
 										{{Form::label('titulo')}}
@@ -47,7 +47,7 @@
 									</div>
 									<div class="form-group">
 										{{Form::label('mostar hasta')}}
-										{{Form::text('hasta',null,array('class' =>'form-control datepicker'))}}
+										{{Form::text('hasta',$fechaActual,array('class' =>'form-control datepicker'))}}
 									</div>
 									{{Form::submit('Guardar',array('class' => 'btn btn-primary'))}}
 									{{Form::token()}}

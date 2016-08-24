@@ -8,6 +8,7 @@ use App\Anuncio;
 use App\User;
 use Amranidev\Ajaxis\Ajaxis;
 use URL;
+use Carbon\Carbon;
 
 /**
  * Class AnuncioController
@@ -50,8 +51,9 @@ class AnuncioController extends Controller
         //dd($anuncios);
         
         $misAnuncios= $user->anuncios()->get();
+        $fechaActual = Carbon::now()->formatLocalized('%d/%m/%Y');
 
-        return view('anuncio.admin_index',compact('anuncios','user','misAnuncios'));
+        return view('anuncio.admin_index',compact('anuncios','user','misAnuncios','fechaActual'));
     }
 
 
