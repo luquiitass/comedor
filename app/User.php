@@ -43,7 +43,7 @@ class User extends Authenticatable
         if ( \Storage::disk('local')->exists($this->imagen) ) {
             return public_path().'storage/'.$this->imagen;
         }
-        return public_path().'storage/login2.png'; 
+        return public_path().'img/login2.png'; 
     }
 
     public function isActivo()

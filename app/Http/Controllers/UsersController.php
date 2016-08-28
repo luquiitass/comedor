@@ -16,6 +16,7 @@ use App\Http\Requests\UserUpdateRequest;
 use App\Http\Requests\UserSolicitudRequest;
 use App\Http\Requests\AdminUpdateUser;
 use App\Http\Requests\UserUpdatePasswordRequest;
+use App\Email;
 
 
 class UsersController extends Controller
@@ -301,7 +302,16 @@ class UsersController extends Controller
 
 
         $data['imagen']='storage/login2.png';
+        
+        /*Prueba para mandar email antes de registrar*/
+        $user = new User($data);
+        
+        return  Email::solicitudRegistrada($user);
+        /**********************************************/
+
         $user= new User();//create($data);
+
+
         $user->create($data);
 
         if($user)

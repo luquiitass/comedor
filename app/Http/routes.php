@@ -127,6 +127,7 @@ Route::get('admin',['as' => 'admin_admin', 'uses' => 'AdminController@index']);
 //*******************  OTROS  ***********************************/
 
 Route::post('image/save','ImageController@save');
+Route::get('enviarEmail/{mensaje}','EmailController@enviarEmail');
 
 
 
