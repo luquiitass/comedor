@@ -241,13 +241,14 @@ class UsersController extends Controller
             $user= \Auth::user();
             return view('users.inicio',compact('user','ajax'))->render();
         }
-        $user= \Auth::user();
+        $user= User::with('estadosSemanal')->with('faltas')->find(\Auth::user()->id);
+        //dd($user);
         
-        $estadosSemanal = $user->estadosSemanal()->diasAnotado();
+        //$estadosSemanal = $user->estadosSemanal->diasAnotado();
 
-        $faltas = $user->obtenerFaltasMesActual();
+        //$faltas = $user->obtenerFaltasMesActual();
         
-        return view('users.inicio',compact('user','estadosSemanal','faltas'));
+        return view('users.inicio',compact('user'));
     }
 
     public function estadosSemanal($id){

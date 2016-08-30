@@ -138,7 +138,7 @@ class User extends Authenticatable
 
     public function estadosSemanal()
     {
-        return $this->hasOne(Estadossemanal::class)->first();
+        return $this->hasOne(Estadossemanal::class);
     }
 
     public function faltas()
@@ -158,7 +158,7 @@ class User extends Authenticatable
 
     public function obtenerFaltasPorMes()
     {
-        $faltas = $this->faltas()->get();
+        $faltas = $this->faltas;
         setlocale(LC_TIME,"es_ES");
 
         $datos = $faltas->map(function($item,$key){

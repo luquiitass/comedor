@@ -18,7 +18,7 @@ class DT_FaltaController extends Controller
     //
     public function getFaltasPorMes()
     {
-    	$users =User::select('users.*');
+    	$users =User::with('faltas');
     				
     	return Datatables::of($users)
     			->addColumn('action', function ($user) {

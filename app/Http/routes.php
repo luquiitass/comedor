@@ -23,9 +23,8 @@ Route::get('/', function () {
 });
 
 Route::get('/prueba',function(){
-	return view('prueba');
-	}
-);
+	return	Artisan::call('queue:listen');;
+});
 
 
 /* *******************auth**********************************************/

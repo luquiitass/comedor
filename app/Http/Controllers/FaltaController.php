@@ -235,7 +235,7 @@ class FaltaController extends Controller
 
     public function faltaPorMes($id){
         $user = \Auth::user();
-        $us = User::findOrfail($id);
+        $us = User::with('faltas')->findOrfail($id);
         //dd($user);
         return view('falta.admin_faltas_por_mes',compact('user','us'));
     }

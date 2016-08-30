@@ -35,12 +35,12 @@ class EstadossemanalController extends Controller
     public function index()
     {
         $user=\Auth::user();//obtiene el usuario logueado
-        $estados = $user->estadosSemanal();//obtiene los estados de este usuario 
+        //$estados = $user->estadosSemanal;//obtiene los estados de este usuario 
         
         //dd($estados);
         //dd($user);
 
-        return view('estadossemanal.show',compact('estados','user'));
+        return view('estadossemanal.show',compact('user'));
     }
 
     public function anotados(){

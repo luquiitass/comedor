@@ -1,14 +1,14 @@
-    <div class="">
+    <div class="container">
         <h2 class="Heading--Fancy">
                 <span class="Heading--Fancy__subtitle"></span>
                 <span>Estados Semanal</span>
         </h2>
         <div class="row well fondo">
             <div class="col-lg-1"></div>
-                    @foreach($estados->estadosDias() as $key => $value)
+                    @foreach(\Auth::user()->estadosSemanal->estadosDias() as $key => $value)
                         <div class="col-lg-2 center-block " style=" text-align: center; float: left; ">
                             {{Form::open(array('url'=>'/ver_estados','class'=>'formAjax ','method'=>'get'))}}
-                            {{Form::hidden('id_estado',$estados->id)}}
+                            {{Form::hidden('id_estado',\Auth::user()->estadosSemanal->id)}}
                             {{Form::hidden('dia',$key)}}
                             <h4>{{$key}}</h4>
                             @if($value==0)
