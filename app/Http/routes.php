@@ -11,6 +11,8 @@
 |
 */
 
+use Carbon\Carbon;
+
 Route::get('/', function () {
 	if (\Auth::check()) {
 		if (\Auth::user()->isAdmin()) {
@@ -23,7 +25,12 @@ Route::get('/', function () {
 });
 
 Route::get('/prueba',function(){
-	return	Artisan::call('queue:listen');;
+	//$user = \App\User::find(array('677','659'));
+
+	$user = \App\User::find('659');
+
+	return \App\Email::aprobado($user);
+	//return	Artisan::call('queue:listen');;
 });
 
 
