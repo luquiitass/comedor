@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+use \App\Estado_usuario;
+use \App\Observers\AuditoriaObserver;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -13,6 +16,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Estado_usuario::Observe(AuditoriaObserver::class);
     }
 
     /**

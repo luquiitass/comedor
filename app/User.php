@@ -38,6 +38,9 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+
+
+
     public function getImagen()
     {
         if ( \Storage::disk('local')->exists($this->imagen) ) {
@@ -154,6 +157,11 @@ class User extends Authenticatable
     public function anuncios()
     {
         return $this->hasMany(Anuncio::class);
+    }
+
+    public function notificaciones()
+    {
+        $this->hasOne(Notificacion::class);
     }
 
     public function obtenerFaltasPorMes()

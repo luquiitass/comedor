@@ -14,6 +14,9 @@ class Estado_usuario extends Model
 {
     public $timestamps = false;
 
+    protected $auditoria = [
+        'tabla'=>'Estados de usuario'
+    ];
     protected $table = 'estado_usuarios';
 
     protected $fillable = ['id','nombre','descripcion'];
@@ -35,6 +38,11 @@ class Estado_usuario extends Model
     	}
 
     	return $retorno;
+    }
+
+    public function toString()
+    {
+        return 'Id:' . $this->id . ',Nombre:' . $this->nombre . ',Descripción:' . $this->descripcion;
     }
 
 	

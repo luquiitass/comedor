@@ -27,9 +27,14 @@ Route::get('/', function () {
 Route::get('/prueba',function(){
 	//$user = \App\User::find(array('677','659'));
 
-	$user = \App\User::find('659');
+	$users = \App\User::all();
+	foreach ($users as $user) {
+		$notificacion = new \App\Notificacion();
+		$notificacion->user_id = $user->id;
+		$notificacion->save();
+	}
 
-	return \App\Email::aprobado($user);
+	//return \App\Email::aprobado($user);
 	//return	Artisan::call('queue:listen');;
 });
 
@@ -118,10 +123,10 @@ Route::get('anuncio/{id}/deleteMsg','\App\Http\Controllers\AnuncioController@Del
 
 //estado_usuario Resources
 /********************* estado_usuario ***********************************************/
-Route::resource('estado_usuario','\App\Http\Controllers\Estado_usuarioController');
-Route::post('estado_usuario/{id}/update','\App\Http\Controllers\Estado_usuarioController@update');
-Route::get('estado_usuario/{id}/delete','\App\Http\Controllers\Estado_usuarioController@destroy');
-Route::get('estado_usuario/{id}/deleteMsg','\App\Http\Controllers\Estado_usuarioController@DeleteMsg');
+//Route::resource('estado_usuario','\App\Http\Controllers\Estado_usuarioController');
+//Route::post('estado_usuario/{id}/update','\App\Http\Controllers\Estado_usuarioController@update');
+//Route::get('estado_usuario/{id}/delete','\App\Http\Controllers\Estado_usuarioController@destroy');
+//Route::get('estado_usuario/{id}/deleteMsg','\App\Http\Controllers\Estado_usuarioController@DeleteMsg');
 /********************* estado_usuario ***********************************************/
 
 //Resources de ControllerAdmin

@@ -29,6 +29,8 @@ return array(
     'Cellmap' => $vendorDir . '/dompdf/dompdf/include/cellmap.cls.php',
     'CreateFailedJobsTable' => $baseDir . '/database/migrations/2016_08_26_150257_create_failed_jobs_table.php',
     'CreateJobsTable' => $baseDir . '/database/migrations/2016_08_26_144337_create_jobs_table.php',
+    'CreateNotificacionUserTable' => $baseDir . '/database/migrations/2016_08_30_201053_create_notificacionUser_table.php',
+    'CreateNotificacionesTable' => $baseDir . '/database/migrations/2016_08_30_200831_create_notificaciones_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'DOMPDF' => $vendorDir . '/dompdf/dompdf/include/dompdf.cls.php',

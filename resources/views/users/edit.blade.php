@@ -28,6 +28,8 @@
 				<li><a href="#pane_edit" data-toggle="tab" >Modificar Datos</a></li>
 				<li><a href="#pane_editarContraseña" data-toggle="tab" >Modificar contraseña</a></li>
 				<li><a href="#pane_editarFoto" data-toggle="tab" >Modificar foto de Perfil</a></li>
+				<li><a href="#pane_notificaciones" data-toggle="tab" >Notificaciones</a></li>
+
 				<!--
 				<li><a href="#pane_eliminarCuenta" data-toggle="tab" >Eliminar Cuenta</a></li>
 				-->
@@ -111,6 +113,39 @@
 					    </form>
 					
 
+				</div>
+
+				<div class="tab-pane" id="pane_notificaciones">
+					<div>
+						<div>
+							<h2>Notificaciones</h2>
+							<hr>
+							{{Form::open()}}
+								<div class="form-group">
+									<h3>Por Anuncios</h3>
+									<p class="alert alert-success">Al tener activa esta opción, recibirás un correo cada vez que se cree un nuevo anuncio <strong>Recibir correos </strong>{{Form::checkbox('check_anuncios','',true)}}</p>
+									
+								</div>
+								<div class="form-group">
+									<h3>Por Estados</h3>
+									<p class="alert alert-success">Al tener activa esta opción, recibirás un correo todos los domingo informándote a que días estas anotado <strong>Recibir correos </strong>{{Form::checkbox('check_estados','',true)}}</p>
+									
+								</div>
+								<div class="form-group">
+									<h3>Por Faltas</h3>
+									<p class="alert alert-success">Al tener activa esta opción, recibirás un correo Cada vez que se registre una falta. Informándote también la cantidad de faltas que posees en este mes y los días a los cuales estas anotado.  <strong>Recibir correos </strong>{{Form::checkbox('check_faltas','',true)}}</p>
+									
+								</div>
+								<div class="form-group">
+									<h3>Por Solicitud</h3>
+									<p class="alert alert-success">Por ser Administrados recibirás un correo cada vez que un comensal solicitando registrarse. <strong>Recibir correos </strong>{{Form::checkbox('check_solicitudes','',true)}}</p>
+									
+								</div>
+								{{Form::button('Modificar',array('class'=> 'btn btn-primary pull-right'))}}
+								{{Form::token()}}
+							{{Form::close()}}
+						</div>
+					</div>
 				</div>
 
 				<div class="tab-pane" id="pane_eliminarCuenta">

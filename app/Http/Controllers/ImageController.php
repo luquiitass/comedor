@@ -32,7 +32,7 @@ class ImageController extends Controller
         //$imagen->resize(240,240);
         $path = public_path().'storage/'.$nombreImagen;
 
-        dd($path);
+        //dd($path);
 
         $imagen->save($path);
 
